@@ -1,0 +1,142 @@
+---
+id: create-a-project
+title: Créez et lancez un projet
+---
+
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+import VsFindAvaloniaTemplateScreenshot from '/img/get-started/test-drive/vs-find-avalonia-template-screenshot.png';
+import VsNewAvaloniaProjectScreenshot from '/img/get-started/test-drive/vs-new-avalonia-project-screenshot.png';
+import RiderRunScreenshot from '/img/get-started/test-drive/rider-toolbar-run.png';
+import InitialWindowScreenshot from '/img/get-started/test-drive/initial-window.png';
+
+import vscode1 from '/img/get-started/test-drive/vscode-command-new-project.png';
+import vscode2 from '/img/get-started/test-drive/vscode-select-project-template.png';
+import vscode3 from '/img/get-started/test-drive/vscode-name-new-project.png';
+import vscode4 from '/img/get-started/test-drive/vscode-create-project.png';
+import vscode6 from '/img/get-started/test-drive/vscode-select-csharp.png';
+import vscode7 from '/img/get-started/test-drive/vscode-launch-app.png';
+import vscode8 from '/img/get-started/test-drive/vscode-app-running.png';
+
+
+## Créez le Projet
+
+Pour commencer, nous allons utiliser le modèle MVVM Avalonia : `Application Avalonia MVVM` (ou `avalonia.mvvm` dans la CLI).
+
+<Tabs groupId="ide">  
+  <TabItem value="rider" label="Rider">
+
+1. Sur l'écran de démarrage de Rider, sélectionnez **Nouvelle Solution** pour ouvrir l'assistant `Nouvelle Solution`. Si vous avez installé les [Modèles Avalonia](../install.md), vous verrez alors trois options.
+    * **Application .NET Avalonia :** Un modèle pour les applications de bureau (Windows, macOS et Linux) qui utilise le code-behind plutôt que MVVM.
+    * **Application .NET MVVM Avalonia :** Un modèle pour les applications de bureau (Windows, macOS et Linux) qui utilise MVVM (par défaut avec RxUI).
+    * **Application Avalonia multiplateforme :** Un modèle pour toutes les plateformes prises en charge (Windows, macOS, Linux, iOS, Android et WASM). Ce modèle nécessite des charges de travail supplémentaires.
+
+2. Dans la barre latérale, faites défiler vers le bas et sélectionnez `Application .NET MVVM Avalonia`
+<ThemedImage
+            alt="Créer une solution Avalonia avec JetBrains Rider"
+            className="center"
+            sources={{
+                light: useBaseUrl('/img/get-started/test-drive/rider-new-solution-light.png'),
+                dark: useBaseUrl('/img/get-started/test-drive/rider-new-solution-dark.png'),
+            }}
+            />
+3. Tapez `GetStartedApp` dans le champ **Nom de la solution**
+4. Cliquez sur **Créer**
+
+Le modèle créera une nouvelle solution et un projet.
+
+<ThemedImage
+            alt="Créer une solution Avalonia avec JetBrains Rider"
+            className="center"
+            sources={{
+                light: useBaseUrl('/img/get-started/test-drive/rider-solution-light.png'),
+                dark: useBaseUrl('/img/get-started/test-drive/rider-solution-dark.png'),
+            }}
+            />
+
+  </TabItem>
+  <TabItem value="vs" label="Visual Studio">
+- Dans **Visual Studio**, cliquez sur **Créer un nouveau projet**.
+- Tapez `Avalonia` dans la zone de recherche.
+- Cliquez sur **Application Avalonia** puis cliquez sur **Suivant**.
+
+<img className="center" src={VsFindAvaloniaTemplateScreenshot} />
+
+- Nommez le projet `GetStartedApp`, puis cliquez sur **Créer**.
+
+- L'écran suivant permet de sélectionner les plateformes que vous souhaitez cibler : cliquez sur **Bureau**, puis cliquez sur **Suivant**.
+
+- L'écran suivant permet de sélectionner un modèle de conception : cliquez sur **ReactiveUI**, puis cliquez sur **Créer**.
+
+Le modèle créera une nouvelle solution et deux nouveaux projets. `GetStartedApp` est le projet principal qui est partagé entre chaque plateforme. `GetStartedApp.Desktop` est le projet spécifique à la plateforme de bureau.
+
+<img className="center" src={VsNewAvaloniaProjectScreenshot} />
+
+  </TabItem>
+  <TabItem value="vsc" label="Visual Studio Code">
+     * Ouvrez la Palette de commandes en utilisant `⇧ ⌘ P`, puis tapez ".NET" et trouvez et sélectionnez la commande **.NET : Nouveau projet**.
+     <img className="center" src={vscode1} />
+     * Après avoir sélectionné la commande, vous devrez choisir le modèle de projet. Choisissez **Application Avalonia MVVM**.
+    <img className="center" src={vscode2} />
+    * Nommez le projet `GetStartedApp`, et appuyez sur Entrée.
+    <img className="center" src={vscode3} />
+    * Vous devrez fournir un chemin pour l'emplacement où le projet doit être créé. Faites cela, puis appuyez sur **Créer le projet**.
+    <img className="center" src={vscode4} />
+  </TabItem>
+  <TabItem value="cli" label="Ligne de commande" default>
+Exécutez la commande :
+
+```bash title='Bash'
+dotnet new avalonia.mvvm -o GetStartedApp
+```
+
+Cela créera un nouveau dossier appelé `GetStartedApp` contenant le nouveau projet.
+  </TabItem>
+</Tabs>
+
+## Exécuter le projet
+
+Nous sommes maintenant prêts à exécuter le projet !
+
+<Tabs groupId="ide">  
+  <TabItem value="rider" label="Rider">
+
+Appuyez sur le bouton **Exécuter** dans la barre d'outils Rider :
+
+<img className="center" src={RiderRunScreenshot} />
+
+  </TabItem>
+  <TabItem value="vs" label="Visual Studio">
+
+Cliquez avec le bouton droit sur le projet `GetStartedApp.Desktop` et sélectionnez **Définir comme projet de démarrage**.
+
+Appuyez sur `F5` pour exécuter le projet.
+
+  </TabItem>
+  <TabItem value="vsc" label="Visual Studio Code">
+   * Appuyez sur `F5` pour exécuter le projet et sélectionnez `C#` comme débogueur
+    <img className="center" src={vscode6} />
+  * Sélectionnez **C#: Démo GetStartedApp** pour lancer l'application avec le débogueur connecté.
+    <img className="center" src={vscode7} />
+  </TabItem>
+  <TabItem value="cli" label="Ligne de commande" default>
+Allez dans le répertoire `GetStartedApp` et exécutez :
+
+```bash title='Bash'
+dotnet run
+```
+  </TabItem>
+</Tabs>
+
+La solution sera construite et exécutée.
+
+Vous devriez maintenant exécuter votre première application Avalonia !
+
+<ThemedImage
+  alt="Application en cours d'exécution"
+  className="center"
+  sources={{
+      light: useBaseUrl('/img/get-started/test-drive/main-window-app-running-light.png'),
+      dark: useBaseUrl('/img/get-started/test-drive/main-window-app-running-dark.png'),
+  }}
+  />

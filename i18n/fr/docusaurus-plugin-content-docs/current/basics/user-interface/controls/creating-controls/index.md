@@ -1,0 +1,11 @@
+---
+id: index
+title: Créer des contrôles
+---
+
+# Créer des contrôles
+
+import {DocsCardList} from '../../../../../../../../src/components/DocsCard';
+import {useCurrentSidebarCategory} from '@docusaurus/theme-common';
+
+<DocsCardList list={useCurrentSidebarCategory().items} />

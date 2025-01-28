@@ -1,0 +1,82 @@
+---
+id: add-some-layout
+title: Ajoutez une mise en page
+---
+
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import StackPanelZonesDiagram from '/img/get-started/test-drive/stackpanel-zones.png';
+
+Avalonia fournit une gamme de contrôles intégrés pour vous aider à disposer les éléments visuels d'une application. Sur cette page, vous verrez comment utiliser certains de ces contrôles de mise en page.
+
+À ce stade, votre application a un seul bouton situé dans la zone de contenu de la fenêtre principale.
+
+En fait, une `Window` Avalonia ne permet qu'un seul contrôle dans sa zone de contenu. Pour afficher plusieurs éléments visuels, vous devez utiliser un contrôle de mise en page qui permet plusieurs contrôles dans sa zone de contenu.
+
+## StackPanel
+
+Le contrôle `StackPanel` dispose une séquence de contrôles dans l'ordre où ils sont définis dans XAML. Par défaut, il dispose les éléments en une pile verticale, mais cela peut être changé en horizontal avec sa propriété `Orientation`.
+
+<img src={StackPanelZonesDiagram} alt="" />
+
+```xml
+<StackPanel>
+    <TextBlock>1</TextBlock>
+    <TextBlock>2</TextBlock>
+</StackPanel>
+```
+
+## TextBlock
+
+Le contrôle `TextBlock` permet un stylage étendu de son texte contenu.
+
+Pour faire avancer l'exemple, ajoutez un `StackPanel` comme suit (incluez le XAML du `Button` existant) :
+
+```xml
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:GetStartedApp.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="450"
+        x:Class="GetStartedApp.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="GetStartedApp">
+
+    <Design.DataContext>
+        <!-- Cela ne définit que le DataContext pour le visualiseur dans un IDE,
+             pour définir le DataContext réel pour l'exécution, définissez la propriété DataContext dans le code (regardez App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+// highlight-start
+    <StackPanel>
+        <Border Margin="5" CornerRadius="10" Background="LightBlue">
+            <TextBlock Margin="5"
+                       FontSize="24" 
+                       HorizontalAlignment="Center"
+                       Text="Convertisseur de température">
+            </TextBlock>
+        </Border>
+
+        <Button HorizontalAlignment="Center">Calculer</Button>
+    </StackPanel>
+    // highlight-end
+</Window>
+
+```
+
+<ThemedImage
+        alt="StackPanel Température"
+        className="center"
+        sources={{
+            light: useBaseUrl('/img/get-started/test-drive/temperature-stackpanel-light.png'),
+            dark: useBaseUrl('/img/get-started/test-drive/temperature-stackpanel-dark.png'),
+        }}
+        />
+
+:::info
+Vous pouvez explorer les autres contrôles de mise en page dans Avalonia en utilisant la référence [ici](../../reference/controls/layout-controls.md).
+:::
+
+Sur la page suivante, vous ajouterez des entrées au milieu de la fenêtre.

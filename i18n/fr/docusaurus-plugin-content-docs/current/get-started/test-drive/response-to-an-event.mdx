@@ -1,0 +1,109 @@
+---
+id: respond-to-an-event
+title: Répondre à un événement
+---
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import EventDebugOutputScreenshot from '/img/get-started/test-drive/event-debug-output.png';
+import RiderDebugButton from '/img/get-started/test-drive/rider-toolbar-debug.png';
+
+
+
+
+Il existe plusieurs façons d'implémenter des actions dans une application Avalonia. Sur cette page, vous verrez comment utiliser l'une des plus simples : comment écrire du code de gestion d'événements pour un clic de bouton.
+
+Pour commencer, vous allez écrire un gestionnaire d'événements pour le clic d'un bouton qui n'interagit avec aucun des autres contrôles.
+
+## Code-Behind
+
+Les fichiers XAML peuvent avoir des fichiers source C# associés appelés "code-behind". Le code-behind est utilisé pour accéder aux contrôles nommés et gérer les événements pour son XAML associé. Lorsque vous utilisez un IDE, vous pouvez trouver ce fichier dans l'**Explorateur de solutions** comme sous-élément du fichier `.axaml`.
+
+<ThemedImage
+            alt="Explorateur de solutions"
+            className="center"
+            sources={{
+                light: useBaseUrl('/img/get-started/test-drive/codebehind-mainwindow-light.png'),
+                dark: useBaseUrl('/img/get-started/test-drive/codebehind-mainwindow-dark.png'),
+            }}
+            />
+
+Pour modifier le code-behind de `MainWindow` :
+
+- Ouvrez le fichier `MainWindow.axaml.cs`
+
+Vous devriez voir du code C# comme ceci :
+
+```csharp
+using Avalonia.Controls;
+
+namespace GetStartedApp.Views;
+
+public partial class MainWindow : Window
+{
+    public MainWindow()
+    {
+        InitializeComponent();
+    }
+}
+```
+
+La classe partielle `MainWindow` correspond à la `Window` créée par Avalonia à la suite du XAML que vous avez déjà. Le nom d'espace et le nom de la classe doivent être les mêmes dans le XAML et le code-behind. Vous pouvez trouver ce nom de classe dans la balise racine XAML :
+
+```xml
+<UserControl x:Class="GetStartedApp.Views.MainWindow"
+    ...>
+</UserControl>
+```
+
+Pour ajouter un gestionnaire d'événements pour le `Button`, suivez cette procédure :
+
+- Localisez le constructeur de `MainWindow` dans le fichier de code-behind (voir les instructions ci-dessus).
+- Après le constructeur, ajoutez le code suivant :
+
+```csharp
+private void Button_OnClick(object? sender, RoutedEventArgs e)
+{
+    Debug.WriteLine("Click!");
+}
+```
+
+Cela nécessitera les instructions d'utilisation suivantes :
+
+```cs
+using Avalonia.Interactivity;
+using System.Diagnostics;
+```
+
+- Passez au fichier XAML et localisez la balise `<Button>`.
+- Entrez l'attribut `Click` à la fin de la balise, comme suit :
+
+```xml
+<Button Grid.Row="2"  Grid.Column="1" Click="Button_OnClick">Calculate</Button>
+```
+
+- Exécutez l'application en mode Débogage et cliquez sur le bouton Calculer.
+
+<Tabs groupId="ide">
+    <TabItem value="rider" label="Rider">
+        <img className="center" src={RiderDebugButton} alt="" />
+
+        Vous devriez voir le résultat dans la fenêtre de sortie pour le débogage, comme ceci :
+<ThemedImage
+            alt="Application en cours d'exécution"
+            className="center"
+            sources={{
+                light: useBaseUrl('/img/get-started/test-drive/rider-event-debug-output-light.png'),
+                dark: useBaseUrl('/img/get-started/test-drive/rider-event-debug-output-dark.png'),
+            }}
+            />
+
+    </TabItem>
+    <TabItem value="vs" label="Visual Studio">
+    Vous devriez voir le résultat dans la fenêtre de sortie pour le débogage, comme ceci :
+
+    <img className="center" src={EventDebugOutputScreenshot} alt="" />
+    </TabItem>
+
+</Tabs>
+
+
+À la page suivante, vous verrez comment utiliser le code-behind pour lire et modifier les propriétés des contrôles Avalonia à l'exécution.

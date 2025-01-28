@@ -1,0 +1,122 @@
+---
+id: main-window
+title: La Fenêtre Principale
+---
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+import LayoutZonesDiagram from '/img/concepts/layout/layout-zones.png';
+import ViewModelScreenshot from '/img/get-started/test-drive/main-window-viewmodel.png';
+import AppRunningScreenshot from '/img/get-started/test-drive/main-window-app-running.png';
+import VsPreviewerScreenshot from '/img/get-started/test-drive/vs-previewer.png';
+import VsPreviewPaneScreenshot from '/img/get-started/test-drive/vs-preview-pane.png';
+
+Vous pouvez maintenant commencer votre visite d'un projet Avalonia. Nous commencerons par la fenêtre principale de l'application. Ouvrez le fichier **MainWindow.axaml**.
+
+:::info
+Dans Avalonia, les fichiers XAML ont l'extension **.axaml** (et non .xaml). Cela représente 'Avalonia XAML' et
+l'extension de fichier a été introduite pour des raisons techniques.
+:::
+
+## Que se passe-t-il ?
+
+Dans le fichier XAML **MainWindow.axaml**, la balise XAML `<Window>...</Window>` représente une fenêtre Avalonia. Comme d'autres contrôles Avalonia, la fenêtre sera dessinée sur la plateforme cible avec 4 **zones de mise en page** : marge, bordure, remplissage et contenu.
+
+<img src={LayoutZonesDiagram} alt="" />
+
+## Le contenu de la MainWindow
+
+À l'intérieur du contenu de la fenêtre, vous verrez une balise XAML `<TextBlock>...</TextBlock>`. Cela représente un contrôle `TextBlock` qui dessine du `Texte` à l'écran. La propriété `Text` du `TextBlock` est liée à la propriété **Greeting** de la classe **MainViewModel**.
+
+```xml title='XAML'
+<TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+```
+
+Vous pouvez changer le texte dans le fichier **MainWindowViewModel.cs** pour voir le changement reflété dans l'interface utilisateur.
+
+```csharp title='C#'
+namespace GetStartedApp.ViewModels;
+
+public class MainWindowViewModel : ViewModelBase
+{
+    public string Greeting => "Bienvenue dans Avalonia ! Voici mon texte ajouté.";
+}
+```
+
+<ThemedImage
+            alt="Application en cours d'exécution"
+            className="center"
+            sources={{
+                light: useBaseUrl('/img/get-started/test-drive/main-window-app-running-light.png'),
+                dark: useBaseUrl('/img/get-started/test-drive/main-window-app-running-dark.png'),
+            }}
+            />
+
+:::info
+Pour plus d'informations sur le concept des zones de mise en page des contrôles, voir [ici](../../concepts/layout/layout-zones).
+:::
+
+## Le prévisualiseur XAML
+
+Si vous utilisez un IDE avec l'une de nos extensions IDE installées, comme Rider, Visual Studio ou Visual Studio Code, vous pouvez voir les changements en direct de votre code XAML dans la vue du prévisualiseur.
+
+Le prévisualiseur XAML crée une instance de votre application dans un mode d'édition spécial, connu sous le nom de mode conception. Lorsque votre application s'exécute en mode conception, elle peut exécuter une logique spéciale qui permet la coordination avec le concepteur visuel. `Design.IsDesignMode`
+
+<Tabs groupId="ide">
+    <TabItem value="rider" label="Rider">
+        Naviguez vers le fichier **MainWindow.axaml** et cliquez sur le bouton **Vue fractionnée** en haut à droite de la fenêtre de l'éditeur.
+
+        <ThemedImage
+            alt="Prévisualiseur Rider Avalonia pour les contrôles"
+            className="center"
+            sources={{
+                light: useBaseUrl('/img/get-started/test-drive/rider-previewer-controls-light.png'),
+                dark: useBaseUrl('/img/get-started/test-drive/rider-previewer-controls-dark.png'),
+            }}
+            />
+
+        <ThemedImage
+        alt="Rider avec le prévisualiseur XAML Avalonia ouvert"
+        className="center"
+        sources={{
+            light: useBaseUrl('/img/get-started/test-drive/rider-previewer-light.png'),
+            dark: useBaseUrl('/img/get-started/test-drive/rider-previewer-dark.png'),
+        }}
+        />
+
+    - Construisez le projet.
+
+     <ThemedImage
+        alt="Prévisualiseur XAML Avalonia"
+        className="center"
+        sources={{
+            light: useBaseUrl('/img/get-started/test-drive/rider-preview-pane-light.png'),
+            dark: useBaseUrl('/img/get-started/test-drive/rider-preview-pane-dark.png'),
+        }}
+        />
+
+    </TabItem>
+    <TabItem value="vs" label="Visual Studio">
+
+Naviguez jusqu'au fichier **MainView.axaml** et cliquez sur le bouton **Split View** en haut de la fenêtre de l'éditeur.
+
+<img className="center" src={VsPreviewerScreenshot} alt="" />
+
+:::info
+Il peut y avoir une icône d'exclamation rouge (en haut à gauche) et le message **Le designer est en cours de chargement...**. Cela indique que le projet doit être construit avant que le panneau de prévisualisation ne réagisse.
+:::
+
+- Construisez le projet.
+- Faites défiler le panneau de prévisualisation vers la gauche pour voir le contour de la prévisualisation et le texte affiché dans le coin supérieur gauche.
+
+<img className="center" src={VsPreviewPaneScreenshot} alt="" />
+</TabItem>
+
+</Tabs>
+
+- Supprimez le binding `{Binding Greeting}` et changez le texte en `<TextBlock Text="my text" />`
+
+Vous verrez le nouveau texte dans le panneau de prévisualisation changer au fur et à mesure que vous tapez. C'est un exemple du **comportement de prévisualisation en temps de conception** d'Avalonia qui vous aidera à développer la présentation de l'interface utilisateur avec précision et rapidité.
+
+- Exécutez le projet pour voir votre nouveau texte apparaître également à l'exécution.
+
+À la page suivante, vous ajouterez un simple `Button` à la fenêtre.

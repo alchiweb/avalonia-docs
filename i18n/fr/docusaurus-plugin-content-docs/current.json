@@ -1,0 +1,194 @@
+{
+  "version.label": {
+    "message": "11.0.0",
+    "description": "L'étiquette de la version actuelle"
+  },
+  "sidebar.documentationSidebar.category.Get Started": {
+    "message": "Commencez",
+    "description": "L'étiquette de la catégorie Commencez dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.Test Drive": {
+    "message": "Exemple, pas à pas",
+    "description": "L'étiquette de la catégorie Exemple, pas à pas dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.Coming from WPF?": {
+    "message": "Vous venez de WPF ?",
+    "description": "L'étiquette de la catégorie Provenant de WPF ? "
+  },
+  "sidebar.documentationSidebar.category.Stay Up-To-Date": {
+    "message": "Restez à jour !",
+    "description": "L'étiquette de la catégorie Restez à jour dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.Samples & Tutorials": {
+    "message": "Exemples et guides",
+    "description": "L'étiquette de la catégorie Exemples et didacticiels dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.ToDo List App": {
+    "message": "Application de liste de tâches",
+    "description": "L'étiquette de la catégorie ToDo List App dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.Music Store App": {
+    "message": "Application Magasin de musique",
+    "description": "L'étiquette de la catégorie Music Store App dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.Basics": {
+    "message": "Les bases",
+    "description": "L'étiquette de la catégorie Bases dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.User Interface": {
+    "message": "Interface utilisateur",
+    "description": "L'étiquette de la catégorie Interface utilisateur dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.Controls": {
+    "message": "Contrôles",
+    "description": "L'étiquette de la catégorie Contrôles dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.Creating Controls": {
+    "message": "Création de contrôles",
+    "description": "L'étiquette de la catégorie Création de contrôles dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.Building Layouts": {
+    "message": "Mise en page",
+    "description": "L'étiquette de la catégorie Dispositions de bâtiments dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.Styling": {
+    "message": "Styles",
+    "description": "L'étiquette de la catégorie Style dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.Themes": {
+    "message": "Sujets",
+    "description": "L'étiquette de la catégorie Thèmes dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.Data": {
+    "message": "Données",
+    "description": "L'étiquette de la catégorie Données dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.Data Binding": {
+    "message": "Liaison de données",
+    "description": "L'étiquette de la catégorie Liaison de données dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.How-To Guides": {
+    "message": "Guides pratiques",
+    "description": "L'étiquette de la catégorie Guides pratiques dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.Building Cross Platform Applications": {
+    "message": "Création d'applications multiplateformes",
+    "description": "L'étiquette de la catégorie Création d'applications multiplateformes dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.Implementation Guides": {
+    "message": "Guides de mise en œuvre",
+    "description": "L'étiquette de la catégorie Guides d'implémentation dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.Styles and Resources": {
+    "message": "Styles et ressources",
+    "description": "L'étiquette de la catégorie Styles et ressources dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.Graphics and Animation": {
+    "message": "Graphiques et animations",
+    "description": "L'étiquette de la catégorie Graphiques et animations dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.Custom Controls": {
+    "message": "Éléments personnalisés",
+    "description": "L'étiquette de la catégorie Contrôles personnalisés dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.Development Guides": {
+    "message": "Guides de développement",
+    "description": "L'étiquette de la catégorie Guides de développement dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.Platforms": {
+    "message": "Plateformes",
+    "description": "L'étiquette de la catégorie Plateformes dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.Android": {
+    "message": "Android",
+    "description": "L'étiquette de la catégorie Android dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.iOS": {
+    "message": "iOS",
+    "description": "L'étiquette de la catégorie iOS dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.Raspberry PI": {
+    "message": "Raspberry PI",
+    "description": "L'étiquette de la catégorie Raspberry PI dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.Deep Dives": {
+    "message": "En savoir plus",
+    "description": "L'étiquette de la catégorie En savoir plus dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.Data Templates": {
+    "message": "Modèles de données",
+    "description": "L'étiquette de la catégorie Modèles de données dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.Headless Platform": {
+    "message": "Plateforme Headless",
+    "description": "L'étiquette de la catégorie Plateforme Headless dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.Input": {
+    "message": "Saisie d'informations",
+    "description": "L'étiquette de la catégorie Saisie d'informations dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.The MVVM Pattern": {
+    "message": "Modèle MVVM",
+    "description": "L'étiquette de la catégorie Le modèle MVVM dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.ReactiveUI": {
+    "message": "Interface utilisateur réactive",
+    "description": "L'étiquette de la catégorie ReactiveUI dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.Services": {
+    "message": "Services",
+    "description": "L'étiquette de la catégorie Services dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.Storage Provider": {
+    "message": "Fournisseur de stockage",
+    "description": "L'étiquette de la catégorie Fournisseur de stockage dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.Deployment": {
+    "message": "Déploiement",
+    "description": "L'étiquette de la catégorie Déploiement dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.Reference": {
+    "message": "Référence",
+    "description": "L'étiquette de la catégorie Référence dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.Built-in Controls": {
+    "message": "Éléments intégrés",
+    "description": "L'étiquette de la catégorie Contrôles intégrés dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.Button Controls": {
+    "message": "Boutons",
+    "description": "L'étiquette de la catégorie Contrôles de boutons dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.Data Grid": {
+    "message": "Grille de données",
+    "description": "L'étiquette de la catégorie Data Grid dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.Detailed Reference": {
+    "message": "Référence détaillée",
+    "description": "L'étiquette de la catégorie Référence détaillée dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.Calendar": {
+    "message": "Calendrier",
+    "description": "L'étiquette de la catégorie Calendrier dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.datagrid": {
+    "message": "grille de données",
+    "description": "L'étiquette de la grille de données de catégorie dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.Tree Data Grid": {
+    "message": "Grille de données d'arborescence",
+    "description": "L'étiquette de la catégorie Tree Data Grid dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.Gestures": {
+    "message": "Gestes",
+    "description": "L'étiquette de la catégorie Gestes dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.JetBrains Rider IDE": {
+    "message": "IDE JetBrains Rider",
+    "description": "L'étiquette de la catégorie IDE JetBrains Rider dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.Styles": {
+    "message": "Styles",
+    "description": "L'étiquette de la catégorie Styles dans la documentation de la barre latérale"
+  }
+}

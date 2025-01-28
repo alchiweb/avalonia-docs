@@ -1,0 +1,54 @@
+---
+id: the-design-preview
+title: L'aperçu de conception
+---
+
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+Sur cette page, vous explorerez les attributs de la `Window` et utiliserez ensuite certains d'entre eux pour ajuster la taille de la `Window` lorsqu'elle est affichée dans le panneau d'aperçu.
+
+Examinez le XAML pour la balise `<Window>`. Cela ressemblera à ceci :
+
+```xml
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:GetStartedApp.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="450"
+        x:Class="GetStartedApp.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="GetStartedApp">
+```
+
+La balise `Window` commence par définir certains des espaces de noms XML utilisés par Avalonia. Les alias 'x', 'd' et 'mc' sont utilisés.
+
+L'espace de noms de conception 'd' permet de définir les attributs de temps de conception `d:DesignWidth` et `d:DesignHeight`. Dans l'exemple de code ci-dessus, ceux-ci ont été définis pour rendre l'aperçu plus semblable à un affichage mobile (orientation portrait).
+
+```xml
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:GetStartedApp.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        // highlight-next-line
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="450"
+        x:Class="GetStartedApp.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="GetStartedApp">
+```
+
+Avec ces attributs définis, l'aperçu de la fenêtre ressemble maintenant à ceci :
+
+<ThemedImage
+            alt="Application running"
+            className="center"
+            sources={{
+                light: useBaseUrl('/img/get-started/test-drive/temperature-design-preview-light.png'),
+                dark: useBaseUrl('/img/get-started/test-drive/temperature-design-preview-dark.png'),
+            }}
+            />
+
+À la page suivante, vous apprendrez comment ajouter une action à l'application en répondant à l'événement `Click` du `Button`.

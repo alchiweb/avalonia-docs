@@ -1,0 +1,309 @@
+{
+    "theme.NotFound.title": {
+      "message": "Page introuvable",
+      "description": "Le titre de la page 404"
+    },
+    "theme.NotFound.p1": {
+      "message": "Malheureusement, nous n'avons pas pu trouver la page que vous avez demandée.",
+      "description": "Le premier paragraphe de la page 404"
+    },
+    "theme.NotFound.p2": {
+      "message": "Veuillez contacter le propriétaire du site à partir duquel vous avez accédé à ce lien pour lui faire savoir que le lien ne fonctionne pas.",
+      "description": "Le 2ème paragraphe de la page 404"
+    },
+    "theme.ErrorPageContent.title": {
+      "message": "Il y a eu une erreur sur la page.",
+      "description": "Le titre de la page de secours lorsque la page plante"
+    },
+    "theme.BackToTopButton.buttonAriaLabel": {
+      "message": "Faire défiler vers le haut",
+      "description": "L'étiquette ARIA pour le bouton retour en haut"
+    },
+    "theme.blog.archive.title": {
+      "message": "Archive",
+      "description": "La page et le titre du héros de la page d'archive du blog"
+    },
+    "theme.blog.archive.description": {
+      "message": "Archive",
+      "description": "La page et la description du héros de la page d'archive du blog"
+    },
+    "theme.blog.paginator.navAriaLabel": {
+      "message": "Navigation dans les pages de la liste des blogs",
+      "description": "Le label ARIA pour la pagination du blog"
+    },
+    "theme.blog.paginator.newerEntries": {
+      "message": "Entrées suivantes",
+      "description": "Le libellé utilisé pour accéder à la page des articles de blog les plus récents (page précédente)"
+    },
+    "theme.blog.paginator.olderEntries": {
+      "message": "Articles précédents",
+      "description": "Le libellé utilisé pour accéder à la page des articles de blog plus anciens (page suivante)"
+    },
+    "theme.blog.post.paginator.navAriaLabel": {
+      "message": "Navigation dans les pages des articles de blog",
+      "description": "Le label ARIA pour la pagination des articles du blog"
+    },
+    "theme.blog.post.paginator.newerPost": {
+      "message": "Article suivant",
+      "description": "Le libellé du bouton de l'article de blog pour accéder à l'article le plus récent/précédent"
+    },
+    "theme.blog.post.paginator.olderPost": {
+      "message": "Article précédent",
+      "description": "Le libellé du bouton de l'article de blog pour accéder à l'article plus ancien/suivant"
+    },
+    "theme.blog.post.plurals": {
+      "message": "{count} entrée|{count} entrées|{count} entrées",
+      "description": "Libellé pluralisé pour \"{count} posts\". "
+    },
+    "theme.blog.tagTitle": {
+      "message": "{nPosts} avec le tag \"{tagName}\"",
+      "description": "Le titre de la page pour une balise de blog"
+    },
+    "theme.tags.tagsPageLink": {
+      "message": "Afficher toutes les balises",
+      "description": "Le libellé du lien ciblant la page de liste de balises"
+    },
+    "theme.colorToggle.ariaLabel": {
+      "message": "Basculer entre les modes sombre et clair (actuellement en utilisant {mode})",
+      "description": "L'étiquette ARIA pour le basculement du mode couleur de la barre de navigation"
+    },
+    "theme.colorToggle.ariaLabel.mode.dark": {
+      "message": "Mode sombre",
+      "description": "Le nom du mode couleur sombre"
+    },
+    "theme.colorToggle.ariaLabel.mode.light": {
+      "message": "Mode lumière",
+      "description": "Le nom du mode de couleur claire"
+    },
+    "theme.docs.breadcrumbs.navAriaLabel": {
+      "message": "Fil d'Ariane de la page actuelle",
+      "description": "Le label ARIA pour la chapelure"
+    },
+    "theme.docs.paginator.navAriaLabel": {
+      "message": "Page du document",
+      "description": "Le label ARIA pour la pagination des documents"
+    },
+    "theme.docs.paginator.previous": {
+      "message": "Page précédente",
+      "description": "Le libellé utilisé pour accéder au document précédent"
+    },
+    "theme.docs.paginator.next": {
+      "message": "Page suivante",
+      "description": "Le libellé utilisé pour accéder au document suivant"
+    },
+    "theme.docs.tagDocListPageTitle.nDocsTagged": {
+      "message": "Une page|{count} pages|{count} pages",
+      "description": "Libellé pluriel pour \"{count} documents tagués\". "
+    },
+    "theme.docs.tagDocListPageTitle": {
+      "message": "{nDocsTagged} avec la balise \"{tagName}\"",
+      "description": "Le titre de la page pour une balise docs"
+    },
+    "theme.docs.DocCard.categoryDescription": {
+      "message": "{count} élément|{count} élément|{count} éléments",
+      "description": "La description par défaut d'une fiche de catégorie dans l'index généré sur le nombre d'éléments que cette catégorie comprend"
+    },
+    "theme.docs.versionBadge.label": {
+      "message": "Version : {versionLabel}"
+    },
+    "theme.docs.versions.unreleasedVersionLabel": {
+      "message": "Ceci est la documentation d'une future version de {siteTitle} {versionLabel}.",
+      "description": "Le label utilisé pour indiquer à l'utilisateur qu'il parcourt une version inédite du document"
+    },
+    "theme.docs.versions.unmaintainedVersionLabel": {
+      "message": "Il s'agit de la documentation {siteTitle} pour une version de {versionLabel} qui n'est plus prise en charge.",
+      "description": "Le label utilisé pour indiquer à l'utilisateur qu'il parcourt une version de la doc non maintenue"
+    },
+    "theme.docs.versions.latestVersionSuggestionLabel": {
+      "message": "La dernière documentation est disponible sur {latestVersionLink} ({versionLabel}).",
+      "description": "L'étiquette utilisée pour indiquer à l'utilisateur de vérifier la dernière version"
+    },
+    "theme.docs.versions.latestVersionLinkLabel": {
+      "message": "dernière version",
+      "description": "Libellé utilisé pour le libellé du lien de suggestion de dernière version"
+    },
+    "theme.common.editThisPage": {
+      "message": "Modifier cette page",
+      "description": "L'étiquette du lien pour modifier la page actuelle"
+    },
+    "theme.common.headingLinkTitle": {
+      "message": "Lien direct vers {titre}",
+      "description": "Titre du lien vers le titre"
+    },
+    "theme.lastUpdated.atDate": {
+      "message": " {date}",
+      "description": "Les mots utilisés pour décrire à quelle date une page a été mise à jour pour la dernière fois"
+    },
+    "theme.lastUpdated.byUser": {
+      "message": " par {utilisateur}",
+      "description": "Les mots utilisés pour décrire par qui la page a été mise à jour pour la dernière fois"
+    },
+    "theme.lastUpdated.lastUpdatedAtBy": {
+      "message": "Dernière mise à jour{atDate}{byUser}",
+      "description": "La phrase utilisée pour afficher quand une page a été mise à jour pour la dernière fois et par qui"
+    },
+    "theme.navbar.mobileVersionsDropdown.label": {
+      "message": "Versions",
+      "description": "L'étiquette de la liste déroulante des versions de la barre de navigation sur la vue mobile"
+    },
+    "theme.tags.tagsListLabel": {
+      "message": "Balises :",
+      "description": "L'étiquette à côté d'une liste de balises"
+    },
+    "theme.admonition.caution": {
+      "message": "avertissement",
+      "description": "L'étiquette par défaut utilisée pour l'avertissement Attention (:::caution)"
+    },
+    "theme.admonition.danger": {
+      "message": "soigneusement",
+      "description": "L'étiquette par défaut utilisée pour l'avertissement de danger (:::danger)"
+    },
+    "theme.admonition.info": {
+      "message": "POUR VOTRE INFORMATION",
+      "description": "L'étiquette par défaut utilisée pour l'avertissement Info (:::info)"
+    },
+    "theme.admonition.note": {
+      "message": "note",
+      "description": "L'étiquette par défaut utilisée pour l'avertissement de note (:::note)"
+    },
+    "theme.admonition.tip": {
+      "message": "indice",
+      "description": "L'étiquette par défaut utilisée pour l'avertissement de pourboire (:::tip)"
+    },
+    "theme.admonition.warning": {
+      "message": "avertissement",
+      "description": "L'étiquette par défaut utilisée pour l'avertissement d'avertissement (:::warning)"
+    },
+    "theme.AnnouncementBar.closeButtonAriaLabel": {
+      "message": "Fermer",
+      "description": "L'étiquette ARIA pour le bouton de fermeture de la barre d'annonce"
+    },
+    "theme.blog.sidebar.navAriaLabel": {
+      "message": "Parcourir les derniers articles de blog",
+      "description": "Le label ARIA pour les articles récents dans la barre latérale du blog"
+    },
+    "theme.CodeBlock.copied": {
+      "message": "Copié",
+      "description": "L'étiquette du bouton copié sur les blocs de code"
+    },
+    "theme.CodeBlock.copyButtonAriaLabel": {
+      "message": "Copier dans le presse-papier",
+      "description": "Le bouton Étiquette ARIA pour copier les blocs de code"
+    },
+    "theme.CodeBlock.copy": {
+      "message": "Copie",
+      "description": "L'étiquette du bouton Copier sur les blocs de code"
+    },
+    "theme.CodeBlock.wordWrapToggle": {
+      "message": "Basculer le retour à la ligne",
+      "description": "L'attribut de titre pour basculer le bouton de retour à la ligne des lignes de bloc de code"
+    },
+    "theme.DocSidebarItem.expandCategoryAriaLabel": {
+      "message": "Développer la catégorie de la barre latérale « {label} »",
+      "description": "Le label ARIA pour élargir la catégorie sidebar"
+    },
+    "theme.DocSidebarItem.collapseCategoryAriaLabel": {
+      "message": "Réduire la catégorie de la barre latérale « {label} »",
+      "description": "L'étiquette ARIA pour réduire la catégorie de la barre latérale"
+    },
+    "theme.NavBar.navAriaLabel": {
+      "message": "Principal",
+      "description": "Le label ARIA pour la navigation principale"
+    },
+    "theme.navbar.mobileLanguageDropdown.label": {
+      "message": "Langues",
+      "description": "Le libellé de la liste déroulante du sélecteur de langue mobile"
+    },
+    "theme.TOCCollapsible.toggleButtonLabel": {
+      "message": "Contenu de cette page",
+      "description": "L'étiquette utilisée par le bouton sur le composant TOC pliable"
+    },
+    "theme.blog.post.readMore": {
+      "message": "En savoir plus",
+      "description": "L'étiquette utilisée dans les extraits d'articles de blog pour créer un lien vers des articles de blog complets"
+    },
+    "theme.blog.post.readMoreLabel": {
+      "message": "En savoir plus sur {titre}",
+      "description": "Le label ARIA pour le lien vers les articles de blog complets à partir d'extraits"
+    },
+    "theme.blog.post.readingTime.plurals": {
+      "message": "{readingTime} min. ",
+      "description": "Libellé pluriel pour « {readingTime} minute de lecture ». "
+    },
+    "theme.docs.breadcrumbs.home": {
+      "message": "Page d'accueil",
+      "description": "Le label ARIA de la page d'accueil dans le fil d'Ariane"
+    },
+    "theme.docs.sidebar.collapseButtonTitle": {
+      "message": "Réduire la barre latérale",
+      "description": "L'attribut titre du bouton Réduire de la barre latérale du document"
+    },
+    "theme.docs.sidebar.collapseButtonAriaLabel": {
+      "message": "Réduire la barre latérale",
+      "description": "L'attribut titre du bouton Réduire de la barre latérale du document"
+    },
+    "theme.docs.sidebar.navAriaLabel": {
+      "message": "Barre latérale des documents",
+      "description": "Le label ARIA pour la navigation dans la barre latérale"
+    },
+    "theme.docs.sidebar.closeSidebarButtonAriaLabel": {
+      "message": "Fermer la barre de navigation",
+      "description": "L'étiquette ARIA pour le bouton de fermeture de la barre latérale mobile"
+    },
+    "theme.docs.sidebar.toggleSidebarButtonAriaLabel": {
+      "message": "Basculer la barre de navigation",
+      "description": "L'étiquette ARIA pour le bouton de menu hamburger de la navigation mobile"
+    },
+    "theme.navbar.mobileSidebarSecondaryMenu.backButtonLabel": {
+      "message": "← Aller au menu principal",
+      "description": "Le label du bouton retour pour revenir au menu principal, à l'intérieur du menu secondaire de la barre de navigation mobile (utilisé notamment pour afficher la barre latérale des documents)"
+    },
+    "theme.docs.sidebar.expandButtonTitle": {
+      "message": "Développer la barre latérale",
+      "description": "L'attribut ARIA label et title pour le bouton Développer de la barre latérale du document"
+    },
+    "theme.docs.sidebar.expandButtonAriaLabel": {
+      "message": "Développer la barre latérale",
+      "description": "L'attribut ARIA label et title pour le bouton Développer de la barre latérale du document"
+    },
+    "cmfcmf/d-s-l.searchBar.placeholder": {
+      "message": "Recherche...",
+      "description": "Espace réservé affiché dans la barre de recherche"
+    },
+    "cmfcmf/d-s-l.searchBar.clearButtonTitle": {
+      "message": "Clair",
+      "description": "Titre du bouton pour effacer la saisie de recherche actuelle"
+    },
+    "cmfcmf/d-s-l.searchBar.detachedCancelButtonText": {
+      "message": "Annuler",
+      "description": "Texte du bouton pour fermer la fenêtre de recherche détachée"
+    },
+    "cmfcmf/d-s-l.searchBar.submitButtonTitle": {
+      "message": "Recherche",
+      "description": "Titre du bouton pour soumettre une nouvelle recherche"
+    },
+    "cmfcmf/d-s-l.searchBar.noResults": {
+      "message": "Aucun résultat trouvé.",
+      "description": "message affiché si aucun résultat n'est trouvé"
+    },
+    "theme.ErrorPageContent.tryAgain": {
+      "message": "Essayer à nouveau",
+      "description": "L'étiquette du bouton pour réessayer le rendu lorsque la limite d'erreur React capture une erreur"
+    },
+    "theme.common.skipToMainContent": {
+      "message": "Passer au contenu principal",
+      "description": "L'étiquette de passage au contenu utilisée pour l'accessibilité, permettant de naviguer rapidement vers le contenu principal avec l'onglet clavier/entrer la navigation"
+    },
+    "theme.tags.tagsPageTitle": {
+      "message": "Balises",
+      "description": "Le titre de la page de liste de balises"
+    },
+    "theme.unlistedContent.title": {
+      "message": "Page non répertoriée",
+      "description": "Le titre de la bannière de contenu non répertorié"
+    },
+    "theme.unlistedContent.message": {
+      "message": "Cette page n'est pas répertoriée. ",
+      "description": "Le message de la bannière de contenu non répertorié"
+    }
+  }
