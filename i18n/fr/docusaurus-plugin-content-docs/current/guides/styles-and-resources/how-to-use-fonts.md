@@ -1,23 +1,23 @@
 ---
 id: how-to-use-fonts
-title: How To Use Custom Fonts
+title: Comment Utiliser des Polices Personnalisées
 ---
 
-Customizing your Avalonia application with unique fonts can add a distinctive look and feel. This guide will walk you through the process of integrating custom fonts into your Avalonia application.
+Personnaliser votre application Avalonia avec des polices uniques peut lui donner un aspect et une sensation distincts. Ce guide vous expliquera le processus d'intégration de polices personnalisées dans votre application Avalonia.
 
 <GitHubSampleLink title="Google Fonts" link="https://github.com/AvaloniaUI/AvaloniaUI.QuickGuides/tree/main/GoogleFonts"/>
 
-## Add Your Custom Font to the Project
+## Ajoutez Votre Police Personnalisée au Projet
 
-Before you can use a custom font, you need to include it in your project.
+Avant de pouvoir utiliser une police personnalisée, vous devez l'inclure dans votre projet.
 
-In this guide, we will be using a font called [Nunito](https://fonts.google.com/specimen/Nunito) which is already stored in our application resources under `avares://GoogleFonts/Assets/Fonts`.
+Dans ce guide, nous utiliserons une police appelée [Nunito](https://fonts.google.com/specimen/Nunito) qui est déjà stockée dans les ressources de notre application sous `avares://GoogleFonts/Assets/Fonts`.
 
-Ensure that the fonts have the build property set to `AvaloniaResource`.
+Assurez-vous que les polices ont la propriété de construction définie sur `AvaloniaResource`.
 
-## Declare Your Font in Application Resources
+## Déclarez Votre Police dans les Ressources de l'Application
 
-In your Avalonia application, open your `App.xaml` file and include your custom font inside `<Application.Resources>`. Assign it a key, which you will use to reference it in your application. In this case, we have assigned the key `NunitoFont`.
+Dans votre application Avalonia, ouvrez votre fichier `App.xaml` et incluez votre police personnalisée à l'intérieur de `<Application.Resources>`. Attribuez-lui une clé, que vous utiliserez pour y faire référence dans votre application. Dans ce cas, nous avons attribué la clé `NunitoFont`.
 
 ```xml title="App.axaml"
 <Application xmlns="https://github.com/avaloniaui"
@@ -35,12 +35,12 @@ In your Avalonia application, open your `App.xaml` file and include your custom 
 </Application>
 ```
 
-## Use Your Custom Font
-Once your font is declared in your application resources, you can use it in your application.
+## Utilisez Votre Police Personnalisée
+Une fois votre police déclarée dans les ressources de votre application, vous pouvez l'utiliser dans votre application.
 
-To reference your custom font, use the `FontFamily` attribute with the `StaticResource` markup extension. You need to pass the key of the declared font as the parameter. In this case, `NunitoFont` is the key for our custom font.
+Pour faire référence à votre police personnalisée, utilisez l'attribut `FontFamily` avec l'extension de balisage `StaticResource`. Vous devez passer la clé de la police déclarée en tant que paramètre. Dans ce cas, `NunitoFont` est la clé de notre police personnalisée.
 
-Here's an example of how to apply our custom `Nunito` font to a `TextBlock`:
+Voici un exemple de la façon d'appliquer notre police personnalisée `Nunito` à un `TextBlock` :
 
 ```xml
 <TextBlock Text="{Binding Greeting}" 
@@ -49,15 +49,15 @@ Here's an example of how to apply our custom `Nunito` font to a `TextBlock`:
            HorizontalAlignment="Center" VerticalAlignment="Center"/>
 ```
 
-In the above example, the `TextBlock` control will use the `Nunito` font that we declared in our application resources. The text bound to the `TextBlock` will now appear in the `Nunito` font at the specified font size of 70.
+Dans l'exemple ci-dessus, le contrôle `TextBlock` utilisera la police `Nunito` que nous avons déclarée dans les ressources de notre application. Le texte lié au `TextBlock` apparaîtra désormais dans la police `Nunito` à la taille de police spécifiée de 70.
 
-Remember that the `FontFamily` attribute can be applied to any control that has the `FontFamily` property, meaning you can use your custom font throughout your application.
+N'oubliez pas que l'attribut `FontFamily` peut être appliqué à tout contrôle ayant la propriété `FontFamily`, ce qui signifie que vous pouvez utiliser votre police personnalisée dans toute votre application.
 
-And that's it! You've successfully integrated a custom font into your Avalonia application. Now you can add a unique touch to your application's UI with the fonts of your choice.
+Et c'est tout ! Vous avez intégré avec succès une police personnalisée dans votre application Avalonia. Vous pouvez maintenant ajouter une touche unique à l'interface utilisateur de votre application avec les polices de votre choix.
 
-## Adding a Font to the Font Collection
+## Ajouter une police à la collection de polices
 
-The `EmbeddedFontCollection` provides an easy way to add fonts to your application's collection of fonts without requiring a reference to a resource when using them. For example, instead of setting the `FontFamily` to `{StaticResource NunitoFont}`, you can simply reference the name of the font family directly.
+La `EmbeddedFontCollection` offre un moyen facile d'ajouter des polices à la collection de polices de votre application sans nécessiter de référence à une ressource lors de leur utilisation. Par exemple, au lieu de définir le `FontFamily` sur `{StaticResource NunitoFont}`, vous pouvez simplement référencer le nom de la famille de polices directement.
 
 ```xml
 <TextBlock
@@ -67,11 +67,11 @@ The `EmbeddedFontCollection` provides an easy way to add fonts to your applicati
     HorizontalAlignment="Center" VerticalAlignment="Center" />
 ```
 
-This requires additional setup on application construction, but it removes the need to remember a unique resource key when authoring your controls.
+Cela nécessite une configuration supplémentaire lors de la construction de l'application, mais cela élimine le besoin de se souvenir d'une clé de ressource unique lors de la création de vos contrôles.
 
-### Defining a Font Collection
+### Définir une collection de polices
 
-First, we need to define a collection of fonts by specifying the font family name and the directory in which the font files reside.
+Tout d'abord, nous devons définir une collection de polices en spécifiant le nom de la famille de polices et le répertoire dans lequel se trouvent les fichiers de police.
 
 ```csharp title="InterFontCollection.cs"
 public sealed class InterFontCollection : EmbeddedFontCollection
@@ -84,13 +84,13 @@ public sealed class InterFontCollection : EmbeddedFontCollection
 }
 ```
 
-Here, `Inter` is the name of the font family and `avares://Avalonia.Fonts.Inter/Assets` is the resource locator for the directory containing the font files. The actual names of the font files are not significant since the `EmbeddedFontCollection` will search every file in the given directory and only load those fonts with the given font family name.
+Ici, `Inter` est le nom de la famille de polices et `avares://Avalonia.Fonts.Inter/Assets` est le localisateur de ressource pour le répertoire contenant les fichiers de police. Les noms réels des fichiers de police ne sont pas significatifs puisque la `EmbeddedFontCollection` recherchera chaque fichier dans le répertoire donné et ne chargera que les polices correspondant au nom de famille de police donné.
 
-For more information on how to create a resource locator, see [Assets](../../basics/user-interface/assets) for a primer on including assets in your project.
+Pour plus d'informations sur la façon de créer un localisateur de ressources, consultez [Assets](../../basics/user-interface/assets) pour un aperçu sur l'inclusion des ressources dans votre projet.
 
-### Adding the Font Collection
+### Ajout de la collection de polices
 
-Next, we need to add this font collection to the application. This can be done by using `AppBuilder.ConfigureFonts` to configure the `FontManager` to include your fonts on application construction.
+Ensuite, nous devons ajouter cette collection de polices à l'application. Cela peut être fait en utilisant `AppBuilder.ConfigureFonts` pour configurer le `FontManager` afin d'inclure vos polices lors de la construction de l'application.
 
 ```csharp title="Program.cs"
 public static class Program
@@ -113,9 +113,9 @@ public static class Program
 }
 ```
 
-### Creating Font Packages
+### Création de paquets de polices
 
-The [`Avalonia.Fonts.Inter`](https://github.com/AvaloniaUI/Avalonia/tree/master/src/Avalonia.Fonts.Inter) package shows how you can create a separate project to contain one or many fonts that you might use in multiple projects. Once you have created and published a project similar to this, using the font becomes as simple as appending a method call to your application construction.
+Le paquet [`Avalonia.Fonts.Inter`](https://github.com/AvaloniaUI/Avalonia/tree/master/src/Avalonia.Fonts.Inter) montre comment vous pouvez créer un projet séparé pour contenir une ou plusieurs polices que vous pourriez utiliser dans plusieurs projets. Une fois que vous avez créé et publié un projet similaire à celui-ci, l'utilisation de la police devient aussi simple que d'ajouter un appel de méthode à la construction de votre application.
 
 ```csharp title="Program.cs"
 public static class Program
@@ -135,6 +135,6 @@ public static class Program
 }
 ```
 
-## Which Fonts Are Supported?
+## Quelles polices sont prises en charge ?
 
-Most TrueType (`.ttf`) and OpenType (`.otf`, `.ttf`) fonts are supported. However, some font features, such as "Variable fonts" are not currently supported (see: [Issue #11092](https://github.com/AvaloniaUI/Avalonia/issues/11092)).
+La plupart des polices TrueType (`.ttf`) et OpenType (`.otf`, `.ttf`) sont prises en charge. Cependant, certaines fonctionnalités de police, telles que les "polices variables", ne sont pas actuellement prises en charge (voir : [Problème #11092](https://github.com/AvaloniaUI/Avalonia/issues/11092)).

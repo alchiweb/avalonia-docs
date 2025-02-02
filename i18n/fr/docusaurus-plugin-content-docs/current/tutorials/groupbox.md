@@ -1,18 +1,19 @@
 ---
 id: groupbox
 title: Create a GroupBox Using HeaderedContentControl
-sidebar_label: Creating a GroupBox
+sidebar_label: Créer un GroupBox
 ---
 
 import groupboxscreenshot from '/img/tutorials/groupbox/groupbox.png';
 
 
-While Avalonia doesn't include a built-in `GroupBox` control, you can achieve the same functionality and appearance using a `HeaderedContentControl` with custom styling. The `HeaderedContentControl` provides a header area and content region, making it perfect for grouping related interface elements.
+Bien qu'Avalonia n'inclue pas de contrôle `GroupBox` intégré, vous pouvez obtenir la même fonctionnalité et apparence en utilisant un `HeaderedContentControl` avec un style personnalisé. Le `HeaderedContentControl` fournit une zone d'en-tête et une région de contenu, ce qui le rend parfait pour regrouper des éléments d'interface connexes.
 
 <GitHubSampleLink title="Custom GroupBox" link="https://github.com/AvaloniaUI/AvaloniaUI.QuickGuides/tree/main/GroupBox"/>
 
-## Implementation
-Add the following style to your application resources (typically in App.axaml) or to the specific `Window` or `UserControl` where you need the `GroupBox` functionality:
+## Mise en œuvre
+
+Ajoutez le style suivant à vos ressources d'application (généralement dans App.axaml) ou à la `Window` ou `UserControl` spécifique où vous avez besoin de la fonctionnalité `GroupBox` :
 
 ```xml title='XAML'
 <Style Selector="HeaderedContentControl">
@@ -28,7 +29,7 @@ Add the following style to your application resources (typically in App.axaml) o
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
         
-                <!-- Header -->
+                <!-- En-tête -->
                 <Border 
                     ZIndex="1" 
                     Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
@@ -39,7 +40,7 @@ Add the following style to your application resources (typically in App.axaml) o
                         FontWeight="Bold"/>
                 </Border>
         
-                <!-- Content Area -->
+                <!-- Zone de contenu -->
                 <Border 
                     Grid.RowSpan="2" 
                     Padding="0,5,0,0"
@@ -59,7 +60,7 @@ Add the following style to your application resources (typically in App.axaml) o
 </Style>
 ```
 
-Once the style is in place, you can use the `HeaderedContentControl` in your XAML:
+Une fois le style en place, vous pouvez utiliser le `HeaderedContentControl` dans votre XAML :
 
 ```xml title='XAML'
 <HeaderedContentControl Header="Settings">
@@ -72,6 +73,6 @@ Once the style is in place, you can use the `HeaderedContentControl` in your XAM
 
 <img className="center" src={groupboxscreenshot} width="200"/>
 
-The style uses Avalonia's theme resources to ensure the control looks appropriate in both light and dark themes. The header text appears to "break" the border line by using a background color matching the window, creating the classic `GroupBox` appearance. The content area features rounded corners and proper padding for a modern look.
+Le style utilise les ressources de thème d'Avalonia pour garantir que le contrôle a un aspect approprié dans les thèmes clairs et sombres. Le texte de l'en-tête semble "casser" la ligne de bordure en utilisant une couleur de fond correspondant à celle de la fenêtre, créant ainsi l'apparence classique d'un `GroupBox`. La zone de contenu présente des coins arrondis et un rembourrage approprié pour un look moderne.
 
-This implementation provides all the visual and functional benefits of a traditional `GroupBox` while maintaining consistency with Avalonia's design patterns and theme system.
+Cette mise en œuvre offre tous les avantages visuels et fonctionnels d'un `GroupBox` traditionnel tout en maintenant la cohérence avec les modèles de conception et le système de thèmes d'Avalonia.

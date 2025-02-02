@@ -1,76 +1,74 @@
 ---
 id: dealing-with-platforms
-title: Dealing with Multiple Platforms
+title: Gérer les différences entre les plateformes
 ---
 
-## Managing Platform Differences & Capabilities
+## Gestion des différences et des capacités des plateformes
 
-Platform differences aren't just an issue in cross-platform development; even devices within the same platform can possess diverse capabilities.
+Les différences entre les plateformes ne sont pas seulement un problème dans le développement multiplateforme ; même les appareils au sein de la même plateforme peuvent posséder des capacités diverses.
 
-Most notably, this includes differences in screen size, but numerous other device characteristics may also vary, requiring the application to verify certain capabilities and adapt its behavior based on their presence (or absence). This is especially important when designing for cross paradigm situations, with desktop and mobile operating systems providing very different interaction models.  
+Cela inclut notamment des différences de taille d'écran, mais de nombreuses autres caractéristiques des appareils peuvent également varier, nécessitant que l'application vérifie certaines capacités et adapte son comportement en fonction de leur présence (ou absence). Cela est particulièrement important lors de la conception pour des situations de paradigme croisé, les systèmes d'exploitation de bureau et mobiles offrant des modèles d'interaction très différents.
 
-Therefore, all applications must be equipped to handle a graceful scaling back of functionality, or risk presenting a minimal feature set that does not leverage the full potential of the underlying platform. 
+Par conséquent, toutes les applications doivent être équipées pour gérer une réduction fonctionnelle en douceur, ou risquer de présenter un ensemble de fonctionnalités minimal qui ne tire pas parti du plein potentiel de la plateforme sous-jacente.
 
-### Examples of Platform Divergence
+### Exemples de divergence entre les plateformes
 
-There are certain fundamental characteristics inherent to applications that are universally applicable. These are high-level concepts that hold true across all devices and platforms and can thus form the core of your application's design:
+Il existe certaines caractéristiques fondamentales inhérentes aux applications qui sont universellement applicables. Ce sont des concepts de haut niveau qui s'appliquent à tous les appareils et plateformes et peuvent donc former le noyau de la conception de votre application :
 
-* A screen, which can display your application UI.
-* Some form of input devices, typically touch for mobile and mouse and keyboard for desktop. 
-* Display views of data.
-* Editing data.
-* Navigation capabilities. 
+* Un écran, qui peut afficher l'interface utilisateur de votre application.
+* Une forme de dispositifs d'entrée, généralement tactile pour mobile et souris et clavier pour bureau.
+* Affichage des vues de données.
+* Édition des données.
+* Capacités de navigation.
 
-### Platform-Specific features
+### Fonctionnalités spécifiques à la plateforme
 
-Beyond the universal application characteristics, you will also have to address key platform differences in your design. You may need to consider, and possibly write or tweak code specifically to handle, these differences:
+Au-delà des caractéristiques universelles des applications, vous devrez également prendre en compte les différences clés entre les plateformes dans votre conception. Vous devrez peut-être envisager, et éventuellement écrire ou ajuster du code spécifiquement pour gérer ces différences :
 
-* **Screen Sizes**: While some platforms (like iOS) have standardized screen sizes that are relatively easy to target, others, like Desktop and WebAssembly, enable an unlimited variety of screen dimensions which would require more effort to support in your application.
+* **Tailles d'écran** : Alors que certaines plateformes (comme iOS) ont des tailles d'écran standardisées qui sont relativement faciles à cibler, d'autres, comme le bureau et WebAssembly, permettent une variété illimitée de dimensions d'écran, ce qui nécessiterait plus d'efforts pour être pris en charge dans votre application.
 
-* **Navigation Metaphors**: These can vary across platforms (e.g., hardware 'back' button) and even within platforms (e.g., differences between Android 2 and 4, iPhone vs iPad).
+* **Métaphores de navigation** : Celles-ci peuvent varier selon les plateformes (par exemple, bouton 'retour' matériel) et même au sein des plateformes (par exemple, différences entre Android 2 et 4, iPhone vs iPad).
 
-* **Keyboards**: Some devices may come with physical keyboards, while others only feature a software keyboard. Code that detects when a soft-keyboard is obscuring part of the screen needs to be sensitive to these differences.
+* **Claviers** : Certains appareils peuvent être équipés de claviers physiques, tandis que d'autres ne disposent que d'un clavier logiciel. Le code qui détecte quand un clavier virtuel obscurcit une partie de l'écran doit être sensible à ces différences.
 
-These platform-specific differences should be carefully considered when designing your Avalonia application to ensure a seamless user experience across all platforms. While you should strive to maximize your code reuse, you should also avoid attempting to reuse 100% of your code across all supported platforms. Instead, tailor each platform UIs to the feel at home on the device. 
+Ces différences spécifiques aux plateformes doivent être soigneusement prises en compte lors de la conception de votre application Avalonia afin d'assurer une expérience utilisateur fluide sur toutes les plateformes. Bien que vous deviez vous efforcer de maximiser la réutilisation de votre code, vous devez également éviter d'essayer de réutiliser 100 % de votre code sur toutes les plateformes prises en charge. Au lieu de cela, adaptez chaque interface utilisateur de la plateforme pour qu'elle soit en harmonie avec le dispositif.
 
-### Dealing with Platform Divergence
+### Gestion de la divergence des plateformes
 
-Supporting multiple platforms from the same code-base can be achieved through abstracting platform features or [conditional code](../../guides/platforms/platform-specific-code/dotnet.md). 
+Le support de plusieurs plateformes à partir de la même base de code peut être réalisé en abstraisant les fonctionnalités de la plateforme ou en utilisant du [code conditionnel](../../guides/platforms/platform-specific-code/dotnet.md).
 
-* **Platform Abstraction**: This approach leverages the Business Façade pattern to provide uniform access across platforms. It abstracts the unique platform implementations into a single, cohesive API. The primary advantage is the ability to write platform-agnostic code, enhancing code reusability and maintainability. However, this approach may not fully exploit the unique features and capabilities of each platform.
+* **Abstraction de la plateforme** : Cette approche s'appuie sur le modèle de façade métier pour fournir un accès uniforme à travers les plateformes. Elle abstrait les implémentations uniques de chaque plateforme en une API unique et cohérente. L'avantage principal est la possibilité d'écrire du code indépendant de la plateforme, améliorant ainsi la réutilisabilité et la maintenabilité du code. Cependant, cette approche peut ne pas exploiter pleinement les caractéristiques et capacités uniques de chaque plateforme.
 
-## Platform Abstraction
+## Abstraction de la plateforme
 
-In Avalonia, you can employ class abstractions to streamline your development process across different platforms. This can be achieved using interfaces or base classes defined in the shared code, then implemented or extended in platform-specific projects.
+Dans Avalonia, vous pouvez utiliser des abstractions de classe pour simplifier votre processus de développement sur différentes plateformes. Cela peut être réalisé en utilisant des interfaces ou des classes de base définies dans le code partagé, puis mises en œuvre ou étendues dans des projets spécifiques à la plateforme.
 
 ### Interfaces
 
-The utilization of interfaces empowers you to create platform-specific classes that can be incorporated into your shared libraries for code reuse.
+L'utilisation d'interfaces vous permet de créer des classes spécifiques à la plateforme qui peuvent être intégrées dans vos bibliothèques partagées pour la réutilisation du code.
 
-#### How it works
-The interface is defined within the shared code and passed into the shared library as a parameter or property. The platform-specific applications can then implement the interface, allowing shared code to process it effectively.
+#### Comment ça fonctionne
+L'interface est définie dans le code partagé et passée dans la bibliothèque partagée en tant que paramètre ou propriété. Les applications spécifiques à la plateforme peuvent alors implémenter l'interface, permettant au code partagé de la traiter efficacement.
 
-#### Advantages
-The main advantage of this approach is that the implementation can contain platform-specific code and even reference platform-specific external libraries, offering high flexibility.
+#### Avantages
+L'avantage principal de cette approche est que l'implémentation peut contenir du code spécifique à la plateforme et même référencer des bibliothèques externes spécifiques à la plateforme, offrant ainsi une grande flexibilité.
 
-####  Disadvantages
-A potential disadvantage is the need to create and pass implementations into the shared code. If the interface is employed deep within the shared code, it may have to be passed through multiple method parameters, which might lead to a more complex call chain. If the shared code uses numerous different interfaces, they all must be created and set within the shared code.
+#### Inconvénients
+Un inconvénient potentiel est la nécessité de créer et de passer des implémentations dans le code partagé. Si l'interface est utilisée profondément dans le code partagé, elle peut devoir être transmise à travers plusieurs paramètres de méthode, ce qui pourrait conduire à une chaîne d'appels plus complexe. Si le code partagé utilise de nombreuses interfaces différentes, elles doivent toutes être créées et définies dans le code partagé.
 
-### Inheritance
-Your shared code can implement abstract or virtual classes that could be extended in one or more platform-specific projects. This technique resembles the use of interfaces but provides some already implemented behaviors.
+### Héritage
+Votre code partagé peut implémenter des classes abstraites ou virtuelles qui pourraient être étendues dans un ou plusieurs projets spécifiques à la plateforme. Cette technique ressemble à l'utilisation d'interfaces mais fournit déjà certains comportements implémentés.
 
-#### How it works
-By using inheritance, you can create base classes in your shared code that can be optionally extended in your platform-specific projects. However, as C# allows only single inheritance, this approach may influence your future API design. Hence, use inheritance with caution.
+#### Comment ça fonctionne
+En utilisant l'héritage, vous pouvez créer des classes de base dans votre code partagé qui peuvent être étendues de manière optionnelle dans vos projets spécifiques à la plateforme. Cependant, comme C# n'autorise que l'héritage simple, cette approche peut influencer la conception future de votre API. Par conséquent, utilisez l'héritage avec prudence.
 
-#### Advantages and Disadvantages
-The advantages and disadvantages of using interfaces apply equally to inheritance. However, an additional advantage of inheritance is that the base class can contain some implementation code. This potentially could provide an entire platform-agnostic implementation that can be optionally extended as needed.
+#### Avantages et Inconvénients
+Les avantages et les inconvénients de l'utilisation des interfaces s'appliquent également à l'héritage. Cependant, un avantage supplémentaire de l'héritage est que la classe de base peut contenir un certain code d'implémentation. Cela pourrait potentiellement fournir une implémentation entièrement indépendante de la plateforme qui peut être étendue au besoin.
 
-## Using Maui.Essentials
+## Utilisation de Maui.Essentials
 
-Another approach would be to use any library that abstracts some features under a common higher level API.
-[Maui.Essentials](https://learn.microsoft.com/en-us/dotnet/maui/platform-integration/?view=net-maui-8.0) is one of these libraries, that can be used with Avalonia on .NET 8 or higher via [Microsoft.Maui.Essentials](https://www.nuget.org/packages/Microsoft.Maui.Essentials) nuget package.
-Alternatively, you can use full set of MAUI packages with [Avalonia.Maui](https://github.com/AvaloniaUI/AvaloniaMauiHybrid) hybrid package. This package provides a deeper integration with MAUI packages.
+Une autre approche consisterait à utiliser une bibliothèque qui abstrait certaines fonctionnalités sous une API commune de niveau supérieur. [Maui.Essentials](https://learn.microsoft.com/en-us/dotnet/maui/platform-integration/?view=net-maui-8.0) est l'une de ces bibliothèques, qui peut être utilisée avec Avalonia sur .NET 8 ou supérieur via le package nuget [Microsoft.Maui.Essentials](https://www.nuget.org/packages/Microsoft.Maui.Essentials). Alternativement, vous pouvez utiliser l'ensemble complet des packages MAUI avec le package hybride [Avalonia.Maui](https://github.com/AvaloniaUI/AvaloniaMauiHybrid). Ce package offre une intégration plus approfondie avec les packages MAUI.
 
 :::note
-While `Maui.Essentials` is a great library that abstracts platform APIs, MAUI itself has a limited set of supported platforms. It doesn't provide APIs for Linux, Browser and macOS (non macCatalyst) platforms.
+Bien que `Maui.Essentials` soit une excellente bibliothèque qui abstrait les API de plateforme, MAUI lui-même a un ensemble limité de plateformes prises en charge. Il ne fournit pas d'API pour les plateformes Linux, Navigateur et macOS (non macCatalyst).
 :::

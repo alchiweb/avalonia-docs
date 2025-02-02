@@ -1,25 +1,25 @@
 ---
 id: binding-classes
-title: How To Bind Style Classes
+title: Comment Lier des Classes de Style
 ---
 
 import BindStyleClassSampleScreenshot from '/img/guides/data-binding/bind-style-class.png';
 
-# How To Bind Style Classes
+# Comment Lier des Classes de Style
 
-This guide will show you how to apply style classes to a control depending on the Boolean value of a data binding.
+Ce guide vous montrera comment appliquer des classes de style à un contrôle en fonction de la valeur booléenne d'une liaison de données.
 
-To do this, you will need some classes defined in a `<Styles>` collection that target the control class you are using.
+Pour ce faire, vous aurez besoin de certaines classes définies dans une collection `<Styles>` qui ciblent la classe de contrôle que vous utilisez.
 
-You can then conditionally apply the classes to a control using special classes syntax and a data binding. The syntax is like this:
+Vous pouvez ensuite appliquer conditionnellement les classes à un contrôle en utilisant une syntaxe de classes spéciale et une liaison de données. La syntaxe est la suivante :
 
 ```
 <SomeControl Classes.class1="{Binding IsClass1Active}">
 ```
 
-## Example
+## Exemple
 
-In this example, two styles with class selectors have been defined. These give a text block either a red or a green background. The style class binding assigns `class1` when the `IsClass1` property of an item is true. Using the negation operator, `class2` is assigned when the `IsClass1` property is false.
+Dans cet exemple, deux styles avec des sélecteurs de classe ont été définis. Ceux-ci donnent à un bloc de texte soit un fond rouge, soit un fond vert. La liaison de classe de style attribue `class1` lorsque la propriété `IsClass1` d'un élément est vraie. En utilisant l'opérateur de négation, `class2` est attribué lorsque la propriété `IsClass1` est fausse.
 
 ```xml title='XAML'
 <StackPanel Margin="20">
@@ -56,9 +56,9 @@ public class MainWindowViewModel : ViewModelBase
         ItemList = new ObservableCollection<ItemClass>(new List<ItemClass>
         {
             new ItemClass("Item 1", false),
-            new ItemClass("Item Two", false),
-            new ItemClass("Third Item", true),
-            new ItemClass("Item #4", false),
+            new ItemClass("Item Deux", false),
+            new ItemClass("Troisième Item", true),
+            new ItemClass("Item n°4", false),
                
         });
     }

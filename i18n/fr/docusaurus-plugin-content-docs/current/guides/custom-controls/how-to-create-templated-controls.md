@@ -1,45 +1,45 @@
 ---
 id: how-to-create-templated-controls
-title: How To Create Templated Controls
+title: Comment créer des contrôles avec des modèles
 ---
 
 
-# How To Create Templated Controls
+# Comment créer des contrôles avec des modèles
 
-## Data Binding
+## Liaison de données
 
-When you're creating a control template and you want to bind to the templated parent you can use:
+Lorsque vous créez un modèle de contrôle et que vous souhaitez lier au parent modélisé, vous pouvez utiliser :
 
 ```xml
 <TextBlock Name="tb" Text="{TemplateBinding Caption}"/>
 
-<!-- Which is the same as -->
+<!-- Qui est la même chose que : -->
 <TextBlock Name="tb" Text="{Binding Caption, RelativeSource={RelativeSource TemplatedParent}}"/>
 ```
 
-Although the two syntaxes shown here are equivalent in most cases, there are some differences:
+Bien que les deux syntaxes montrées ici soient équivalentes dans la plupart des cas, il existe quelques différences :
 
-1.  `TemplateBinding` accepts only a single property rather than a property path, so if you want to bind using a property path you must use the second syntax:
+1.  `TemplateBinding` n'accepte qu'une seule propriété plutôt qu'un chemin de propriété, donc si vous souhaitez lier en utilisant un chemin de propriété, vous devez utiliser la deuxième syntaxe :
 
     ```xml
-    <!-- This WON'T work as TemplateBinding only accepts single properties -->
+    <!-- Cela ne fonctionnera PAS car TemplateBinding n'accepte que des propriétés uniques -->
     <TextBlock Name="tb" Text="{TemplateBinding Caption.Length}"/>
 
-    <!-- Instead this syntax must be used in this case -->
+    <!-- Au lieu de cela, cette syntaxe doit être utilisée dans ce cas -->
     <TextBlock Name="tb" Text="{Binding Caption.Length, RelativeSource={RelativeSource TemplatedParent}}"/>
     ```
-2.  A `TemplateBinding` only supports `OneWay` mode for performance reasons (this is the [same as WPF](https://docs.microsoft.com/en-us/dotnet/desktop/wpf/advanced/templatebinding-markup-extension#remarks)). This means a `TemplateBinding` is actually equivalent to `{Binding RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}`. If `TwoWay` binding is required in a control template, the full syntax is needed as shown below. Note that `Binding` will also use the default binding mode unlike `TemplateBinding`.
+2.  Un `TemplateBinding` ne prend en charge que le mode `OneWay` pour des raisons de performance (c'est le [même que WPF](https://docs.microsoft.com/en-us/dotnet/desktop/wpf/advanced/templatebinding-markup-extension#remarks)). Cela signifie qu'un `TemplateBinding` est en réalité équivalent à `{Binding RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}`. Si un binding `TwoWay` est nécessaire dans un modèle de contrôle, la syntaxe complète est requise comme indiqué ci-dessous. Notez que `Binding` utilisera également le mode de liaison par défaut contrairement à `TemplateBinding`.
 
     ```markup
     {Binding RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}
     ```
-3. `TemplateBinding` can only be used on `IStyledElement`.
+3.  `TemplateBinding` ne peut être utilisé que sur `IStyledElement`.
 
 ```xml
-<!-- This WON'T work as GeometryDrawing is not a IStyledElement. -->
+<!-- Cela ne fonctionnera PAS car GeometryDrawing n'est pas un IStyledElement. -->
 <GeometryDrawing Brush="{TemplateBinding Foreground}"/>
 
-<!-- Instead this syntax must be used in this case. -->
+<!-- Au lieu de cela, cette syntaxe doit être utilisée dans ce cas. -->
 <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}"/>
 ```
 

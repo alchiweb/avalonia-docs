@@ -1,36 +1,32 @@
 ﻿---
 id: setter-precedence
-title: Setter Precedence
+title: Préférence des Setters
 ---
 
 import SetterPrecedenceAnimationWrongScreenshot from '/img/guides/styles-and-resources/setter-precedence-animation-wrong.gif';
 import SetterPrecedenceAnimationCorrectScreenshot from '/img/guides/styles-and-resources/setter-precedence-animation-correct.gif';
 
-Avalonia `Setters` are applied in order of `BindingPriority`, then visual tree locality, and finally the `Styles` collection 
-order. Precedence applies individually to each `StyledProperty` so that styling can benefit from composition. `DirectProperty` 
-and CLR properties cannot be styled and therefore do not participate in this precedence.
+Les `Setters` d'Avalonia sont appliqués dans l'ordre de la `BindingPriority`, puis selon la localité de l'arbre visuel, et enfin l'ordre de la collection `Styles`. La préférence s'applique individuellement à chaque `StyledProperty` afin que le style puisse bénéficier de la composition. Les propriétés `DirectProperty` et CLR ne peuvent pas être stylisées et ne participent donc pas à cette préférence.
 
-## BindingPriority Values
+## Valeurs de BindingPriority
 
 ```cs
-Animation = -1, // Highest priority
+Animation = -1, // Priorité la plus élevée
 LocalValue = 0,
 StyleTrigger,
 Template,
 Style,
 Inherited,
-Unset = int.MaxValue, // Lowest priority
+Unset = int.MaxValue, // Priorité la plus basse
 ```
 
-## How is BindingPriority Assigned Within XAML?
+## Comment la BindingPriority est-elle assignée dans XAML ?
 
-`BindingPriority` cannot be explicitly set in XAML. The following examples demonstrate how `BindingPriority` is 
-implicitly assigned across each scenario. This is crucial for designing and troubleshooting styles that work as expected.
+La `BindingPriority` ne peut pas être définie explicitement dans XAML. Les exemples suivants démontrent comment la `BindingPriority` est implicitement assignée dans chaque scénario. Cela est crucial pour concevoir et dépanner des styles qui fonctionnent comme prévu.
 
 ### Animation
 
-`Animation` has the highest `BindingPriority` and is applied to `Setter`s within a `Keyframe` and generally throughout the 
-Transitions system.
+L'`Animation` a la `BindingPriority` la plus élevée et est appliquée aux `Setter`s dans un `Keyframe` et généralement à travers le système des Transitions.
 
 ```xml
 <Button Background="Green" Content="Bounces from Red to Blue">
@@ -53,8 +49,7 @@ Transitions system.
 
 ### LocalValue
 
-Assigned when a XAML property is directly set outside of a `ControlTemplate`. Both `Background` `Setter`s below will 
-have `LocalValue` priority.
+Assignée lorsque une propriété XAML est directement définie en dehors d'un `ControlTemplate`. Les deux `Setter`s `Background` ci-dessous auront une priorité de `LocalValue`.
 
 ```xml
 <Button Background="Orange" />
@@ -63,16 +58,13 @@ have `LocalValue` priority.
 
 :::tip
 
-Resource markup extensions do not have any effect on priority.
+Les extensions de balisage de ressources n'ont aucun effet sur la priorité.
 
 :::
 
 ### StyleTrigger
 
-When a `Selector` has conditional activation, the `Setter`'s `BindingPriority` is promoted from `Style` to 
-`StyleTrigger`. Two selectors with any conditional activation will have equal priority regardless of the number of 
-activators present and the position of the activator within the selector syntax. Avalonia doesn't have CSS's concept 
-of Specificity.
+Lorsqu'un `Selector` a une activation conditionnelle, la `BindingPriority` du `Setter` est promue de `Style` à `StyleTrigger`. Deux sélecteurs avec une activation conditionnelle auront une priorité égale, indépendamment du nombre d'activateurs présents et de la position de l'activateur dans la syntaxe du sélecteur. Avalonia n'a pas le concept de Spécificité de CSS.
 
 ```xml
 <Style Selector="Button:pointerover /template/ ContentPresenter#PART_ContentPresenter">
@@ -82,13 +74,13 @@ of Specificity.
 
 :::tip
 
-Style class, pseudo class, child position, and property match selectors are conditional. Control name selectors are not conditional.
+Les sélecteurs de classe de style, de pseudo-classe, de position d'enfant et de correspondance de propriété sont conditionnels. Les sélecteurs de nom de contrôle ne sont pas conditionnels.
 
 :::
 
-### Template
+### Modèle
 
-When a property is directly set within a `ControlTemplate`. `BorderThickness`, `Background`, and `Padding` below have `Template` priority.
+Lorsqu'une propriété est directement définie dans un `ControlTemplate`. `BorderThickness`, `Background` et `Padding` ci-dessous ont la priorité `Template`.
 
 ```xml
 <ControlTemplate>
@@ -99,7 +91,7 @@ When a property is directly set within a `ControlTemplate`. `BorderThickness`, `
 ```
 ### Style
 
-When a `Setter` is defined within a `Style` without conditional activation.
+Lorsqu'un `Setter` est défini dans un `Style` sans activation conditionnelle.
 
 ```xml
 <Style Selector="Button /template/ ContentPresenter#PART_ContentPresenter">
@@ -109,15 +101,13 @@ When a `Setter` is defined within a `Style` without conditional activation.
 
 :::tip
 
-Especially noteworthy is the lower priority than `Template`. Therefore, these selectors cannot be used to override the 
-properties mentioned in the `Template` example above.
+Il est particulièrement à noter que la priorité est inférieure à celle de `Template`. Par conséquent, ces sélecteurs ne peuvent pas être utilisés pour remplacer les propriétés mentionnées dans l'exemple `Template` ci-dessus.
 
 :::
 
-### Inherited
+### Hérité
 
-When a property is not set, it may inherit the property value from its parent. This must be specified during 
-property registration or with `OverrideMetadata`.
+Lorsqu'une propriété n'est pas définie, elle peut hériter de la valeur de propriété de son parent. Cela doit être spécifié lors de l'enregistrement de la propriété ou avec `OverrideMetadata`.
 
 ```cs
 public static readonly StyledProperty<bool> UseLayoutRoundingProperty =
@@ -127,11 +117,10 @@ public static readonly StyledProperty<bool> UseLayoutRoundingProperty =
         inherits: true);
 ```
 
-## Visual Tree Locality
 
-`Setter`s with equal `BindingPriority` are then selected by their location in the Visual Tree relative to the `Control`. The 
-`Setter` with the fewest nodes required to traverse upwards to locate will take precedence. Inline style `Setter`s have 
-the highest precedence for this step.
+## Localité de l'Arbre Visuel
+
+Les `Setter`s avec une `BindingPriority` égale sont ensuite sélectionnés par leur emplacement dans l'Arbre Visuel par rapport au `Control`. Le `Setter` avec le moins de nœuds requis pour remonter afin de localiser prendra la priorité. Les `Setter`s de style en ligne ont la plus haute priorité pour cette étape.
 
 ```xml
 <Window>
@@ -153,10 +142,9 @@ the highest precedence for this step.
 </Window>
 ```
 
-## Styles Collection Order
+## Ordre de Collection des Styles
 
-When `BindingPriority` and visual tree locality are both equal, the final decider is the order within the `Styles` 
-collection. The last applicable `Setter` will take precedence.
+Lorsque la `BindingPriority` et la localité de l'arbre visuel sont toutes deux égales, le dernier décideur est l'ordre dans la collection `Styles`. Le dernier `Setter` applicable prendra la priorité.
 
 ```xml
 <StackPanel>
@@ -176,15 +164,13 @@ collection. The last applicable `Setter` will take precedence.
 
 :::info
 
-These Buttons specify their Classes in different order, but that has no effect on Setter Precedence.
+Ces Boutons spécifient leurs Classes dans un ordre différent, mais cela n'a aucun effet sur la Précédence des Setter.
 
 :::
 
-## BindingPriority Does Not Propagate
+## La BindingPriority ne se propage pas
 
-Recall the `Animation` example above. If you hover, the animated background is replaced with a static background 
-despite `BindingPriority.Animation` having the highest priority. This is because the `Selector` targets the wrong 
-`Control`. Examining the `ControlTheme` is necessary to diagnose the cause.
+Rappelez-vous l'exemple `Animation` ci-dessus. Si vous survolez, l'arrière-plan animé est remplacé par un arrière-plan statique malgré le fait que `BindingPriority.Animation` ait la priorité la plus élevée. Cela est dû au fait que le `Selector` cible le mauvais `Control`. Examiner le `ControlTheme` est nécessaire pour diagnostiquer la cause.
 
 <img src={SetterPrecedenceAnimationWrongScreenshot} alt="" />
 
@@ -204,24 +190,18 @@ despite `BindingPriority.Animation` having the highest priority. This is because
 </ControlTheme>
 ```
 
-The top `Setter` applies the `ButtonBackground` to the `Button` with `Style` priority. The `Background` rendering is 
-handled by the `ContentPresenter` which has a `Template` priority. It fetches the `ButtonBackground` which has been 
-applied to `Button`.
+Le `Setter` supérieur applique le `ButtonBackground` au `Button` avec une priorité de `Style`. Le rendu de l'`Arrière-plan` est géré par le `ContentPresenter` qui a une priorité de `Template`. Il récupère le `ButtonBackground` qui a été appliqué au `Button`.
 
-However, when the `Button` is hovered, the `:pointerover` `Selector` is activated with its `StyleTrigger` 
-priority, overrides the `TemplateBinding`, and fetches `ButtonBackgroundPointerOver` instead. This circumvents 
-fetching the `Button`'s `Background` that our original `Animation` `Selector` targeted. This is summarized in the following table:
+Cependant, lorsque le `Button` est survolé, le `Selector` `:pointerover` est activé avec sa priorité de `StyleTrigger`, remplace le `TemplateBinding` et récupère `ButtonBackgroundPointerOver` à la place. Cela contourne la récupération de l'`Arrière-plan` du `Button` que notre `Selector` d'`Animation` original ciblait. Cela est résumé dans le tableau suivant :
 
-| Background Setters and Styles While Hovered                         | Priority                          | Location        |
+| Setters pour les arrière-plans et les styles lors du survol              | Priorité                         | Location        |
 |---------------------------------------------------------------------|-----------------------------------|-----------------|
 | ~~Background="Green"~~                                              | LocalValue                        | Button          |
 | Background="Red"                                                    | Animation (Overrides LocalValue)  | Keyframe        |
 | ~~`<ContentPresenter Background="{TemplateBinding Background}"/>`~~ | Template                          | ControlTemplate |
 | `^:pointerover /template/ ContentPresenter#PART_ContentPresenter`   | StyleTrigger (Overrides Template) | ControlTheme    |
 
-Instead, we should target the `ContentPresenter` with a `Setter` that has priority of at least `StyleTrigger`. `BindingPriority.Animation` 
-fits that. This is an observation that cannot be made without examining the original `ControlTemplate` and emphasizes that relying 
-on priority alone is insufficient to effectively style an application.
+Au lieu de cela, nous devrions cibler le `ContentPresenter` avec un `Setter` qui a une priorité d'au moins `StyleTrigger`. `BindingPriority.Animation` correspond à cela. C'est une observation qui ne peut être faite sans examiner le `ControlTemplate` original et souligne que s'appuyer uniquement sur la priorité est insuffisant pour styliser efficacement une application.
 
 ```xml title='Corrected to override :pointerover priority'
 <Button Background="Green" Content="Bounces from Red to Blue">

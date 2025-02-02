@@ -1,6 +1,6 @@
 ---
 id: how-to-create-a-custom-controls-library
-title: How To Create a Custom Controls Library
+title: Comment créer une bibliothèque de contrôles personnalisés
 ---
 
 import Tabs from '@theme/Tabs';
@@ -8,13 +8,13 @@ import TabItem from '@theme/TabItem';
 import CustomControlSolutionScreenshot from '/img/guides/custom-controls/custom-control-solution.png';
 import CustomControlNuGetScreenshot from '/img/guides/custom-controls/custom-control-nuget.png';
 
-# How To Create a Custom Controls Library
+# Comment créer une bibliothèque de contrôles personnalisés
 
-This guide shows you how to create a custom controls library and reference it for use in an _Avalonia UI_ app.
+Ce guide vous montre comment créer une bibliothèque de contrôles personnalisés et la référencer pour une utilisation dans une application _Avalonia UI_.
 
 <img src={CustomControlSolutionScreenshot} alt=""/>
 
-In this example, a custom control file is added to a .NET class library. The library has the _Avalonia UI_ _NuGet_ package installed:
+Dans cet exemple, un fichier de contrôle personnalisé est ajouté à une bibliothèque de classes .NET. La bibliothèque a le package _NuGet_ _Avalonia UI_ installé :
 
 <img src={CustomControlNuGetScreenshot} alt=""/>
 
@@ -86,30 +86,30 @@ namespace CCLibrary
 </Tabs>
 
 :::info
-Notice that the namespace reference for the control library includes the name of the assembly.
+Notez que la référence de l'espace de noms pour la bibliothèque de contrôles inclut le nom de l'assemblage.
 :::
 
-## XML Namespace Definitions
+## Définitions des espaces de noms XML
 
-When you add a reference to a controls library in an _Avalonia UI_ XAML file, you may want to use the URL identification format. For example:
+Lorsque vous ajoutez une référence à une bibliothèque de contrôles dans un fichier XAML _Avalonia UI_, vous pouvez vouloir utiliser le format d'identification par URL. Par exemple :
 
 ```xml
 xmlns:cc="https://my.controls.url"
 ```
 
-This is possible because of the presence of XML namespace definitions in a controls library. These map URLs to the code namespaces, and are in the project `Properties/AssemblyInfo.cs` file. For example:
+Ceci est possible grâce à la présence de définitions d'espaces de noms XML dans une bibliothèque de contrôles. Celles-ci mappent les URL aux espaces de noms de code et se trouvent dans le fichier `Properties/AssemblyInfo.cs` du projet. Par exemple :
 
 ```csharp
 [assembly: XmlnsDefinition("https://github.com/avaloniaui", "Avalonia")]
 ```
 
 :::info
-You can see this in the _Avalonia UI_ built-in controls source code [here](https://github.com/AvaloniaUI/Avalonia/blob/master/src/Avalonia.Controls/Properties/AssemblyInfo.cs).
+Vous pouvez voir cela dans le code source des contrôles intégrés _Avalonia UI_ [ici](https://github.com/AvaloniaUI/Avalonia/blob/master/src/Avalonia.Controls/Properties/AssemblyInfo.cs).
 :::
 
-### Common Namespace Definitions
+### Définitions d'espaces de noms courants
 
-You can also make one URL map several namespaces in your controls library. To do this simply add multiple XML namespace definitions that use the same URL, but map to different code namespaces, like this:
+Vous pouvez également faire en sorte qu'une URL map plusieurs espaces de noms dans votre bibliothèque de contrôles. Pour ce faire, ajoutez simplement plusieurs définitions d'espaces de noms XML qui utilisent la même URL, mais qui mappent à différents espaces de noms de code, comme ceci :
 
 ```cs
 using Avalonia.Metadata;

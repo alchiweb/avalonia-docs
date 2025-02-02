@@ -1,35 +1,34 @@
 ---
 id: how-to-use-theme-variants
-title: How To Use Theme Variants
+title: Comment utiliser les variantes de thème
 ---
 
 :::tip
-Because theme variants are deeply integrated into resources system, it is important to understand the Avalonia [resources](resources) first.
+Parce que les variantes de thème sont profondément intégrées dans le système de ressources, il est important de comprendre d'abord les [ressources](resources) d'Avalonia.
 :::
 
 ## Introduction
 
-In Avalonia, a `theme variant` refers to a specific visual appearance of control based on a chosen theme. 
+Dans Avalonia, une `variante de thème` fait référence à une apparence visuelle spécifique d'un contrôle basée sur un thème choisi.
 
-By using theme variants, developers can create visually appealing and consistent user interfaces that adapt to different user preferences or system settings. For example, an application may provide a light theme variant with a white background and black text, as well as a dark theme variant with a black background and white text. The user can choose their preferred theme, and the application will adjust its appearance accordingly.
+En utilisant des variantes de thème, les développeurs peuvent créer des interfaces utilisateur visuellement attrayantes et cohérentes qui s'adaptent aux différentes préférences des utilisateurs ou aux paramètres du système. Par exemple, une application peut proposer une variante de thème clair avec un fond blanc et un texte noir, ainsi qu'une variante de thème sombre avec un fond noir et un texte blanc. L'utilisateur peut choisir son thème préféré, et l'application ajustera son apparence en conséquence.
 
-Avalonia's built-in themes, `SimpleTheme` and `FluentTheme`, seamlessly support `Dark` and `Light` variants without extra code. This allows applications to adapt dynamically based on system preferences while using build-in controls. For advanced customization, this documentation explains defining custom variant-dependent resources and their referencing.
+Les thèmes intégrés d'Avalonia, `SimpleTheme` et `FluentTheme`, prennent en charge sans effort les variantes `Sombre` et `Clair` sans code supplémentaire. Cela permet aux applications de s'adapter dynamiquement en fonction des préférences du système tout en utilisant des contrôles intégrés. Pour une personnalisation avancée, cette documentation explique la définition de ressources dépendantes de variantes personnalisées et leur référence.
 
-## Switching current theme variant
+## Changer la variante de thème actuelle
 
-By default, Avalonia inherits theme variant set by user preferences system-wide.
-Application has control over theme variants through two important properties: [ActualThemeVariant](#actualthemevariant-property) and [RequestedThemeVariant](#requestedthemevariant-property). These properties allow to manage and switch theme variants at different levels within your application.
+Par défaut, Avalonia hérite de la variante de thème définie par les préférences de l'utilisateur à l'échelle du système. L'application a le contrôle sur les variantes de thème à travers deux propriétés importantes : [ActualThemeVariant](#actualthemevariant-property) et [RequestedThemeVariant](#requestedthemevariant-property). Ces propriétés permettent de gérer et de changer les variantes de thème à différents niveaux au sein de votre application.
 
-### `ActualThemeVariant` Property 
+### Propriété `ActualThemeVariant`
 
-The ActualThemeVariant read-only property is used to retrieve the UI theme currently in use by a control, window, or application. It represents the theme variant that is actively applied to the element.
-This property is available on each control and is inherited down the tree. Its value also used by the styling system while accessing `theme dictionaries`.
+La propriété en lecture seule ActualThemeVariant est utilisée pour récupérer le thème UI actuellement utilisé par un contrôle, une fenêtre ou une application. Elle représente la variante de thème qui est activement appliquée à l'élément. Cette propriété est disponible sur chaque contrôle et est héritée dans l'arbre. Sa valeur est également utilisée par le système de style lors de l'accès aux `dictionnaires de thèmes`.
 
-### `RequestedThemeVariant` Property 
+### Propriété `RequestedThemeVariant`
 
-The RequestedThemeVariant property allows to override theme variant and specify a desired variant for a `Application`, `Window` (`TopLevel`) or `ThemeVariantScope`.
+La propriété RequestedThemeVariant permet de remplacer la variante de thème et de spécifier une variante souhaitée pour une `Application`, une `Window` (`TopLevel`) ou un `ThemeVariantScope`.
 
-To override global application variant instead of using system default:
+Pour remplacer la variante globale de l'application au lieu d'utiliser la valeur par défaut du système :
+
 ```xml title="App.axaml"
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -43,7 +42,8 @@ To override global application variant instead of using system default:
 </Application>
 ```
 
-Or it is possible to redefine theme variant per specific subtree using `ThemeVariantScope` control. In the example below Window uses Dark variant, while ThemeVariantScope inside redefines it with Light variant:
+Ou il est possible de redéfinir la variante de thème par sous-arbre spécifique en utilisant le contrôle `ThemeVariantScope`. Dans l'exemple ci-dessous, la fenêtre utilise la variante Sombre, tandis que le ThemeVariantScope à l'intérieur la redéfinit avec la variante Claire :
+
 ```xml title="MainWindow.axaml"
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x='http://schemas.microsoft.com/winfx/2006/xaml'
@@ -63,21 +63,24 @@ Or it is possible to redefine theme variant per specific subtree using `ThemeVar
 </Window>
 ```
 
-![Overriden Theme Variant](/img/basics/user-interface/styling/overriden-theme-variant.png)
+![Variante de thème remplacée](/img/basics/user-interface/styling/overriden-theme-variant.png)
 
-If it's required to use reset RequestedThemeVariant value, `RequestedThemeVariant="Default"` value can be set on it.
+S'il est nécessaire de réinitialiser la valeur de RequestedThemeVariant, la valeur `RequestedThemeVariant="Default"` peut être définie dessus.
 
 :::tip
-Changing Window RequestedThemeVariant also affects window decorations variant on platform where it is supported.
+Changer la variante de thème demandée de la fenêtre affecte également la variante des décorations de fenêtre sur la plateforme où cela est pris en charge.
 :::
 
 ## Defining and referencing custom variant specific resources
 
-In Avalonia, theme variant specific resources can be defined in the `ResourceDictionary` using the `ThemeDictionaries` property. 
+## Définir et référencer des ressources spécifiques à une variante personnalisée
 
-Typically, developers use `Light` or `Dark` as the key for the theme variants. Using `Default` as the key marks this specific theme dictionary as a fallback in case the theme variant or resource key is not found in other theme dictionaries.
+Dans Avalonia, les ressources spécifiques à une variante de thème peuvent être définies dans le `ResourceDictionary` en utilisant la propriété `ThemeDictionaries`.
 
-Continuing previous example, let's add `BackgroundBrush` and `ForegroundBrush` with different values per theme variant:
+En général, les développeurs utilisent `Light` ou `Dark` comme clé pour les variantes de thème. L'utilisation de `Default` comme clé marque ce dictionnaire de thème spécifique comme une solution de repli au cas où la variante de thème ou la clé de ressource ne serait pas trouvée dans d'autres dictionnaires de thème.
+
+En poursuivant l'exemple précédent, ajoutons `BackgroundBrush` et `ForegroundBrush` avec des valeurs différentes par variante de thème :
+
 ```xml title="MainWindow.axaml"
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x='http://schemas.microsoft.com/winfx/2006/xaml'
@@ -124,6 +127,6 @@ Continuing previous example, let's add `BackgroundBrush` and `ForegroundBrush` w
 
 ```
 
-![Custom Theme Dictionaries](/img/basics/user-interface/styling/custom-theme-dictionaries.png)
+![Dictionnaires de Thème Personnalisés](/img/basics/user-interface/styling/custom-theme-dictionaries.png)
 
-For more details about using resources please follow [How To Use Resources](resources) page.
+Pour plus de détails sur l'utilisation des ressources, veuillez consulter la page [Comment Utiliser les Ressources](resources).

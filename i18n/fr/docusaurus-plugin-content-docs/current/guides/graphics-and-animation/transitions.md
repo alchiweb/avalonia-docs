@@ -1,12 +1,12 @@
 ---
 id: transitions
-title: How To Use Transitions
+title: Comment utiliser les transitions
 ---
 
 
-# How To Use Transitions
+# Comment utiliser les transitions
 
-Transitions in Avalonia are also heavily inspired by CSS Animations. They listen to any changes in target property's value and subsequently animates the change according to its parameters. They can be defined on any `Control` via `Transitions` property:
+Les transitions dans Avalonia sont également fortement inspirées par les animations CSS. Elles écoutent les changements de valeur de la propriété cible et animent ensuite le changement selon ses paramètres. Elles peuvent être définies sur n'importe quel `Control` via la propriété `Transitions` :
 
 ```xml
 <Window xmlns="https://github.com/avaloniaui">
@@ -33,9 +33,9 @@ Transitions in Avalonia are also heavily inspired by CSS Animations. They listen
 </Window>
 ```
 
-The above example will listen to changes in the `Rectangle`'s `Opacity` property, and when the value changes, apply a smooth transition from the old value to the new value over 2 seconds.
+L'exemple ci-dessus écoutera les changements dans la propriété `Opacity` du `Rectangle`, et lorsque la valeur change, appliquera une transition fluide de l'ancienne valeur à la nouvelle valeur sur une durée de 2 secondes.
 
-Transitions can also be defined in any style by using a `Setter` with `Transitions` as the target property and encapsulating them in a `Transitions` object, like so:
+Les transitions peuvent également être définies dans n'importe quel style en utilisant un `Setter` avec `Transitions` comme propriété cible et en les encapsulant dans un objet `Transitions`, comme ceci :
 
 ```xml
 <Window xmlns="https://github.com/avaloniaui">
@@ -61,34 +61,34 @@ Transitions can also be defined in any style by using a `Setter` with `Transitio
 </Window>
 ```
 
-Every transition has a `Property`, `Delay`, `Duration` and an optional `Easing` property.
+Chaque transition a une `Property`, un `Delay`, une `Duration` et une propriété `Easing` optionnelle.
 
-`Property` refers to a transition's target for listening and animating values upon.
+`Property` fait référence à la cible d'une transition pour écouter et animer les valeurs.
 
-`Delay` refers to the amount of time before the transition is applied to the target.
+`Delay` fait référence à la durée avant que la transition ne soit appliquée à la cible.
 
-`Duration` refers to the amount of time that the transition plays.
+`Duration` fait référence à la durée pendant laquelle la transition se joue.
 
-The easing functions are the same as those described in [Keyframe Animations](./keyframe-animations#easings).
+Les fonctions d'assouplissement sont les mêmes que celles décrites dans [Les animations par images clés](./keyframe-animations#easings).
 
-The following transition types are available. The correct type must be used depending on the type of the property being animated.
+Les types de transitions suivants sont disponibles. Le type correct doit être utilisé en fonction du type de propriété animée.
 
-* `BoxShadowsTransition`: For `BoxShadows` target properties
-* `BrushTransition`: For `IBrush` target properties
-* `ColorTransition`: For `Color` target properties
-* `CornerRadiusTransition`: For `CornerRadius` target properties
-* `DoubleTransitions`: For `double` target properties
-* `FloatTransitions`: For `float` target properties
-* `IntegerTransitions`: For `int` target properties
-* `PointTransition`: For `Point` target properties
-* `SizeTransition`: For `Size` target properties
-* `ThicknessTransition`: For `Thickness` target properties
-* `TransformOperationsTransition`: For `ITransform` target properties
-* `VectorTransition`: For `Vector` target properties
+* `BoxShadowsTransition` : Pour les propriétés cibles `BoxShadows`
+* `BrushTransition` : Pour les propriétés cibles `IBrush`
+* `ColorTransition` : Pour les propriétés cibles `Color`
+* `CornerRadiusTransition` : Pour les propriétés cibles `CornerRadius`
+* `DoubleTransitions` : Pour les propriétés cibles `double`
+* `FloatTransitions` : Pour les propriétés cibles `float`
+* `IntegerTransitions` : Pour les propriétés cibles `int`
+* `PointTransition` : Pour les propriétés cibles `Point`
+* `SizeTransition` : Pour les propriétés cibles `Size`
+* `ThicknessTransition` : Pour les propriétés cibles `Thickness`
+* `TransformOperationsTransition` : Pour les propriétés cibles `ITransform`
+* `VectorTransition` : Pour les propriétés cibles `Vector`
 
-## Transitioning Render Transforms
+## Transformations de rendu en transition
 
-Render transforms applied to controls using CSS-like syntax can be transitioned. The following example shows a Border which rotates 45 degrees when the pointer is hovered over it:
+Les transformations de rendu appliquées aux contrôles en utilisant une syntaxe similaire à CSS peuvent être mises en transition. L'exemple suivant montre une bordure qui tourne de 45 degrés lorsque le pointeur passe dessus :
 
 ```xml title='XAML'
 <Border Width="100" Height="100" Background="Red">
@@ -146,9 +146,9 @@ new Border
 };
 ```
 
-The available transitions are:
+Les transitions disponibles sont :
 
-| Transition   | Sample                                    | Acceptable units             |
+| Transition   | Exemple                                   | Unités acceptées             |
 | ------------ | ----------------------------------------- | ---------------------------- |
 | `translate`  | `translate(10px)`, `translate(0px, 10px)` | `px`                         |
 | `translateX` | `translateX(10px)`                        | `px`                         |
@@ -163,5 +163,5 @@ The available transitions are:
 | `matrix`     | `matrix(1,2,3,4,5,6)`                     |                              |
 
 :::info
-Avalonia also supports WPF-style render transforms such as `RotateTransform`, `ScaleTransform`, etc. These transforms cannot be transitioned: always use the CSS-like format if you want to apply a transition to a render transform.
+Avalonia prend également en charge les transformations de rendu de style WPF telles que `RotateTransform`, `ScaleTransform`, etc. Ces transformations ne peuvent pas être mises en transition : utilisez toujours le format similaire à CSS si vous souhaitez appliquer une transition à une transformation de rendu.
 :::

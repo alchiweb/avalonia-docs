@@ -1,54 +1,55 @@
 ---
 id: how-to-bind-to-a-command-with-reactiveui
-title: How to Bind to a Command with ReactiveUI
+title: Comment se lier à une Commande avec ReactiveUI
 ---
 
 import BindReactiveCommandScreenshot from '/img/guides/data-binding/bind-reactivecommand.gif';
 
-# How to Bind to a Command with ReactiveUI
+# Comment se lier à une Commande avec ReactiveUI
 
-This guide shows you how to bind a view model method (that performs an action) to a control that can initiate an action in response to user interaction (for example, a button). This binding is defined in XAML using the `Command` attribute, for example:
+Ce guide vous montre comment lier une méthode de modèle de vue (qui effectue une action) à un contrôle qui peut initier une action en réponse à l'interaction de l'utilisateur (par exemple, un bouton). Cette liaison est définie en XAML en utilisant l'attribut `Command`, par exemple :
 
-```csharp
+```xml
 <Window xmlns="https://github.com/avaloniaui">
     ...
   <StackPanel Margin="20">
-      <Button Command="{Binding ExampleCommand}">Run the example</Button>
+      <Button Command="{Binding ExampleCommand}">Exécuter l'exemple</Button>
   </StackPanel>
 ```
 
-This guide assumes that you are using the MVVM implementation pattern, and you have based your view model on the _ReactiveUI_ framework.
+Ce guide suppose que vous utilisez le modèle de mise en œuvre MVVM, et que vous avez basé votre modèle de vue sur le framework _ReactiveUI_.
 
 :::info
-To review the concept behind the MVVM implementation pattern, see [here](../../concepts/the-mvvm-pattern/).
+Pour revoir le concept derrière le modèle de mise en œuvre MVVM, voir [ici](../../concepts/the-mvvm-pattern/).
 :::
 
-If you created your application using the **Avalonia MVVM Application** solution template then your solution will already contain the _ReactiveUI_ framework package, and you can reference it like this:
+Si vous avez créé votre application en utilisant le modèle de solution **Avalonia MVVM Application**, alors votre solution contiendra déjà le package du framework _ReactiveUI_, et vous pouvez y faire référence comme ceci :
 
 ```csharp
 using ReactiveUI;
 ```
 
-A view model that can perform actions implements them through the `ICommand` interface. The _ReactiveUI_ framework provides the `ReactiveCommand` class that implements `ICommand`.
+Un modèle de vue qui peut effectuer des actions les implémente via l'interface `ICommand`. Le cadre _ReactiveUI_ fournit la classe `ReactiveCommand` qui implémente `ICommand`.
 
 :::info
-For details of the definition of the `ICommand` interface, see [here](https://docs.microsoft.com/en-gb/dotnet/api/system.windows.input.icommand?view=netstandard-2.0).
+Pour des détails sur la définition de l'interface `ICommand`, voir [ici](https://docs.microsoft.com/en-gb/dotnet/api/system.windows.input.icommand?view=netstandard-2.0).
 :::
 
-The `Command` attribute data binding will call the bound view model method through its `ICommand.Execute` interface, when the bound control is activated. In this example: when the button is clicked.
+La liaison de données de l'attribut `Command` appellera la méthode du modèle de vue liée via son interface `ICommand.Execute`, lorsque le contrôle lié est activé. Dans cet exemple : lorsque le bouton est cliqué.
 
-To create a view model with a `ReactiveCommand`, follow this example:
+Pour créer un modèle de vue avec un `ReactiveCommand`, suivez cet exemple :
 
--  In your view model, declare a command, like this:
+- Dans votre modèle de vue, déclarez une commande, comme ceci :
 
 ```csharp
 public ReactiveCommand<Unit, Unit> ExampleCommand { get; } 
 ```
 
--  Create a private method in the view model to perform the action.
--  Initialize the reactive command, passing the name of the method that performs the action.
 
-Your view model code will now look like this:
+-  Créez une méthode privée dans le modèle de vue pour effectuer l'action.
+-  Initialisez la commande réactive, en passant le nom de la méthode qui exécute l'action.
+
+Votre code de modèle de vue ressemblera maintenant à ceci :
 
 ```csharp
 namespace AvaloniaGuides.ViewModels
@@ -63,33 +64,33 @@ namespace AvaloniaGuides.ViewModels
         }
         private void PerformAction()
         {
-            Debug.WriteLine("The action was called.");
+            Debug.WriteLine("L'action a été appelée.");
         }
     }
 }
 ```
 
--  Run the app and monitor the debug output.
+-  Exécutez l'application et surveillez la sortie de débogage.
 
-When the control bound to the reactive command is activated (in this example: when the button is clicked); then the private method to perform the action is called through the reactive command.
+Lorsque le contrôle lié à la commande réactive est activé (dans cet exemple : lorsque le bouton est cliqué) ; alors la méthode privée pour effectuer l'action est appelée par le biais de la commande réactive.
 
 <img src={BindReactiveCommandScreenshot} alt=""/>
 
-## Command Parameter
+## Paramètre de Commande
 
-You will often need to pass an argument to the reactive command that is bound to a control. You can achieve this using the `CommandParameter` attribute in the XAML. For example:
+Vous aurez souvent besoin de passer un argument à la commande réactive qui est liée à un contrôle. Vous pouvez y parvenir en utilisant l'attribut `CommandParameter` dans le XAML. Par exemple :
 
 ```xml
 <Window xmlns="https://github.com/avaloniaui">
    ...
    <StackPanel Margin="20">
       <Button Command="{Binding ExampleCommand}"
-              CommandParameter="From the button">Run the example</Button>
+              CommandParameter="Depuis le bouton">Exécuter l'exemple</Button>
    </StackPanel>
 </Window>
 ```
 
-You must now modify the view model so that the reactive commend expects a string parameter, the initialisation expects a string parameter, and the private method to perform the action expects a string parameter. As follows:
+Vous devez maintenant modifier le modèle de vue afin que la commande réactive s'attende à un paramètre de type chaîne, l'initialisation s'attende à un paramètre de type chaîne, et la méthode privée pour effectuer l'action s'attende à un paramètre de type chaîne. Comme suit :
 
 ```csharp
 namespace AvaloniaGuides.ViewModels
@@ -104,15 +105,15 @@ namespace AvaloniaGuides.ViewModels
         }
         private void PerformAction(string msg)
         {
-            Debug.WriteLine($"The action was called. {msg}");
+            Debug.WriteLine($"L'action a été appelée. {msg}");
         }
     }
 }
 ```
 
-Note that no type conversion is carried out on the `CommandParameter` attribute, so if you need to use a type parameter that is not a string, then you must define the type in the XAML. You will also need to use the expanded XAML syntax for the parameter.
+Notez qu'aucune conversion de type n'est effectuée sur l'attribut `CommandParameter`, donc si vous devez utiliser un paramètre de type qui n'est pas une chaîne, vous devez définir le type dans le XAML. Vous devrez également utiliser la syntaxe XAML étendue pour le paramètre.
 
-For example to pass an integer parameter:
+Par exemple, pour passer un paramètre entier :
 
 ```xml
 <Window xmlns="https://github.com/avaloniaui"
@@ -122,15 +123,15 @@ For example to pass an integer parameter:
         <Button.CommandParameter>
             <sys:Int32>42</sys:Int32>
         </Button.CommandParameter>
-        What is the answer?
+        Quelle est la réponse ?
     </Button>
 </Window>
 ```
 
 :::danger
-You will get an error if your parameter definitions are missing or not the correct type.
+Vous obtiendrez une erreur si vos définitions de paramètres sont manquantes ou ne sont pas du type correct.
 :::
 
 :::info
-Like any other property, the command parameter can be bound.
+Comme toute autre propriété, le paramètre de commande peut être lié.
 :::

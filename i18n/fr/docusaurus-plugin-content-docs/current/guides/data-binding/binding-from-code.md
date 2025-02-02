@@ -1,64 +1,64 @@
 ---
 id: binding-from-code
-title: How To Bind from Code
+title: Comment Lier depuis le Code
 ---
 
 
-# How To Bind from Code
+# Comment Lier depuis le Code
 
-Binding from code in Avalonia works somewhat differently to WPF/UWP. At the low level, Avalonia's binding system is based on Reactive Extensions' `IObservable` which is then built upon by XAML bindings (which can also be instantiated in code).
+La liaison depuis le code dans Avalonia fonctionne quelque peu différemment de WPF/UWP. À un niveau bas, le système de liaison d'Avalonia est basé sur `IObservable` des Extensions Réactives, qui est ensuite construit par des liaisons XAML (qui peuvent également être instanciées dans le code).
 
-## Subscribing to Changes to a Property
+## S'abonner aux Changements d'une Propriété
 
-You can subscribe to changes on a property by calling the `GetObservable` method. This returns an `IObservable<T>` which can be used to listen for changes to the property:
+Vous pouvez vous abonner aux changements d'une propriété en appelant la méthode `GetObservable`. Cela renvoie un `IObservable<T>` qui peut être utilisé pour écouter les changements de la propriété :
 
 ```csharp
 var textBlock = new TextBlock();
 var text = textBlock.GetObservable(TextBlock.TextProperty);
 ```
 
-Each property that can be subscribed to has a static readonly field called `[PropertyName]Property` which is passed to `GetObservable` in order to subscribe to the property's changes.
+Chaque propriété à laquelle on peut s'abonner a un champ statique en lecture seule appelé `[PropertyName]Property` qui est passé à `GetObservable` afin de s'abonner aux changements de la propriété.
 
-`IObservable` (part of Reactive Extensions, or rx for short) is out of scope for this guide, but here's an example which uses the returned observable to print a message with the changing property values to the console:
+`IObservable` (partie des Extensions Réactives, ou rx pour faire court) est hors du champ d'application de ce guide, mais voici un exemple qui utilise l'observable retourné pour imprimer un message avec les valeurs de propriété changeantes dans la console :
 
 ```csharp
 var textBlock = new TextBlock();
 var text = textBlock.GetObservable(TextBlock.TextProperty);
-text.Subscribe(value => Console.WriteLine(value + " Changed"));
+text.Subscribe(value => Console.WriteLine(value + " a changé"));
 ```
 
-When the returned observable is subscribed, it will return the current value of the property immediately and then push a new value each time the property changes. If you don't want the current value, you can use the rx `Skip` operator:
+Lorsque l'observable retourné est souscrit, il renverra immédiatement la valeur actuelle de la propriété et poussera ensuite une nouvelle valeur chaque fois que la propriété change. Si vous ne souhaitez pas la valeur actuelle, vous pouvez utiliser l'opérateur `Skip` de rx :
 
 ```csharp
 var text = textBlock.GetObservable(TextBlock.TextProperty).Skip(1);
 ```
 
-## Binding to an observable
+## Liaison à un observable
 
-You can bind a property to an observable using the `AvaloniaObject.Bind` method:
+Vous pouvez lier une propriété à un observable en utilisant la méthode `AvaloniaObject.Bind` :
 
 ```csharp
-// We use an Rx Subject here so we can push new values using OnNext
+// Nous utilisons un Sujet Rx ici afin de pouvoir pousser de nouvelles valeurs en utilisant OnNext
 var source = new Subject<string>();
 var textBlock = new TextBlock();
 
-// Bind TextBlock.Text to source
+// Lier TextBlock.Text à source
 var subscription = textBlock.Bind(TextBlock.TextProperty, source);
 
-// Set textBlock.Text to "hello"
+// Définir textBlock.Text sur "hello"
 source.OnNext("hello");
-// Set textBlock.Text to "world!"
+// Définir textBlock.Text sur "world!"
 source.OnNext("world!");
 
-// Terminate the binding
+// Terminer la liaison
 subscription.Dispose();
 ```
 
-Notice that the `Bind` method returns an `IDisposable` which can be used to terminate the binding. If you never call this, then then binding will automatically terminate when the observable finishes via `OnCompleted` or `OnError`.
+Remarquez que la méthode `Bind` retourne un `IDisposable` qui peut être utilisé pour terminer la liaison. Si vous n'appelez jamais cela, alors la liaison se terminera automatiquement lorsque l'observable se terminera via `OnCompleted` ou `OnError`.
 
-## Setting a binding in an object initializer
+## Définir une liaison dans un initialiseur d'objet
 
-It is often useful to set up bindings in object initializers. You can do this using the indexer:
+Il est souvent utile de configurer des liaisons dans les initialisateurs d'objet. Vous pouvez le faire en utilisant l'indexeur :
 
 ```csharp
 var source = new Subject<string>();
@@ -70,7 +70,7 @@ var textBlock = new TextBlock
 };
 ```
 
-Using this method you can also easily bind a property on one control to a property on another:
+En utilisant cette méthode, vous pouvez également facilement lier une propriété d'un contrôle à une propriété d'un autre :
 
 ```csharp
 var textBlock1 = new TextBlock();
@@ -82,17 +82,17 @@ var textBlock2 = new TextBlock
 };
 ```
 
-Of course the indexer can be used outside object initializers too:
+Bien sûr, l'indexeur peut également être utilisé en dehors des initialisateurs d'objet :
 
 ```csharp
 textBlock2[!TextBlock.TextProperty] = textBlock1[!TextBlock.TextProperty];
 ```
 
-The only downside of this syntax is that no `IDisposable` is returned. If you need to manually terminate the binding then you should use the `Bind` method.
+Le seul inconvénient de cette syntaxe est qu'aucun `IDisposable` n'est retourné. Si vous devez terminer manuellement la liaison, vous devez utiliser la méthode `Bind`.
 
-## Transforming binding values
+## Transformation des valeurs de liaison
 
-Because we're working with observables, we can easily transform the values we're binding!
+Parce que nous travaillons avec des observables, nous pouvons facilement transformer les valeurs que nous lions !
 
 ```csharp
 var source = new Subject<string>();
@@ -104,9 +104,9 @@ var textBlock = new TextBlock
 };
 ```
 
-## Using XAML bindings from code
+## Utilisation des liaisons XAML depuis le code
 
-Sometimes when you want the additional features that XAML bindings provide, it's easier to use XAML bindings from code. For example, using only observables you could bind to a property on `DataContext` like this:
+Parfois, lorsque vous voulez les fonctionnalités supplémentaires que les liaisons XAML fournissent, il est plus facile d'utiliser les liaisons XAML depuis le code. Par exemple, en utilisant uniquement des observables, vous pourriez lier à une propriété sur `DataContext` comme ceci :
 
 ```csharp
 var textBlock = new TextBlock();
@@ -116,7 +116,7 @@ var viewModelProperty = textBlock.GetObservable(TextBlock.DataContextProperty)
 textBlock.Bind(TextBlock.TextProperty, viewModelProperty);
 ```
 
-However, it might be preferable to use a XAML binding in this case:
+Cependant, il pourrait être préférable d'utiliser une liaison XAML dans ce cas :
 
 ```csharp
 var textBlock = new TextBlock
@@ -125,7 +125,7 @@ var textBlock = new TextBlock
 };
 ```
 
-Or, if you need an `IDisposable` to terminate the binding:
+Ou, si vous avez besoin d'un `IDisposable` pour terminer la liaison :
 
 ```csharp
 var textBlock = new TextBlock();
@@ -134,17 +134,17 @@ var subscription = textBlock.Bind(TextBlock.TextProperty, new Binding("Name"));
 subscription.Dispose();
 ```
 
-## Subscribing to a Property on Any Object
+## Souscrire à une propriété sur n'importe quel objet
 
-The `GetObservable` method returns an observable that tracks changes to a property on a single instance. However, if you're writing a control you may want to implement an `OnPropertyChanged` method which isn't tied to an instance of an object.
+La méthode `GetObservable` retourne un observable qui suit les changements d'une propriété sur une seule instance. Cependant, si vous écrivez un contrôle, vous pourriez vouloir implémenter une méthode `OnPropertyChanged` qui n'est pas liée à une instance d'un objet.
 
-To do this you can subscribe to [`AvaloniaProperty.Changed`](http://reference.avaloniaui.net/api/Avalonia/AvaloniaProperty/65237C52) which is an observable which fires _every time the property is changed on any instance_.
+Pour ce faire, vous pouvez vous abonner à [`AvaloniaProperty.Changed`](http://reference.avaloniaui.net/api/Avalonia/AvaloniaProperty/65237C52) qui est un observable qui se déclenche _à chaque fois que la propriété est changée sur n'importe quelle instance_.
 
-> In WPF this is done by passing a static `PropertyChangedCallback` to the `DependencyProperty` registration method, but this only allows the control author to register a property changed callback.
+> Dans WPF, cela se fait en passant un `PropertyChangedCallback` statique à la méthode d'enregistrement de `DependencyProperty`, mais cela ne permet qu'à l'auteur du contrôle d'enregistrer un rappel de changement de propriété.
 
-In addition there is an `AddClassHandler` extension method which can automatically route the event to a method on your control.
+De plus, il existe une méthode d'extension `AddClassHandler` qui peut automatiquement router l'événement vers une méthode de votre contrôle.
 
-For example if you want to listen to changes to your control's `Foo` property you'd do it like this:
+Par exemple, si vous souhaitez écouter les changements de la propriété `Foo` de votre contrôle, vous le feriez comme ceci :
 
 ```csharp
 static MyControl()
@@ -154,13 +154,13 @@ static MyControl()
 
 private static void FooChanged(MyControl sender, AvaloniaPropertyChangedEventArgs e)
 {
-    // The 'e' parameter describes what's changed.
+    // Le paramètre 'e' décrit ce qui a changé.
 }
 ```
 
-## Binding to `INotifyPropertyChanged` objects
+## Liaison à des objets `INotifyPropertyChanged`
 
-Binding to objects that implements `INotifyPropertyChanged` is also available.
+La liaison à des objets qui implémentent `INotifyPropertyChanged` est également disponible.
 
 ```csharp
 var textBlock = new TextBlock();

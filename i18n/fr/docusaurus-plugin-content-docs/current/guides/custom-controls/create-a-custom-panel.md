@@ -1,26 +1,26 @@
 ---
 id: create-a-custom-panel
-title: How To Create a Custom Panel
+title: Comment créer un panneau personnalisé
 ---
 
-# How To Create a Custom Panel
+# Comment créer un panneau personnalisé
 
-This example shows how to override the default layout behavior of the `Panel` element and create custom layout elements that are derived from `Panel`.
+Cet exemple montre comment remplacer le comportement de mise en page par défaut de l'élément `Panel` et créer des éléments de mise en page personnalisés dérivés de `Panel`.
 
-The example defines a simple custom `Panel` element called `PlotPanel`, which positions child elements according to two hard-coded x- and y-coordinates. In this example, `x` and `y` are both set to `50`; therefore, all child elements are positioned at that location on the x and y axes.
+L'exemple définit un élément `Panel` personnalisé simple appelé `PlotPanel`, qui positionne les éléments enfants selon deux coordonnées x et y codées en dur. Dans cet exemple, `x` et `y` sont tous deux définis sur `50` ; par conséquent, tous les éléments enfants sont positionnés à cet emplacement sur les axes x et y.
 
-To implement custom `Panel` behaviors, the example uses the `MeasureOverride` and `ArrangeOverride` methods. Each method returns the `Size` data that is necessary to position and render child elements.
+Pour mettre en œuvre des comportements personnalisés de `Panel`, l'exemple utilise les méthodes `MeasureOverride` et `ArrangeOverride`. Chaque méthode renvoie les données `Size` nécessaires pour positionner et rendre les éléments enfants.
 
 ```csharp
 public class PlotPanel : Panel
 {
-    // Override the default Measure method of Panel
+    // Remplace la méthode Measure par défaut de Panel
     protected override Size MeasureOverride(Size availableSize)
     {
         var panelDesiredSize = new Size();
 
-        // In our example, we just have one child. 
-        // Report that our panel requires just the size of its only child.
+        // Dans notre exemple, nous avons juste un enfant.
+        // Indique que notre panneau nécessite juste la taille de son seul enfant.
         foreach (var child in Children)
         {
             child.Measure(availableSize);
@@ -40,7 +40,7 @@ public class PlotPanel : Panel
             child.Arrange(new Rect(new Point(x, y), child.DesiredSize));
         }
         
-        return finalSize; // Returns the final Arranged size
+        return finalSize; // Renvoie la taille finale arrangée.
     }
 }
 ```

@@ -1,15 +1,15 @@
 ---
 id: data-validation
-title: Data Validation
+title: Validation des données
 ---
 
-# Data Validation
+# Validation des données
 
-Avalonia offers different data validation options. In this section we will show you how you can validate the `Properties` of your `ViewModel` and how you can style the displayed error message.
+Avalonia offre différentes options de validation des données. Dans cette section, nous vous montrerons comment vous pouvez valider les `Propriétés` de votre `ViewModel` et comment vous pouvez styliser le message d'erreur affiché.
 
-## Validating a property
+## Validation d'une propriété
 
-Avalonia uses [`DataValidationPlugins`](http://reference.avaloniaui.net/api/Avalonia.Data.Core.Plugins/IDataValidationPlugin/) to validate the `Properties` you bound to. Out of the box Avalonia provide these three validation plugins:
+Avalonia utilise [`DataValidationPlugins`](http://reference.avaloniaui.net/api/Avalonia.Data.Core.Plugins/IDataValidationPlugin/) pour valider les `Propriétés` auxquelles vous êtes lié. Par défaut, Avalonia fournit ces trois plugins de validation :
 
 * [DataAnnotations - ValidationPlugin](data-validation.md#dataannotations---validationplugin)
 * [INotifyDataErrorInfo - ValidationPlugin](data-validation.md#inotifydataerrorinfo---validationplugin)
@@ -17,9 +17,9 @@ Avalonia uses [`DataValidationPlugins`](http://reference.avaloniaui.net/api/Aval
 
 ### DataAnnotations - ValidationPlugin
 
-You can decorate the `Properties` of your `ViewModel` with different [`Validation-Attributes`](https://learn.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations.validationattribute). You can use the build-in ones, use the [`CustomValidationAttribute`](https://learn.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations.customvalidationattribute) or create your own by derive from `ValidationAttribute`.
+Vous pouvez décorer les `Propriétés` de votre `ViewModel` avec différents [`Attributs de Validation`](https://learn.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations.validationattribute). Vous pouvez utiliser ceux intégrés, utiliser le [`CustomValidationAttribute`](https://learn.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations.customvalidationattribute) ou créer le vôtre en dérivant de `ValidationAttribute`.
 
-**Sample: The property EMail is required and must be a valid e-mail-address**
+**Exemple : La propriété EMail est requise et doit être une adresse e-mail valide**
 
 ```cs
 [Required]
@@ -33,17 +33,17 @@ public string? EMail
 
 ### INotifyDataErrorInfo - ValidationPlugin
 
-Avalonia also supports validation of classes that implement [`INotifyDataErrorInfo`](https://learn.microsoft.com/en-us/dotnet/api/system.componentmodel.inotifydataerrorinfo). Several `MVVM`-libraries are using this interface for their data validation, for example the [CommunityToolkit.Mvvm](https://learn.microsoft.com/en-us/windows/communitytoolkit/mvvm/observablevalidator)-package and the [`ReactiveUI.Validation`](https://github.com/reactiveui/ReactiveUI.Validation#inotifydataerrorinfo-support)-package. For usage instructions please visit the documentation of the `MVVM`-package of your choice.
+Avalonia prend également en charge la validation des classes qui implémentent [`INotifyDataErrorInfo`](https://learn.microsoft.com/en-us/dotnet/api/system.componentmodel.inotifydataerrorinfo). Plusieurs bibliothèques `MVVM` utilisent cette interface pour leur validation de données, par exemple le package [CommunityToolkit.Mvvm](https://learn.microsoft.com/en-us/windows/communitytoolkit/mvvm/observablevalidator) et le package [`ReactiveUI.Validation`](https://github.com/reactiveui/ReactiveUI.Validation#inotifydataerrorinfo-support). Pour des instructions d'utilisation, veuillez consulter la documentation du package `MVVM` de votre choix.
 
 :::info
-Some libraries like the `CommunityToolkit.Mvvm` use `DataAnnotations` for their validation. This may result in conflicts with the [DataAnnotations - ValidationPlugin](data-validation.md#dataannotations---validationplugin). Please see [Manage ValidationPlugins](data-validation.md#manage-validationplugins) how to solve this issue.
+Certaines bibliothèques comme `CommunityToolkit.Mvvm` utilisent `DataAnnotations` pour leur validation. Cela peut entraîner des conflits avec le [DataAnnotations - ValidationPlugin](data-validation.md#dataannotations---validationplugin). Veuillez consulter [Gérer les ValidationPlugins](data-validation.md#manage-validationplugins) pour résoudre ce problème.
 :::
 
 ### Exception - ValidationPlugin
 
-One more option to validate a property is to raise an [`Exception`](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/exceptions/creating-and-throwing-exceptions) inside the setter of your property.
+Une autre option pour valider une propriété est de lever une [`Exception`](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/exceptions/creating-and-throwing-exceptions) à l'intérieur du setter de votre propriété.
 
-**Sample: Validate the property EMail using `Exceptions`**
+**Exemple : Valider la propriété EMail en utilisant des `Exceptions`**
 
 ```cs
 public string? EMail
@@ -53,11 +53,11 @@ public string? EMail
     {
         if (string.IsNullOrEmpty(value))
         {
-            throw new ArgumentNullException(nameof(EMail), "This field is required");
+            throw new ArgumentNullException(nameof(EMail), "Ce champ est requis");
         }
         else if (!value.Contains('@'))
         {
-            throw new ArgumentException(nameof(EMail), "Not a valid E-Mail-Address");
+            throw new ArgumentException(nameof(EMail), "Pas une adresse e-mail valide");
         }
         else
         { 
@@ -68,14 +68,14 @@ public string? EMail
 ```
 
 :::danger
-Exceptions inside the getter of your property are not allowed and will result in a crash of your application.
+Les exceptions à l'intérieur du getter de votre propriété ne sont pas autorisées et entraîneront un plantage de votre application.
 :::
 
-## Customize the appearance of the validation message
+## Personnaliser l'apparence du message de validation
 
-To display the validation messages, Avalonia has a control called [`DataValidationErrors`](http://reference.avaloniaui.net/api/Avalonia.Controls/DataValidationErrors/). This control is typically placed inside the `ControlTemplate` of all `Controls` that supports data validation, like `TextBox`, `Slider` and other. You can create your own `Style` of the `DataValidationErrors`-control in order to customize the representation of the error messages.
+Pour afficher les messages de validation, Avalonia dispose d'un contrôle appelé [`DataValidationErrors`](http://reference.avaloniaui.net/api/Avalonia.Controls/DataValidationErrors/). Ce contrôle est généralement placé à l'intérieur du `ControlTemplate` de tous les `Controls` qui prennent en charge la validation des données, comme `TextBox`, `Slider` et autres. Vous pouvez créer votre propre `Style` pour le contrôle `DataValidationErrors` afin de personnaliser la représentation des messages d'erreur.
 
-**Example Style for DataValidationErrors**
+**Exemple de style pour DataValidationErrors**
 
 ```xml
 <Style Selector="DataValidationErrors">
@@ -122,28 +122,28 @@ To display the validation messages, Avalonia has a control called [`DataValidati
 
 <!-- ![custom validation style](broken-reference) -->
 
-**Custom validation style**
+**Style de validation personnalisé**
 
-## Manage ValidationPlugins
+## Gérer les ValidationPlugins
 
-if needed to, you can enable or disable a specific `ValidationPlugin` in your App. This can be useful if for example your MVVM-framework uses `DataAnnotations` to validate the property via `INotifyDataErrorInfo`. In that case you would see the message twice. Use the `BindingPlugins.DataValidators`-collection to add or remove a specific `ValidationPlugin`.
+Si nécessaire, vous pouvez activer ou désactiver un `ValidationPlugin` spécifique dans votre application. Cela peut être utile si, par exemple, votre framework MVVM utilise `DataAnnotations` pour valider la propriété via `INotifyDataErrorInfo`. Dans ce cas, vous verriez le message deux fois. Utilisez la collection `BindingPlugins.DataValidators` pour ajouter ou supprimer un `ValidationPlugin` spécifique.
 
-**Example: Remove the DataAnnotations validator**
+**Exemple : Supprimer le validateur DataAnnotations**
 
 ```cs
 public override void OnFrameworkInitializationCompleted()
 {
-    // Get an array of plugins to remove
+    // Obtenir un tableau de plugins à supprimer
     var dataValidationPluginsToRemove =
         BindingPlugins.DataValidators.OfType<DataAnnotationsValidationPlugin>().ToArray();
 
-    // remove each entry found
+    // supprimer chaque entrée trouvée
     foreach (var plugin in dataValidationPluginsToRemove)
     {
         BindingPlugins.DataValidators.Remove(plugin);
     }
 
-    // Continue with normal startup
+    // Continuer avec le démarrage normal
     if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
     {
         desktop.MainWindow = new MainWindow()

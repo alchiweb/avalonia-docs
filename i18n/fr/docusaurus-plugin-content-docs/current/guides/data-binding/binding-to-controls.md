@@ -1,40 +1,40 @@
 ---
 id: binding-to-controls
-title: How To Bind to a Control
+title: Comment lier à un contrôle
 ---
 
 
-# How To Bind to a Control
+# Comment lier à un contrôle
 
-With _Avalonia UI_, as well as binding to a data context you can also bind one control directly to another.
+Avec _Avalonia UI_, ainsi que la liaison à un contexte de données, vous pouvez également lier un contrôle directement à un autre.
 
 :::info
-Note that this technique does not use a data context at all. When you do this, you are binding directly to another control itself.
+Notez que cette technique n'utilise pas du tout de contexte de données. Lorsque vous faites cela, vous liez directement à un autre contrôle lui-même.
 :::
 
-## Binding to a Named Control
+## Liaison à un contrôle nommé
 
-If you want to bind to a property on another named control, you can use the control name prefixed by a `#` character.
+Si vous souhaitez lier à une propriété d'un autre contrôle nommé, vous pouvez utiliser le nom du contrôle précédé d'un caractère `#`.
 
 ```xml
 <TextBox Name="other">
 
-<!-- Binds to the Text property of the "other" control -->
+<!-- Lie à la propriété Text du contrôle "other" -->
 <TextBlock Text="{Binding #other.Text}"/>
 ```
 
-This is the equivalent to the long-form binding that will be familiar to WPF and UWP users:
+Ceci est l'équivalent de la liaison en forme longue qui sera familière aux utilisateurs de WPF et UWP :
 
 ```xml
 <TextBox Name="other">
 <TextBlock Text="{Binding Text, ElementName=other}"/>
 ```
 
-_Avalonia UI_ supports both syntaxes.
+_Avalonia UI_ prend en charge les deux syntaxes.
 
-## Binding to an Ancestor
+## Liaison à un ancêtre
 
-You can bind to the (logical control tree) parent of the target using the `$parent` syntax:
+Vous pouvez lier au parent (arbre logique de contrôle) de la cible en utilisant la syntaxe `$parent` :
 
 ```xml
 <Border Tag="Hello World!">
@@ -42,7 +42,7 @@ You can bind to the (logical control tree) parent of the target using the `$pare
 </Border>
 ```
 
-Or to any level of ancestor by using an index with the `$parent` syntax:
+Ou à tout niveau d'ancêtre en utilisant un index avec la syntaxe `$parent` :
 
 ```xml
 <Border Tag="Hello World!">
@@ -52,9 +52,9 @@ Or to any level of ancestor by using an index with the `$parent` syntax:
 </Border>
 ```
 
-The index is zero based so `$parent[0]` is equivalent to `$parent`.
+L'index est basé sur zéro, donc `$parent[0]` équivaut à `$parent`.
 
-You can also bind to the closest ancestor of a given type, like this:
+Vous pouvez également vous lier à l'ancêtre le plus proche d'un type donné, comme ceci :
 
 ```xml
 <Border Tag="Hello World!">
@@ -64,7 +64,7 @@ You can also bind to the closest ancestor of a given type, like this:
 </Border>
 ```
 
-Finally, you can combine the index and the type:
+Enfin, vous pouvez combiner l'index et le type :
 
 ```xml
 <Border Tag="Hello World!">
@@ -76,7 +76,7 @@ Finally, you can combine the index and the type:
 </Border>
 ```
 
-If you need to include a XAML namespace in the ancestor type, you separate the namespace and class using a colon, like this:
+Si vous devez inclure un espace de noms XAML dans le type d'ancêtre, vous séparez l'espace de noms et la classe en utilisant un deux-points, comme ceci :
 
 ```xml
 <local:MyControl Tag="Hello World!">
@@ -86,7 +86,7 @@ If you need to include a XAML namespace in the ancestor type, you separate the n
 </local:MyControl>
 ```
 
-To access a property of a parent's `DataContext` it will be necessary to cast it with a casting expression `(vm:MyUserControlViewModel)DataContext` to its actual type. Otherwise `DataContext` would be considered as of type `object` and accessing a custom property would result in an compile-time error.
+Pour accéder à une propriété du `DataContext` d'un parent, il sera nécessaire de le caster avec une expression de casting `(vm:MyUserControlViewModel)DataContext` à son type réel. Sinon, `DataContext` serait considéré comme de type `object` et accéder à une propriété personnalisée entraînerait une erreur de compilation.
 
 ```xml
 <local:MyControl Tag="Hello World!">
@@ -97,5 +97,5 @@ To access a property of a parent's `DataContext` it will be necessary to cast it
 ```
 
 :::warning
-_Avalonia UI_ also supports WPF/UWP's `RelativeSource` syntax which does something similar, but is _not_ the same. `RelativeSource` works on the _visual_ tree whereas the syntax given here works on the _logical_ tree.
+_Avalonia UI_ prend également en charge la syntaxe `RelativeSource` de WPF/UWP qui fait quelque chose de similaire, mais n'est _pas_ la même chose. `RelativeSource` fonctionne sur l'arbre _visuel_ tandis que la syntaxe donnée ici fonctionne sur l'arbre _logique_.
 :::

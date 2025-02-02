@@ -1,18 +1,18 @@
 ---
 id: how-to-implement-multi-page-apps
-title: How To Implement Multi-page Apps
+title: Comment implémenter des applications multi-pages
 ---
 
 
-# How To Implement Multi-page Apps
+# Comment implémenter des applications multi-pages
 
-Content in preparation.
+Contenu en préparation.
 
-This guide will show you how to employ user controls as page views, and the view locator class, to implement a multiple-page application.
+Ce guide vous montrera comment utiliser des contrôles utilisateur comme vues de page et la classe de localisation de vue pour implémenter une application multi-pages.
 
 
 
-that is added by the Avalonia MVVM solution template.
+qui est ajoutée par le modèle de solution Avalonia MVVM.
 
 ```csharp
 public class ViewLocator : IDataTemplate
@@ -28,7 +28,7 @@ public class ViewLocator : IDataTemplate
             return (Control)Activator.CreateInstance(type)!;
         }
 
-        return new TextBlock { Text = "Not Found: " + name };
+        return new TextBlock { Text = "Non trouvé : " + name };
     }
 
     public bool Match(object? data)

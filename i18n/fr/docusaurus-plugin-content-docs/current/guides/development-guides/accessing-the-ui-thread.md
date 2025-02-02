@@ -1,38 +1,37 @@
 ---
 id: accessing-the-ui-thread
-title: How To Access the UI Thread
+title: Comment accéder au thread UI
 ---
 
-# How To Access the UI Thread
+# Comment accéder au thread UI
 
-This guide will show you how to access the UI thread in your _Avalonia UI_ application.
+Ce guide vous montrera comment accéder au thread UI dans votre application _Avalonia UI_.
 
-_Avalonia UI_ applications have one main thread, and this handles the UI. When you have a process that is intensive, or long running, then you will usually opt to run it on a different thread. Then you may have scenarios where you want to update them main UI thread (for example with progress updates). 
+Les applications _Avalonia UI_ ont un thread principal, qui gère l'interface utilisateur. Lorsque vous avez un processus intensif ou de longue durée, vous choisirez généralement de l'exécuter sur un thread différent. Vous pouvez alors avoir des scénarios où vous souhaitez mettre à jour le thread principal de l'interface utilisateur (par exemple avec des mises à jour de progression).
 
-A dispatcher provides services for managing work items on any specific thread. In _Avalonia UI_ you will already have the dispatcher that handles the UI thread. When you need to update the UI from a different thread, you access it through this dispatcher, as follows:
+Un dispatcher fournit des services pour gérer les éléments de travail sur un thread spécifique. Dans _Avalonia UI_, vous disposez déjà du dispatcher qui gère le thread UI. Lorsque vous devez mettre à jour l'UI depuis un thread différent, vous y accédez via ce dispatcher, comme suit :
 
 ```csharp
 Dispatcher.UIThread
 ```
 
-You can use either the `Post` method or the `InvokeAsync` method to run a process on the UI thread.
+Vous pouvez utiliser soit la méthode `Post`, soit la méthode `InvokeAsync` pour exécuter un processus sur le thread UI.
 
-Use `Post` when you just want to start a job, but you do not need to wait for the job to be finished, and you do not need the result: this is the 'fire-and-forget' dispatcher method.
+Utilisez `Post` lorsque vous souhaitez simplement démarrer un travail, mais que vous n'avez pas besoin d'attendre que le travail soit terminé, et que vous n'avez pas besoin du résultat : c'est la méthode de dispatcher 'fire-and-forget'.
 
-Use `InvokeAsync` when you need to wait for the result, and potentially want to receive the result.
+Utilisez `InvokeAsync` lorsque vous devez attendre le résultat, et que vous souhaitez potentiellement recevoir le résultat.
 
-## Dispatcher Priority
+## Priorité du Dispatcher
 
-Both of the above methods have a dispatcher priority parameter. You can use this with the `DispatcherPriority` enumeration to specify the queue priority that the given job should be given.
+Les deux méthodes ci-dessus ont un paramètre de priorité de dispatcher. Vous pouvez l'utiliser avec l'énumération `DispatcherPriority` pour spécifier la priorité de la file d'attente que le travail donné doit recevoir.
 
 :::info
-For the possible values of the `DispatcherPriority` enumeration, see [here](http://reference.avaloniaui.net/api/Avalonia.Threading/DispatcherPriority/).
+Pour les valeurs possibles de l'énumération `DispatcherPriority`, voir [ici](http://reference.avaloniaui.net/api/Avalonia.Threading/DispatcherPriority/).
 :::
 
-## Example
+## Exemple
 
-This example shows how to access the ui thread from a worker thread to update or get the text of a TextBlock.
-Create a new Avalonia project and replace the content of the following two files:
+Cet exemple montre comment accéder au thread UI depuis un thread de travail pour mettre à jour ou obtenir le texte d'un TextBlock. Créez un nouveau projet Avalonia et remplacez le contenu des deux fichiers suivants :
 
 MainView.axaml:
 ```xml title='XAML'
@@ -45,8 +44,8 @@ MainView.axaml:
              x:Class="AvaloniaApplication1.Views.MainView"
              x:DataType="vm:MainViewModel">
   <Design.DataContext>
-    <!-- This only sets the DataContext for the previewer in an IDE,
-         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+    <!-- Cela définit uniquement le DataContext pour le visualiseur dans un IDE,
+         pour définir le DataContext réel pour l'exécution, définissez la propriété DataContext dans le code (regardez App.axaml.cs) -->
     <vm:MainViewModel />
   </Design.DataContext>
 
@@ -71,9 +70,8 @@ public partial class MainView : UserControl
     {
         InitializeComponent();
 
-        // Execute OnTextFromAnotherThread on the thread pool
-        // to demonstrate how to access the UI thread from
-        // there.
+        // Exécutez OnTextFromAnotherThread dans le pool de thread
+        // pour démontrer comment accéder au thread UI depuis là.
         _ = Task.Run(() => OnTextFromAnotherThread("test"));
     }
 
@@ -84,32 +82,32 @@ public partial class MainView : UserControl
     {
         try
         {
-            // Start the job on the ui thread and return immediately.
+            // Démarrer le travail sur le thread UI et retourner immédiatement.
             Dispatcher.UIThread.Post(() => SetText(text));
 
-            // Start the job on the ui thread and wait for the result.
+            // Démarrer le travail sur le thread UI et attendre le résultat.
             var result = await Dispatcher.UIThread.InvokeAsync(GetText);
 
-            // This invocation would cause an exception because we are
-            // running on a worker thread:
-            // System.InvalidOperationException: 'Call from invalid thread'
+            // Cette invocation provoquerait une exception car nous sommes
+            // en cours d'exécution sur un thread de travail :
+            // System.InvalidOperationException: 'Appel depuis un thread invalide'
             //SetText(text);
         }
         catch (Exception)
         {
-            throw; // Todo: Handle exception.
+            throw; // Todo: Gérer l'exception.
         }
     }
 }
 
 ```
 
-## More Information
+## Plus d'informations
 
 :::info
-For the complete API documentation about the dispatcher, see [here](http://reference.avaloniaui.net/api/Avalonia.Threading/Dispatcher/).
+Pour la documentation API complète sur le dispatcher, voir [ici](http://reference.avaloniaui.net/api/Avalonia.Threading/Dispatcher/).
 :::
 
 :::info
-View the source code on _GitHub_ [`Dispatcher.cs`](https://github.com/AvaloniaUI/Avalonia/blob/master/src/Avalonia.Base/Threading/Dispatcher.cs)
+Voir le code source sur _GitHub_ [`Dispatcher.cs`](https://github.com/AvaloniaUI/Avalonia/blob/master/src/Avalonia.Base/Threading/Dispatcher.cs)
 :::

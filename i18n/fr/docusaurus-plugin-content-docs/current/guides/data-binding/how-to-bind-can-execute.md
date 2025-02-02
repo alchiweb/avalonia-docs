@@ -1,22 +1,22 @@
 ---
 id: how-to-bind-can-execute
-title: How to Bind Can Execute
+title: Comment lier Can Execute
 ---
 
 import BindCanExecuteScreenshot from '/img/guides/data-binding/bind-canexecute.gif';
 
-# How to Bind Can Execute
+# Comment lier Can Execute
 
-Whether a control, that can initiate an action in response to user interaction, is in its enabled state, is an important principle of the 'revealed functionality' part of user experience design (UX). User confidence is reinforced by disabling commands that cannot run. For example where a button or menu item cannot run due to the current state of an application, they should be presented as inactive.
+Que le contrôle, qui peut initier une action en réponse à l'interaction de l'utilisateur, soit dans son état activé, est un principe important de la partie 'fonctionnalité révélée' de la conception de l'expérience utilisateur (UX). La confiance de l'utilisateur est renforcée en désactivant les commandes qui ne peuvent pas s'exécuter. Par exemple, lorsqu'un bouton ou un élément de menu ne peut pas s'exécuter en raison de l'état actuel d'une application, il doit être présenté comme inactif.
 
-This example assumes that you are using the MVVM implementation pattern with the _ReactiveUI_ framework. This (recommended) approach gives a very clear separation between the view and the view model.
+Cet exemple suppose que vous utilisez le modèle d'implémentation MVVM avec le framework _ReactiveUI_. Cette approche (recommandée) offre une séparation très claire entre la vue et le modèle de vue.
 
-In this example, the button can only be clicked when the message is not empty. As soon as the output is shown; the message is reset to the empty string - which in turn will disable the button again.
+Dans cet exemple, le bouton ne peut être cliqué que lorsque le message n'est pas vide. Dès que la sortie est affichée ; le message est réinitialisé à la chaîne vide - ce qui désactivera à nouveau le bouton.
 
 ```xml title='XAML'
 <StackPanel Margin="20">
   <TextBox Margin="0 5" Text="{Binding Message}"
-           Watermark="Add a message to enable the button"/>
+           Watermark="Ajouter un message pour activer le bouton"/>
   <Button Command="{Binding ExampleCommand}">    
     Run the example
   </Button>
@@ -30,7 +30,7 @@ namespace AvaloniaGuides.ViewModels
     public class MainWindowViewModel : ViewModelBase
     {
         private string _message = string.Empty;
-        private string _output = "Waiting...";
+        private string _output = "En attente...";
 
         public string Message 
         { 
@@ -57,7 +57,7 @@ namespace AvaloniaGuides.ViewModels
 
         private void PerformAction()
         {
-             Output = $"The action was called. {_message}";
+             Output = $"L'action a été appelée. {_message}";
              Message = String.Empty;
         }
     }
@@ -75,16 +75,16 @@ namespace AvaloniaGuides.ViewModels
 }
 ```
 
-In the constructor of the view model, the reactive command is created with two parameters. The first is the private method that performs the action. The second is an observable which is created by the `WhenAnyValue` method of the `ReactiveObject` that underlies the view model (from the `ViewModelBase` class).
+Dans le constructeur du modèle de vue, la commande réactive est créée avec deux paramètres. Le premier est la méthode privée qui effectue l'action. Le second est un observable qui est créé par la méthode `WhenAnyValue` de l'objet `ReactiveObject` qui sous-tend le modèle de vue (de la classe `ViewModelBase`).
 
 :::info
-The `ViewModelBase` class is added to your project when you use the 'Avalonia MVVM Application' solution template.
+La classe `ViewModelBase` est ajoutée à votre projet lorsque vous utilisez le modèle de solution 'Application MVVM Avalonia'.
 :::
 
-Here the `WhenAnyValue` method takes two arguments, the first collects a value for the parameter of the validation function, and the second is the validation function that returns a Boolean result.
+Ici, la méthode `WhenAnyValue` prend deux arguments, le premier collecte une valeur pour le paramètre de la fonction de validation, et le second est la fonction de validation qui retourne un résultat booléen.
 
 :::info
-The `WhenAnyValue` method actually has overloads that can take up to 10 different value getters (for the validation function parameters), plus the validation function itself. 
+La méthode `WhenAnyValue` a en fait des surcharges qui peuvent prendre jusqu'à 10 récupérateurs de valeur différents (pour les paramètres de la fonction de validation), plus la fonction de validation elle-même.
 :::
 
 <img src={BindCanExecuteScreenshot} alt=""/>

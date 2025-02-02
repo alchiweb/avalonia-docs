@@ -1,31 +1,31 @@
 ---
 id: index
-title: Samples & Tutorials
+title: Exemples et tutoriels
 ---
 
-This section has practical tutorials that are designed to help you learn _Avalonia UI_ and build your confidence. Here is a brief guide to what you can expect from each of the tutorials:
+Cette section contient des tutoriels pratiques conçus pour vous aider à apprendre _Avalonia UI_ et à renforcer votre confiance. Voici un bref guide de ce à quoi vous pouvez vous attendre de chacun des tutoriels :
 
-## To Do List App
+## Application de liste de tâches
 
-A simple to do list application using the Model View View-Model (MVVM) pattern, with binding to a collection, from which you will meet:
+Une simple application de liste de tâches utilisant le modèle Model View View-Model (MVVM), avec liaison à une collection, à partir de laquelle vous découvrirez :
 
-* How to use Bindings
-* How to use Commands
-* Some basic Styling
-* Some very basic I/O operations
+* Comment utiliser les liaisons
+* Comment utiliser les commandes
+* Quelques styles de base
+* Quelques opérations d'entrée/sortie très basiques
 
-This is a very good introduction to the MVVM pattern recommended for _Avalonia UI_ programming. Follow the tutorial [here](https://github.com/AvaloniaUI/Avalonia.Samples/tree/main/src/Avalonia.Samples/CompleteApps/SimpleToDoList).
+C'est une très bonne introduction au modèle MVVM recommandé pour la programmation _Avalonia UI_. Suivez le tutoriel [ici](https://github.com/AvaloniaUI/Avalonia.Samples/tree/main/src/Avalonia.Samples/CompleteApps/SimpleToDoList).
 
-## Music Store App
+## Application de magasin de musique
 
-This app was made for a demonstration on a webinar hosted by _JetBrains_, and co-hosted by Dan Walmsley, one of the creators of _Avalonia UI_.
+Cette application a été réalisée pour une démonstration lors d'un webinaire animé par _JetBrains_, co-animé par Dan Walmsley, l'un des créateurs de _Avalonia UI_.
 
 :::info
-To view the JetBrains and Avalonia UI webinar on YouTube, see [here](https://www.youtube.com/watch?v=kZCIporjJ70).
+Pour voir le webinaire JetBrains et Avalonia UI sur YouTube, voir [ici](https://www.youtube.com/watch?v=kZCIporjJ70).
 :::
 
-It uses the _JetBrains Rider_ IDE running on macOS, but the steps will be equivalent on other platforms; and the developer experience will also be similar on other IDEs such as Visual Studio.
+Elle utilise l'IDE _JetBrains Rider_ fonctionnant sur macOS, mais les étapes seront équivalentes sur d'autres plateformes ; et l'expérience développeur sera également similaire sur d'autres IDE tels que Visual Studio.
 
-The app features a highly graphical application using the MVVM pattern, and including how to display a dialog, present images and collections of data, and implement data persistence.
+L'application propose une application hautement graphique utilisant le modèle MVVM, et incluant comment afficher une boîte de dialogue, présenter des images et des collections de données, et mettre en œuvre la persistance des données.
 
-Follow this demonstration [here](./music-store-app/).
+Suivez cette démonstration [ici](./music-store-app/).

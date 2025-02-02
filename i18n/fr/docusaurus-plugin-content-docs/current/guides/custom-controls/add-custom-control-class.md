@@ -1,17 +1,17 @@
 ---
 id: add-custom-control-class
-title: Add a Custom Control Class
+title: Ajouter une classe de contrôle personnalisée
 ---
 
-# Add a Custom Control Class
+# Ajouter une classe de contrôle personnalisée
 
-You create a custom control using a class that inherits from the _Avalonia UI_ `Control` class. You can place your custom control classes anywhere in you app project, or include them in another control library project.
+Vous créez un contrôle personnalisé en utilisant une classe qui hérite de la classe `Control` de _Avalonia UI_. Vous pouvez placer vos classes de contrôle personnalisées n'importe où dans votre projet d'application, ou les inclure dans un autre projet de bibliothèque de contrôles.
 
 :::info
-For more information on creating a custom control library, see [here](how-to-create-a-custom-controls-library).
+Pour plus d'informations sur la création d'une bibliothèque de contrôles personnalisés, voir [ici](how-to-create-a-custom-controls-library).
 :::
 
-Wherever you choose to place your custom control class, you must be able to reference it in the XAML. For example, this code shows the custom control `MyControl` class placed in the main window; and the custom control class defines in the `/CustomControls` namespace and project folder:
+Où que vous choisissiez de placer votre classe de contrôle personnalisée, vous devez être en mesure de la référencer dans le XAML. Par exemple, ce code montre la classe de contrôle personnalisée `MyControl` placée dans la fenêtre principale ; et la classe de contrôle personnalisée définie dans l'espace de noms et le dossier de projet `/CustomControls`:
 
 ```xml title='XAML'
 <Window xmlns="https://github.com/avaloniaui"
@@ -38,6 +38,6 @@ namespace AvaloniaCCExample.CustomControls
 }
 ```
 
-Notice that you can already add properties for height and width of the custom control. These are from the base class: `Control`.
+Remarquez que vous pouvez déjà ajouter des propriétés pour la hauteur et la largeur du contrôle personnalisé. Celles-ci proviennent de la classe de base : `Control`.
 
-However at present, nothing shows. On the next page you will see how to define a property and teach the custom control how to draw using it.
+Cependant, pour l'instant, rien ne s'affiche. À la page suivante, vous verrez comment définir une propriété et apprendre au contrôle personnalisé comment dessiner en l'utilisant.

@@ -1,31 +1,30 @@
 ---
 id: how-to-create-attached-properties
-title: How To Create Attached Properties
+title: Comment créer des propriétés attachées
 ---
 
+# Comment créer des propriétés attachées
 
-# How To Create Attached Properties
+Lorsque vous avez besoin de propriétés supplémentaires ou, disons, étrangères sur les éléments Avalonia, les propriétés attachées sont la solution idéale à utiliser. Elles peuvent également être utilisées pour créer ce que l'on appelle des comportements afin de modifier généralement les composants GUI hébergés. Cela peut être utilisé pour lier une commande à un événement, par exemple.
 
-When you need more or let's say foreign properties on avalonia elements, then attached properties are the right thing to use. They can also be used to create so called behaviors to generally modify the hosted gui components. This can be utilized to bind a command to an event for instance.
+Nous présentons ici un exemple de la façon d'utiliser une commande de manière compatible avec MVVM et de la lier à un événement.
 
-Here we present an example of how to use a command in an MVVM compatible way and bind it to an event.
+Ce n'est peut-être pas la solution idéale car il existe des projets tels que [Avalonia Behaviors](https://github.com/wieslawsoltes/AvaloniaBehaviors) où cela est correctement fait. Mais cela illustre les deux apprentissages suivants :
 
-It may not be the ideal solution as there are projects such as [Avalonia Behaviors](https://github.com/wieslawsoltes/AvaloniaBehaviors) where this is properly done. But it illustrates the following two learnings:
+* Comment créer des propriétés attachées dans _Avalonia UI_
+* Comment les utiliser de manière MVVM.
 
-* How to create attached properties in _Avalonia UI_
-* How to use them in a MVVM way.
+Tout d'abord, nous devons créer notre propriété attachée. La méthode `AvaloniaProperty.RegisterAttached` est utilisée à cette fin. Notez qu'en convention, la propriété CLR **publique statique** pour la propriété attachée est nommée _XxxxProperty_. Notez également qu'en convention, le nom (le paramètre) de la propriété attachée est _Xxxx_ sans le _Property_. Et enfin, notez qu'en convention, il faut fournir deux méthodes **publiques statiques** appelées _SetXxxx(element,value)_ et _GetXxxx(element)_.
 
-First we have to create our attached property. The method `AvaloniaProperty.RegisterAttached` is used for that purpose. Note that by convention the **public static** CLR-property for the attached property is named _XxxxProperty_. Also note that by convention the name (the parameter) of the attached property is _Xxxx_ without the _Property_. And finally note that by convention one must provide two **public static** methods called _SetXxxx(element,value)_ and _GetXxxx(element)_.
+Cet appel garantit que la propriété a un type, un type propriétaire et un endroit où elle peut être utilisée.
 
-This call ensures that the property has a type, an owner type and one where it may be used.
+La méthode de vérification peut être utilisée pour nettoyer une valeur qui est en cours de définition. Soit en retournant la valeur corrigée, soit en abandonnant le processus en retournant `AvaloniaProperty.UnsetValue`. Ou l'on peut effectuer des tâches spéciales avec l'élément auquel la propriété est associée. Les méthodes getter et setter ne devraient toujours que définir la valeur et ne jamais faire quoi que ce soit de plus. En fait, elles ne seront généralement jamais appelées car le système de liaison reconnaîtra la convention et définira les propriétés directement là où elles sont stockées.
 
-The verify method can be used to clean up a value that is being set. Either by returning the corrected value or discard the process by returning `AvaloniaProperty.UnsetValue`. Or one can perform special tasks with the element that the property is hosted by. The getter and setter methods should always just set the value and never do anything beyond. In fact they will usually never be called as the Binding system will recognize the convention and set the properties directly where they are stored.
-
-In this example file we create two attached properties that interact with each other: A _Command_ property and a _CommandParameter_ that is used by when invoking the command.
+Dans ce fichier d'exemple, nous créons deux propriétés attachées qui interagissent entre elles : une propriété _Command_ et un _CommandParameter_ qui est utilisé lors de l'invocation de la commande.
 
 ```csharp
 /// <summary>
-/// Container class for attached properties. Must inherit from <see cref="AvaloniaObject"/>.
+/// Classe conteneur pour les propriété attachées. Doit hériter de <see cref="AvaloniaObject"/>.
 /// </summary>
 public class DoubleTappedBehav : AvaloniaObject
 {
@@ -35,17 +34,17 @@ public class DoubleTappedBehav : AvaloniaObject
     }
 
     /// <summary>
-    /// Identifies the <seealso cref="CommandProperty"/> avalonia attached property.
+    /// Identifie la propriété attachée <seealso cref="CommandProperty"/> d'Avalonia.
     /// </summary>
-    /// <value>Provide an <see cref="ICommand"/> derived object or binding.</value>
+    /// <value>Fournit un objet ou une liaison dérivé de <see cref="ICommand"/>.</value>
     public static readonly AttachedProperty<ICommand> CommandProperty = AvaloniaProperty.RegisterAttached<DoubleTappedBehav, Interactive, ICommand>(
         "Command", default(ICommand), false, BindingMode.OneTime);
 
     /// <summary>
-    /// Identifies the <seealso cref="CommandParameterProperty"/> avalonia attached property.
-    /// Use this as the parameter for the <see cref="CommandProperty"/>.
+    /// Identifie la propriété attachée <seealso cref="CommandParameterProperty"/> d'Avalonia.
+    /// Utilise ceci comme paramètre pour la <see cref="CommandProperty"/>.
     /// </summary>
-    /// <value>Any value of type <see cref="object"/>.</value>
+    /// <value>Toute valeur de type <see cref="object"/>.</value>
     public static readonly AttachedProperty<object> CommandParameterProperty = AvaloniaProperty.RegisterAttached<DoubleTappedBehav, Interactive, object>(
         "CommandParameter", default(object), false, BindingMode.OneWay, null);
 
@@ -57,20 +56,20 @@ public class DoubleTappedBehav : AvaloniaObject
     {
         if (args.NewValue is ICommand commandValue)
         {
-             // Add non-null value
+             // Ajouter une valeur non nulle
              interactElem.AddHandler(InputElement.DoubleTappedEvent, Handler);
         }
         else
         {
-             // remove prev value
+             // Supprimer la valeur précédente
              interactElem.RemoveHandler(InputElement.DoubleTappedEvent, Handler);
         }
-        // local handler fcn
+        // fonction de gestionnaire local
         static void Handler(object s, RoutedEventArgs e)
         {
             if (s is Interactive interactElem)
             {
-                // This is how we get the parameter off of the gui element.
+                // C'est ainsi que nous obtenons le paramètre de l'élément GUI.
                 object commandParameter = interactElem.GetValue(CommandParameterProperty);
                 ICommand commandValue = interactElem.GetValue(CommandProperty);
                 if (commandValue?.CanExecute(commandParameter) == true)
@@ -83,7 +82,7 @@ public class DoubleTappedBehav : AvaloniaObject
 
 
     /// <summary>
-    /// Accessor for Attached property <see cref="CommandProperty"/>.
+    /// Accesseur pour la propriété attachée <see cref="CommandProperty"/>.
     /// </summary>
     public static void SetCommand(AvaloniaObject element, ICommand commandValue)
     {
@@ -91,7 +90,7 @@ public class DoubleTappedBehav : AvaloniaObject
     }
 
     /// <summary>
-    /// Accessor for Attached property <see cref="CommandProperty"/>.
+    /// Accesseur pour la propriété attachée <see cref="CommandProperty"/>.
     /// </summary>
     public static ICommand GetCommand(AvaloniaObject element)
     {
@@ -99,7 +98,7 @@ public class DoubleTappedBehav : AvaloniaObject
     }
 
     /// <summary>
-    /// Accessor for Attached property <see cref="CommandParameterProperty"/>.
+    /// Accesseur pour la propriété attachée <see cref="CommandParameterProperty"/>.
     /// </summary>
     public static void SetCommandParameter(AvaloniaObject element, object parameter)
     {
@@ -107,7 +106,7 @@ public class DoubleTappedBehav : AvaloniaObject
     }
 
     /// <summary>
-    /// Accessor for Attached property <see cref="CommandParameterProperty"/>.
+    /// Accesseur pour la propriété attachée <see cref="CommandParameterProperty"/>.
     /// </summary>
     public static object GetCommandParameter(AvaloniaObject element)
     {
@@ -117,9 +116,9 @@ public class DoubleTappedBehav : AvaloniaObject
 
 ```
 
-In the verify method we utilize the routed event system to attach a new handler. Note that the handler should be detached, again. The value of the property is requested by the normal program mechanisms using `GetValue()` method.
+Dans la méthode de vérification, nous utilisons le système d'événements routés pour attacher un nouveau gestionnaire. Notez que le gestionnaire doit être détaché, à nouveau. La valeur de la propriété est demandée par les mécanismes normaux du programme en utilisant la méthode `GetValue()`.
 
-This example UI shows how to use the attached property. After making the namespace known to the XAML compiler it can be used by qualifying it with a dot. Then bindings can be used.
+Cet exemple d'interface utilisateur montre comment utiliser la propriété attachée. Après avoir fait connaître l'espace de noms au compilateur XAML, il peut être utilisé en le qualifiant avec un point. Ensuite, des liaisons peuvent être utilisées.
 
 ```xml
 <UserControl xmlns="https://github.com/avaloniaui"
@@ -140,7 +139,7 @@ This example UI shows how to use the attached property. After making the namespa
 </UserControl>
 ```
 
-Although the `CommandParameter` only uses a static value, it can be used with binding, too. When used with this view model, the `EditCommandExecuted` will run once a double click happens.
+Bien que le `CommandParameter` n'utilise qu'une valeur statique, il peut également être utilisé avec une liaison. Lorsqu'il est utilisé avec ce modèle de vue, le `EditCommandExecuted` sera exécuté lorsqu'un double-clic se produit.
 
 ```csharp
 public class TestViewModel : ReactiveObject
@@ -156,7 +155,7 @@ public class TestViewModel : ReactiveObject
 
     private async Task<Unit> EditCommandExecuted(object p)
     {
-        // p contains "test77"
+        // p contient "test77"
 
         return Unit.Default;
     }

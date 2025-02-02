@@ -1,11 +1,11 @@
 ---
 id: page-slide-transition
-title: Page Slide Transition
+title: Transition de Glissement de Page
 ---
 
-# Page Slide Transition
+# Transition de Glissement de Page
 
-The page slide transition moves the old page out of view, and the new page into view, for the given duration. You can specify the slide direction using the orientation property (default horizontal).
+La transition de glissement de page déplace l'ancienne page hors de la vue et la nouvelle page dans la vue, pour la durée donnée. Vous pouvez spécifier la direction du glissement en utilisant la propriété d'orientation (par défaut horizontale).
 
 ```xml title='XAML'
 <PageSlide Duration="0:00:00.500" Orientation="Vertical" />
@@ -16,12 +16,12 @@ var transition = new PageSlide(TimeSpan.FromMilliseconds(500),
                                 PageSlide.SlideAxis.Vertical);
 ```
 
-## More Information
+## Plus d'informations
 
 :::info
-For the complete API documentation about this transition, see [here](http://reference.avaloniaui.net/api/Avalonia.Animation/PageSlide/).
+Pour la documentation API complète concernant cette transition, voir [ici](http://reference.avaloniaui.net/api/Avalonia.Animation/PageSlide/).
 :::
 
 :::info
-View the source code on _GitHub_ [`PageSlide.cs`](https://github.com/AvaloniaUI/Avalonia/blob/master/src/Avalonia.Base/Animation/PageSlide.cs)
+Voir le code source sur _GitHub_ [`PageSlide.cs`](https://github.com/AvaloniaUI/Avalonia/blob/master/src/Avalonia.Base/Animation/PageSlide.cs)
 :::

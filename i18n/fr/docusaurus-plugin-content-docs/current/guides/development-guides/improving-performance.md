@@ -1,83 +1,52 @@
 ---
 id: improving-performance
-title: Improving Performance
+title: Amélioration des performances
 ---
 
-The performance of Avalonia applications can be significantly improved by taking into account several key considerations during the development process. This document discusses the steps you can take to optimize the performance of your Avalonia applications.
+Les performances des applications Avalonia peuvent être considérablement améliorées en tenant compte de plusieurs considérations clés durant le processus de développement. Ce document discute des étapes que vous pouvez suivre pour optimiser les performances de vos applications Avalonia.
 
-## Use CompiledBindings
+## Utiliser les CompiledBindings
 
-One of the most effective ways to improve performance in Avalonia is to use [`CompiledBindings`](../../basics/data/data-binding/compiled-bindings) in your application. Compiled bindings enable faster data binding by compiling the binding path at compile time, thus reducing the overhead of reflection at runtime. 
+L'un des moyens les plus efficaces d'améliorer les performances dans Avalonia est d'utiliser les [`CompiledBindings`](../../basics/data/data-binding/compiled-bindings) dans votre application. Les liaisons compilées permettent un data binding plus rapide en compilant le chemin de liaison au moment de la compilation, réduisant ainsi le surcoût de la réflexion à l'exécution.
 
-## Choose the Right Control for Data Display
+## Choisir le bon contrôle pour l'affichage des données
 
-When you need to display a large amount of data in a `DataGrid` or a `TreeView` with many nodes, it is recommended to use the `TreeDataGrid` control. `TreeDataGrid` is built from scratch and provides better performance than the normal `DataGrid`. It supports virtualization and is particularly useful if you need a virtualized tree, as it has hierarchical data templates.
+Lorsque vous devez afficher une grande quantité de données dans un `DataGrid` ou un `TreeView` avec de nombreux nœuds, il est recommandé d'utiliser le contrôle `TreeDataGrid`. Le `TreeDataGrid` est construit de zéro et offre de meilleures performances que le `DataGrid` normal. Il prend en charge la virtualisation et est particulièrement utile si vous avez besoin d'un arbre virtualisé, car il dispose de modèles de données hiérarchiques.
 
-Avoid using the `DataGrid` control if you don't need editing features. It's generally regarded as a less optimal control for performance.
+Évitez d'utiliser le contrôle `DataGrid` si vous n'avez pas besoin de fonctionnalités d'édition. Il est généralement considéré comme un contrôle moins optimal pour les performances.
 
-## Virtualization
+## Virtualisation
 
-When working with large amounts of data, enabling virtualization can improve the performance of your Avalonia application. Virtualization means that only the visible items in the control are rendered, which significantly improves the performance when there are a large number of items to display.
+Lorsqu'il s'agit de grandes quantités de données, activer la virtualisation peut améliorer les performances de votre application Avalonia. La virtualisation signifie que seuls les éléments visibles dans le contrôle sont rendus, ce qui améliore considérablement les performances lorsqu'il y a un grand nombre d'éléments à afficher.
 
 ### TreeDataGrid
 
-`TreeDataGrid` supports virtualization and can handle thousands of rows with complex cells effectively.
+`TreeDataGrid` prend en charge la virtualisation et peut gérer efficacement des milliers de lignes avec des cellules complexes.
 
-## Optimize Your Visual Tree Structure
+## Optimisez votre structure d'arbre visuel
 
-Performance can often be hindered by a deeply nested and complicated layout. Strive to maintain your XAML markup as uncomplicated and flat as possible. Rendering UI elements onscreen triggers a "layout pass" twice for every single element (a measure pass followed by an arrange pass).
+La performance peut souvent être entravée par une mise en page profondément imbriquée et compliquée. Efforcez-vous de maintenir votre balisage XAML aussi simple et plat que possible. Le rendu des éléments d'interface utilisateur à l'écran déclenche un "passage de mise en page" deux fois pour chaque élément unique (un passage de mesure suivi d'un passage d'agencement).
 
-This layout pass process is computation-heavy—the more child elements an item has, the more calculations are needed. Therefore, minimizing the complexity of your visual tree in Avalonia UI can significantly enhance the application's performance.
+Ce processus de passage de mise en page est gourmand en calculs : plus un élément a d'enfants, plus il faut de calculs. Par conséquent, minimiser la complexité de votre arbre visuel dans Avalonia UI peut considérablement améliorer les performances de l'application.
 
-## Minimize Use of Run for Setting Text Properties
+## Minimisez l'utilisation de Run pour définir les propriétés de texte
 
-It's advisable to minimize the use of Run within a TextBlock as it can lead to more resource-demanding operations. If you're utilizing Run to define text properties, consider setting those properties directly on the TextBlock instead. This practice can help enhance the performance of your application.
+Il est conseillé de minimiser l'utilisation de Run au sein d'un TextBlock, car cela peut entraîner des opérations plus gourmandes en ressources. Si vous utilisez Run pour définir des propriétés de texte, envisagez de définir ces propriétés directement sur le TextBlock à la place. Cette pratique peut aider à améliorer les performances de votre application.
 
-## Use StreamGeometries Over PathGeometries
+## Utilisez StreamGeometries plutôt que PathGeometries
 
-When dealing with geometries in Avalonia UI, `StreamGeometry` is a more efficient alternative to `PathGeometry`. `StreamGeometry` is specifically optimized to handle numerous `PathGeometry` objects, consuming less memory and offering superior performance. Hence, when a choice is available, it's recommended to use `StreamGeometry` over `PathGeometry` for improved application performance.
+Lorsque vous travaillez avec des géométries dans Avalonia UI, `StreamGeometry` est une alternative plus efficace à `PathGeometry`. `StreamGeometry` est spécifiquement optimisé pour gérer de nombreux objets `PathGeometry`, consommant moins de mémoire et offrant de meilleures performances. Par conséquent, lorsqu'un choix est disponible, il est recommandé d'utiliser `StreamGeometry` plutôt que `PathGeometry` pour améliorer les performances de l'application.
 
-## Use Reduced Image Sizes
+## Utilisez des tailles d'image réduites
 
-When your application necessitates the display of smaller images or thumbnails, it's beneficial to generate and use reduced-size versions of your images. By default, Avalonia will load and decode your image at its original full size, which can potentially lead to performance bottlenecks if you're loading large images and scaling them down to thumbnail sizes in controls like an `ItemsControl`.
+Lorsque votre application nécessite l'affichage d'images plus petites ou de vignettes, il est bénéfique de générer et d'utiliser des versions réduites de vos images. Par défaut, Avalonia chargera et décodera votre image à sa taille originale, ce qui peut potentiellement entraîner des goulets d'étranglement en termes de performance si vous chargez de grandes images et les redimensionnez à des tailles de vignettes dans des contrôles comme un `ItemsControl`.
 
-## Resolve Your Binding Errors 
+## Résoudre vos erreurs de liaison
 
-Binding errors are a prevalent source of performance issues in Avalonia UI applications. Each occurrence of a binding error causes a performance dip as the application attempts to resolve the binding and logs the error to the trace log. Naturally, the more binding errors present, the greater the impact on performance. 
+Les erreurs de liaison sont une source courante de problèmes de performance dans les applications Avalonia UI. Chaque occurrence d'une erreur de liaison entraîne une baisse de performance alors que l'application tente de résoudre la liaison et enregistre l'erreur dans le journal de trace. Naturellement, plus il y a d'erreurs de liaison, plus l'impact sur la performance est important.
 
-A significant contributor to binding errors is the use of `RelativeSource` bindings in `DataTemplates`, as the binding usually isn't resolved correctly until the `DataTemplate` has completed its initialization. It's recommended to avoid `RelativeSource.FindAncestor` entirely. A more efficient approach is to define an attached property and utilize property inheritance to push values down the visual tree, rather than performing a lookup of the visual tree.
+Un contributeur significatif aux erreurs de liaison est l'utilisation de liaisons `RelativeSource` dans les `DataTemplates`, car la liaison n'est généralement pas résolue correctement tant que le `DataTemplate` n'a pas terminé son initialisation. Il est recommandé d'éviter complètement `RelativeSource.FindAncestor`. Une approche plus efficace consiste à définir une propriété attachée et à utiliser l'héritage de propriété pour transmettre des valeurs dans l'arbre visuel, plutôt que de faire une recherche dans l'arbre visuel.
 
-## Asynchronously Load Data 
+## Charger des données de manière asynchrone
 
-Performance issues, UI freezes, and unresponsive applications often stem from the way data is loaded. To prevent overloading the UI thread, ensure that your data is loaded asynchronously. 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Les problèmes de performance, les gels de l'interface utilisateur et les applications non réactives proviennent souvent de la manière dont les données sont chargées. Pour éviter de surcharger le fil d'interface utilisateur, assurez-vous que vos données sont chargées de manière asynchrone.

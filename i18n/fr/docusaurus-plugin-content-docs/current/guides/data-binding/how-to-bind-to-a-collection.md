@@ -1,18 +1,18 @@
 ---
 id: how-to-bind-to-a-collection
-title: How to Bind to a Collection
+title: Comment se lier à une collection
 ---
 
 
-# How to Bind to a Collection
+# Comment se lier à une collection
 
-Binding to a collection in Avalonia UI is an effective way to display dynamic data. This guide will demonstrate how to bind an `ObservableCollection` to a control, like a `ListBox` or `ItemsControl`, to show a list of items.
+Lier à une collection dans Avalonia UI est un moyen efficace d'afficher des données dynamiques. Ce guide démontrera comment lier un `ObservableCollection` à un contrôle, comme un `ListBox` ou `ItemsControl`, pour afficher une liste d'éléments.
 
-## Binding to a Simple ObservableCollection
+## Liaison à une ObservableCollection simple
 
-For a start, consider you have an `ObservableCollection<string>` and you want to bind it to a `ListBox` to display a list of string items.
+Pour commencer, imaginez que vous avez un `ObservableCollection<string>` et que vous souhaitez le lier à un `ListBox` pour afficher une liste d'éléments de chaîne.
 
-Here's an example `ViewModel` with an `ObservableCollection<string>`:
+Voici un exemple de `ViewModel` avec un `ObservableCollection<string>` :
 
 ```csharp 
 public class ViewModel : ObservableObject
@@ -32,17 +32,17 @@ public class ViewModel : ObservableObject
 }
 ```
 
-In your view, you can bind this `ObservableCollection` to a `ListBox` like so:
+Dans votre vue, vous pouvez lier cette `ObservableCollection` à un `ListBox` comme ceci :
 
 ```xml
 <ListBox ItemsSource="{Binding Items}"/>
 ```
 
-## Binding to an ObservableCollection of Complex Objects
+## Liaison à une ObservableCollection d'Objets Complexes
 
-But what if your `ObservableCollection` contains complex objects that themselves need to propagate changes? Let's modify our `ViewModel` to accommodate this scenario.
+Mais que se passe-t-il si votre `ObservableCollection` contient des objets complexes qui doivent eux-mêmes propager des changements ? Modifions notre `ViewModel` pour accommoder ce scénario.
 
-Consider a `Person` class:
+Considérons une classe `Person` :
 
 ```csharp
 public class Person : ObservableObject
@@ -64,7 +64,7 @@ public class Person : ObservableObject
 }
 ```
 
-And an `ObservableCollection<Person>` in our ViewModel:
+Et une `ObservableCollection<Person>` dans notre ViewModel :
 
 ```csharp
 public class ViewModel : ObservableObject
@@ -88,7 +88,7 @@ public class ViewModel : ObservableObject
 }
 ```
 
-You can bind this `ObservableCollection` to a `ListBox` in your view, and use a `DataTemplate` to specify how each `Person` should be presented:
+Vous pouvez lier cette `ObservableCollection` à un `ListBox` dans votre vue, et utiliser un `DataTemplate` pour spécifier comment chaque `Person` doit être présentée :
 
 ```xml
 <ListBox ItemsSource="{Binding People}">
@@ -103,21 +103,4 @@ You can bind this `ObservableCollection` to a `ListBox` in your view, and use a 
 </ListBox>
 ```
 
-In this scenario, each `Person` in the list will be displayed with their `Name` and `Age` separated by a small margin. If any of items properties change, the `ListBox` item will automatically update. 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Dans ce scénario, chaque `Person` de la liste sera affichée avec son `Nom` et son `Âge` séparés par une petite marge. Si l'une des propriétés des éléments change, l'élément du `ListBox` se mettra automatiquement à jour.

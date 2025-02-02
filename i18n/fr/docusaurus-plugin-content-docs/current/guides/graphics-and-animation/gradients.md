@@ -1,15 +1,15 @@
 ---
 id: gradients
-title: How To Use Gradients
+title: Comment utiliser les dégradés
 ---
 
 
-# How To Use Gradients
+# Comment utiliser les dégradés
 
-This guide explains how to effectively use LinearGradientBrush in Avalonia to create beautiful gradient effects.
+Ce guide explique comment utiliser efficacement LinearGradientBrush dans Avalonia pour créer de beaux effets de dégradé.
 
-## Basic Syntax
-A LinearGradientBrush is defined using the following basic structure:
+## Syntaxe de base
+Un LinearGradientBrush est défini en utilisant la structure de base suivante :
 
 ```xml
 <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,0%">
@@ -18,27 +18,27 @@ A LinearGradientBrush is defined using the following basic structure:
 </LinearGradientBrush>
 ```
 
-## Key Properties
+## Propriétés clés
 
-### StartPoint and EndPoint
+### StartPoint et EndPoint
 
-* Defines the direction of the gradient
-* Uses percentage values (e.g., "0%,0%") or decimal values (0,0)
-* Common patterns:
-  * Horizontal: StartPoint="0%,50%" EndPoint="100%,50%"
-  * Vertical: StartPoint="50%,0%" EndPoint="50%,100%"
-  * Diagonal: StartPoint="0%,0%" EndPoint="100%,100%"
+* Définit la direction du dégradé
+* Utilise des valeurs en pourcentage (par exemple, "0%,0%") ou des valeurs décimales (0,0)
+* Modèles courants :
+  * Horizontal : StartPoint="0%,50%" EndPoint="100%,50%"
+  * Vertical : StartPoint="50%,0%" EndPoint="50%,100%"
+  * Diagonal : StartPoint="0%,0%" EndPoint="100%,100%"
 
-### GradientStop Elements
+### Éléments GradientStop
 
-* Define colors and their positions in the gradient
-* Properties:
-  * `Color`: The color value (Hex code or named color)
-  * `Offset`: Position in the gradient (0.0 to 1.0)
+* Définit les couleurs et leurs positions dans le dégradé
+* Propriétés :
+  * `Color` : La valeur de couleur (code Hex ou couleur nommée)
+  * `Offset` : Position dans le dégradé (0.0 à 1.0)
 
-## Common Gradient Patterns
+## Modèles de dégradé courants
 
-### 1. Simple Horizontal Gradient
+### 1. Dégradé horizontal simple
 
 ```xml
 <LinearGradientBrush StartPoint="0%,50%" EndPoint="100%,50%">
@@ -47,7 +47,7 @@ A LinearGradientBrush is defined using the following basic structure:
 </LinearGradientBrush>
 ```
 
-### 2. Multi-Color Gradient
+### 2. Dégradé multicolore
 
 ```xml
 <LinearGradientBrush StartPoint="0%,50%" EndPoint="100%,50%">
@@ -58,7 +58,7 @@ A LinearGradientBrush is defined using the following basic structure:
 </LinearGradientBrush>
 ```
 
-### 3. Vertical Gradient
+### 3. Dégradé vertical
 
 ```xml
 <LinearGradientBrush StartPoint="50%,0%" EndPoint="50%,100%">
@@ -67,9 +67,9 @@ A LinearGradientBrush is defined using the following basic structure:
 </LinearGradientBrush>
 ```
 
-## Common Use Cases
+## Cas d'utilisation courants
 
-### Button Backgrounds
+### Arrière-plans de boutons
 
 ```xml
 <Button>
@@ -82,7 +82,7 @@ A LinearGradientBrush is defined using the following basic structure:
 </Button>
 ```
 
-### Panel Backgrounds
+### Arrière-plans de panneaux
 
 ```xml
 <Border CornerRadius="8">
@@ -96,11 +96,11 @@ A LinearGradientBrush is defined using the following basic structure:
 </Border>
 ```
 
-## Example 
+## Exemple 
 
-Below is the code to replicate the following sample. 
+Voici le code pour reproduire l'échantillon suivant.
 
-![Gradient Sample](../../../../../../static/img/guides/gradients/gradients.png)
+![Exemple de dégradé](../../../../../../static/img/guides/gradients/gradients.png)
 
 ```xml
 <Window xmlns="https://github.com/avaloniaui"
@@ -112,7 +112,7 @@ Below is the code to replicate the following sample.
         Title="Gradient Example">
         
     <StackPanel Spacing="20" Margin="20">
-        <!-- Horizontal gradient with multiple color stops -->
+        <!-- Dégradé horizontal avec plusieurs arrêts de couleur -->
         <Border Height="100" CornerRadius="8">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0%,50%" EndPoint="100%,50%">
@@ -122,13 +122,13 @@ Below is the code to replicate the following sample.
                     <GradientStop Color="#4ECDC4" Offset="1.0"/>
                 </LinearGradientBrush>
             </Border.Background>
-            <TextBlock Text="Horizontal Gradient"
+            <TextBlock Text="Dégradé horizontal"
                      HorizontalAlignment="Center"
                      VerticalAlignment="Center"
                      Foreground="White"/>
         </Border>
 
-        <!-- Vertical gradient with smooth transitions -->
+        <!-- Dégradé vertical avec des transitions douces -->
         <Border Height="100" CornerRadius="8">
             <Border.Background>
                 <LinearGradientBrush StartPoint="50%,0%" EndPoint="50%,100%">
@@ -137,13 +137,13 @@ Below is the code to replicate the following sample.
                     <GradientStop Color="#46CDCF" Offset="1.0"/>
                 </LinearGradientBrush>
             </Border.Background>
-            <TextBlock Text="Vertical Gradient"
+            <TextBlock Text="Dégradé vertical"
                      HorizontalAlignment="Center"
                      VerticalAlignment="Center"
                      Foreground="White"/>
         </Border>
 
-        <!-- Diagonal gradient with multiple stops -->
+        <!-- Dégradé diagonal avec plusieurs arrêt -->
         <Border Height="100" CornerRadius="8">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%">
@@ -153,13 +153,13 @@ Below is the code to replicate the following sample.
                     <GradientStop Color="#FFD1FF" Offset="1.0"/>
                 </LinearGradientBrush>
             </Border.Background>
-            <TextBlock Text="Diagonal Gradient"
+            <TextBlock Text="Dégradé diagonal"
                      HorizontalAlignment="Center"
                      VerticalAlignment="Center"
                      Foreground="Black"/>
         </Border>
 
-        <!-- Custom angle gradient with cycling effect -->
+        <!-- Dégradé avec angle personnalisé et effet de cycle -->
         <Border Height="100" CornerRadius="8">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,50%">
@@ -169,7 +169,7 @@ Below is the code to replicate the following sample.
                     <GradientStop Color="#2AF598" Offset="1.0"/>
                 </LinearGradientBrush>
             </Border.Background>
-            <TextBlock Text="Custom Angle Gradient"
+            <TextBlock Text="Dégradé avec angle personnalisé"
                      HorizontalAlignment="Center"
                      VerticalAlignment="Center"
                      Foreground="White"/>

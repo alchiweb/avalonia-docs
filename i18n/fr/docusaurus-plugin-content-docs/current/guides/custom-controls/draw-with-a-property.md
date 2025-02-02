@@ -1,13 +1,13 @@
 ---
 id: draw-with-a-property
-title: Draw with a Property
+title: Dessiner avec une Propriété
 ---
 
 import DrawWithPropertyScreenshot from '/img/guides/custom-controls/draw-property.png';
 
-# Draw with a Property
+# Dessiner avec une Propriété
 
-On this page you will see how to draw a custom control, using the value for a simple property that defines the background color. The code now looks like this:
+Sur cette page, vous verrez comment dessiner un contrôle personnalisé, en utilisant la valeur d'une propriété simple qui définit la couleur de fond. Le code ressemble maintenant à ceci :
 
 ```xml title='MainWindow.xaml'
 <Window xmlns="https://github.com/avaloniaui"
@@ -46,17 +46,16 @@ namespace AvaloniaCCExample.CustomControls
 }
 ```
 
-This example defines a simple brush property on the custom control for the background color. It then overrides the `Render` method to draw the control.
+Cet exemple définit une propriété de pinceau simple sur le contrôle personnalisé pour la couleur de fond. Il remplace ensuite la méthode `Render` pour dessiner le contrôle.
 
-The drawing code uses the _Avalonia UI_ graphics context (that is passed to the render method), to draw a rectangle that is filled with the background color, and made the same size as the control (as supplied by the `Bounds.Size` object).
+Le code de dessin utilise le contexte graphique _Avalonia UI_ (qui est passé à la méthode de rendu), pour dessiner un rectangle rempli de la couleur de fond, et de la même taille que le contrôle (comme fourni par l'objet `Bounds.Size`).
 
 <img src={DrawWithPropertyScreenshot} alt=""/>
 
-Notice how the control now shows both at runtime (above) and in the preview pane.
+Remarquez comment le contrôle s'affiche maintenant à la fois à l'exécution (ci-dessus) et dans le panneau de prévisualisation.
 
-On the next page, you will see how to implement the background property so that it can be changed by the _Avalonia UI_ styling system. 
+Sur la page suivante, vous verrez comment implémenter la propriété de fond afin qu'elle puisse être modifiée par le système de style _Avalonia UI_.
 
 :::tip
-You can find a more advanced tutorial in [Avalonia.Samples](
-https://github.com/AvaloniaUI/Avalonia.Samples/tree/main/src/Avalonia.Samples/CustomControls/SnowflakesControlSample)
+Vous pouvez trouver un tutoriel plus avancé dans [Avalonia.Samples](https://github.com/AvaloniaUI/Avalonia.Samples/tree/main/src/Avalonia.Samples/CustomControls/SnowflakesControlSample)
 :::

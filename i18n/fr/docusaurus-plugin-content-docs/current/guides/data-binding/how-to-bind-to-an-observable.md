@@ -1,18 +1,18 @@
 ---
 id: how-to-bind-to-an-observable
-title: How To Bind to an Observable
+title: Comment se lier à un Observable
 ---
 
 
-# How To Bind to an Observable
+# Comment se lier à un Observable
 
-Content in preparation.
+Contenu en préparation.
 
-You can subscribe to the result of a task or an observable by using the `^` stream binding operator.
+Vous pouvez vous abonner au résultat d'une tâche ou d'un observable en utilisant l'opérateur de liaison de flux `^`.
 
-## Example 1: Binding to an observable
+## Exemple 1 : Liaison à un observable
 
-For example if `DataContext.Name` is an `IObservable<string>` then the following example will bind to the length of each string produced by the observable as each value is produced
+Par exemple, si `DataContext.Name` est un `IObservable<string>`, alors l'exemple suivant se liera à la longueur de chaque chaîne produite par l'observable à mesure que chaque valeur est produite.
 
 ```xml
 <TextBlock Text="{Binding Name^.Length}"/>

@@ -1,27 +1,27 @@
 ---
 id: how-to-create-a-custom-page-transition
-title: How To Create a Custom Page Transition
+title: Comment Créer une Transition de Page Personnalisée
 ---
 
 import CustomPageTransitionScreenshot from '/img/guides/graphics-and-animations/custom-page-transition.webp';
 
-# How To Create a Custom Page Transition
+# Comment Créer une Transition de Page Personnalisée
 
-This guide will show you how to create your own custom page transition by implementing the `IPageTransition` interface.
+Ce guide vous montrera comment créer votre propre transition de page personnalisée en implémentant l'interface `IPageTransition`.
 
-The interface has a single method that you need to implement:
+L'interface a une seule méthode que vous devez implémenter :
 
 ```csharp
 public Task Start(Visual? from, Visual? to, bool forward, 
                                 CancellationToken cancellationToken)
 {
-    // Setup the transition here.
+    // Configurer la transition ici.
 }
 ```
 
-## Example
+## Exemple
 
-This example will shrink the old view and then open up the new view vertically.
+Cet exemple réduira la vue ancienne puis ouvrira la nouvelle vue verticalement.
 
 ```csharp
 using Avalonia.VisualTree;
@@ -29,23 +29,23 @@ using Avalonia.VisualTree;
 public class CustomTransition : IPageTransition
 {
     /// <summary>
-    /// Initializes a new instance of the <see cref="CustomTransition"/> class.
+    /// Initialise une nouvelle instance de la classe <see cref="CustomTransition"/>.
     /// </summary>
     public CustomTransition()
     {
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="CustomTransition"/> class.
+    /// Initialise une nouvelle instance de la classe <see cref="CustomTransition"/>.
     /// </summary>
-    /// <param name="duration">The duration of the animation.</param>
+    /// <param name="duration">La durée de l'animation.</param>
     public CustomTransition(TimeSpan duration)
     {
         Duration = duration;
     }
 
     /// <summary>
-    /// Gets the duration of the animation.
+    /// Obtient la durée de l'animation.
     /// </summary>
     public TimeSpan Duration { get; set; }
 
@@ -135,16 +135,16 @@ public class CustomTransition : IPageTransition
     }
 
     /// <summary>
-    /// Gets the common visual parent of the two control.
+    /// Obtient le parent visuel commun des deux contrôles.
     /// </summary>
-    /// <param name="from">The from control.</param>
-    /// <param name="to">The to control.</param>
-    /// <returns>The common parent.</returns>
+    /// <param name="from">Le contrôle d'origine.</param>
+    /// <param name="to">Le contrôle de destination.</param>
+    /// <returns>Le parent commun.</returns>
     /// <exception cref="ArgumentException">
-    /// The two controls do not share a common parent.
+    /// Les deux contrôles ne partagent pas un parent commun.
     /// </exception>
     /// <remarks>
-    /// Any one of the parameters may be null, but not both.
+    /// L'un des paramètres peut être nul, mais pas les deux.
     /// </remarks>
     private static Visual GetVisualParent(Visual? from, Visual? to)
     {
@@ -154,23 +154,23 @@ public class CustomTransition : IPageTransition
         if (p1 != null && p2 != null && p1 != p2)
         {
             throw new ArgumentException(
-                                "Controls for PageSlide must have same parent.");
+                                "Les contrôles pour PageSlide doivent avoir le même parent.");
         }
 
         return p1 ?? throw new InvalidOperationException(
-                                                "Cannot determine visual parent.");
+                                                "Impossible de déterminer le parent visuel.");
     }
 }
 ```
 
 <img src={CustomPageTransitionScreenshot} alt=''/>
 
-## More Information
+## Plus d'informations
 
 :::info
-For the complete API documentation about this interface see [here](http://reference.avaloniaui.net/api/Avalonia.Animation/IPageTransition/).
+Pour la documentation API complète concernant cette interface, voir [ici](http://reference.avaloniaui.net/api/Avalonia.Animation/IPageTransition/).
 :::
 
 :::info
-View the source code on _GitHub_ [`IPageTransition.cs`](https://github.com/AvaloniaUI/Avalonia/blob/master/src/Avalonia.Base/Animation/IPageTransition.cs)
+Voir le code source sur _GitHub_ [`IPageTransition.cs`](https://github.com/AvaloniaUI/Avalonia/blob/master/src/Avalonia.Base/Animation/IPageTransition.cs)
 :::

@@ -1,31 +1,15 @@
 ---
 id: index
-title: Building Cross-Platform Applications
+title: Construire des applications multiplateformes
 ---
 
-This guide introduces Avalonia and outlines how to architect a cross-platform application to maximize code re-use and deliver a high-quality UI experience across all major platforms: Windows, Linux, macOS, iOS, Android and WebAssembly.
+Ce guide présente Avalonia et décrit comment architecturer une application multiplateforme pour maximiser la réutilisation du code et offrir une expérience utilisateur de haute qualité sur toutes les principales plateformes : Windows, Linux, macOS, iOS, Android et WebAssembly.
 
-Unlike the Xamarin.Forms and MAUI approach, which tends to yield applications with a lowest-common-denominator feature-set and a generic-looking user interface, Avalonia UI encourages leveraging its drawn UI capabilities. It allows developers to write their data storage and business logic code once, while offering a responsive and high-performing UI across all platforms. This document discusses a general architectural approach to achieve this goal.
+Contrairement à l'approche de Xamarin.Forms et MAUI, qui tend à produire des applications avec un ensemble de fonctionnalités de plus bas commun multiple et une interface utilisateur générique, Avalonia UI encourage l'exploitation de ses capacités d'interface utilisateur dessinée. Il permet aux développeurs d'écrire leur code de stockage de données et de logique métier une seule fois, tout en offrant une interface utilisateur réactive et performante sur toutes les plateformes. Ce document discute d'une approche architecturale générale pour atteindre cet objectif.
 
+Voici un résumé des points clés pour créer des applications multiplateformes avec Avalonia :
 
-Here is a summary of the key points for creating Avalonia cross-platform apps:
-
-1. **Use .NET** - Develop your apps in C#, F# or VB.NET. Existing code written with .NET can be seamlessly ported to Windows, Linux, macOS, iOS, Android and WebAssembly using Avalonia.
-2. **Utilize the MVVM design pattern** - Develop your application’s User Interface using the `Model/View/ViewModel` pattern. This approach promotes a clear separation between the "Model” and the "View", with the "ViewModel" acting as an intermediary. This ensures that your UI logic remains agnostic of the underlying platform, thereby promoting code reuse and maintainability.
-3. **Leverage Avalonia's drawing capabilities** - Avalonia doesn't rely on native UI controls, instead, it operates similarly to Flutter, drawing the entire UI. This not only ensures a consistent look and feel across all platforms but also offers an unparalleled level of customization, allowing you to tailor the UI to your exact needs.
-4. **Balance between core and platform-specific code** - The key to achieving high code reuse is striking the right balance between platform-agnostic core code and platform-specific code. The core code comprises everything that does not interact directly with the underlying operating system.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+1. **Utilisez .NET** - Développez vos applications en C#, F# ou VB.NET. Le code existant écrit avec .NET peut être facilement porté vers Windows, Linux, macOS, iOS, Android et WebAssembly en utilisant Avalonia.
+2. **Utilisez le modèle de conception MVVM** - Développez l'interface utilisateur de votre application en utilisant le modèle `Modèle/Vue/VueModèle`. Cette approche favorise une séparation claire entre le "Modèle" et la "Vue", le "VueModèle" agissant comme intermédiaire. Cela garantit que votre logique UI reste indépendante de la plateforme sous-jacente, favorisant ainsi la réutilisation du code et la maintenabilité.
+3. **Exploitez les capacités de dessin d'Avalonia** - Avalonia ne s'appuie pas sur des contrôles UI natifs, mais fonctionne plutôt comme Flutter, en dessinant l'ensemble de l'interface utilisateur. Cela garantit non seulement une apparence et une convivialité cohérentes sur toutes les plateformes, mais offre également un niveau de personnalisation inégalé, vous permettant d'adapter l'interface utilisateur à vos besoins exacts.
+4. **Équilibre entre le code de base et le code spécifique à la plateforme** - La clé pour atteindre une grande réutilisation du code est de trouver le bon équilibre entre le code de base indépendant de la plateforme et le code spécifique à la plateforme. Le code de base comprend tout ce qui n'interagit pas directement avec le système d'exploitation sous-jacent.

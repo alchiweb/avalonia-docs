@@ -1,15 +1,15 @@
 ---
 id: how-to-use-included-styles
-title: How to Use Included Styles
+title: Comment utiliser les styles inclus
 ---
 
 import VsStylesTemplateScreenshot from '/img/guides/styles-and-resources/vs-styles-template.png';
 
-# How to Use Included Styles
+# Comment utiliser les styles inclus
 
-This guide shows you how to share styles from a separate styles file (that is included in your application). This approach allows you to share styles across multiple applications.
+Ce guide vous montre comment partager des styles à partir d'un fichier de styles séparé (qui est inclus dans votre application). Cette approche vous permet de partager des styles entre plusieurs applications.
 
-To do this, you define styles in a new XAML file. Here, the root element must then be either a `Style` or `Styles` element. For example:
+Pour ce faire, vous devez définir les styles dans un nouveau fichier XAML. Ici, l'élément racine doit être soit un élément `Style`, soit un élément `Styles`. Par exemple :
 
 ```xml
 <Styles xmlns="https://github.com/avaloniaui"
@@ -21,18 +21,18 @@ To do this, you define styles in a new XAML file. Here, the root element must th
 </Styles>
 ```
 
-The _Avalonia UI_ solution templates provide a quick way of adding a styles file to your project. Follow this procedure:
+Les modèles de solution _Avalonia UI_ offrent un moyen rapide d'ajouter un fichier de styles à votre projet. Suivez cette procédure :
 
--  In the **Solution Explorer**, right-click your project.
--  Click **Add** and **New Item**
--  From the Avalonia Items, click **Styles (Avalonia)**
--  Type a name for your styles file
+-  Dans l'**Explorateur de solutions**, faites un clic droit sur votre projet.
+-  Cliquez sur **Ajouter** et **Nouvel élément**
+-  Dans les éléments Avalonia, cliquez sur **Styles (Avalonia)**
+-  Tapez un nom pour votre fichier de styles
 
 <img src={VsStylesTemplateScreenshot} alt=""/>
 
-To use the styles defined in a separate file, you must reference it using a `StyleInclude` element. The source attribute defines the location of the styles file. You can choose the level at which to add this element.
+Pour utiliser les styles définis dans un fichier séparé, vous devez le référencer en utilisant un élément `StyleInclude`. L'attribut source définit l'emplacement du fichier de styles. Vous pouvez choisir le niveau auquel ajouter cet élément.
 
-For example, to use styles defined in a file `AppStyles.axaml` (saved in the folder `/Styles`), you could write a a `StyleInclude` element in the window like this:
+Par exemple, pour utiliser des styles définis dans un fichier `AppStyles.axaml` (enregistré dans le dossier `/Styles`), vous pourriez écrire un élément `StyleInclude` dans la fenêtre comme ceci :
 
 ```xml
 <Window ... >
@@ -41,13 +41,13 @@ For example, to use styles defined in a file `AppStyles.axaml` (saved in the fol
     </Window.Styles>
 
     <StackPanel>
-       <TextBlock Classes="h1">Heading 1</TextBlock>
-       <TextBlock>This is not a heading and will not be changed.</TextBlock>
+       <TextBlock Classes="h1">Titre 1</TextBlock>
+       <TextBlock>Ce n'est pas un titre et ne sera pas modifié.</TextBlock>
     </StackPanel>
 </Window>
 ```
 
-However, it is more common to reference a styles file in the `App.axaml` file like this:
+Cependant, il est plus courant de référencer un fichier de styles dans le fichier `App.axaml` comme ceci :
 
 ```xml
 <Application... > 
@@ -58,9 +58,9 @@ However, it is more common to reference a styles file in the `App.axaml` file li
 </Application>
 ```
 
-This will allow you to use the styles from the separate file throughout your application.
+Cela vous permettra d'utiliser les styles du fichier séparé dans toute votre application.
 
-You can also include styles from a another assembly by using the `avares://` prefix:
+Vous pouvez également inclure des styles d'un autre assembly en utilisant le préfixe `avares://` :
 
 ```xml
 <Application... > 
@@ -71,4 +71,4 @@ You can also include styles from a another assembly by using the `avares://` pre
 </Application>
 ```
 
-will reference the `/Styles/CommonAppStyles.axaml` file from the `MyApp.Shared` project.
+fera référence au fichier `/Styles/CommonAppStyles.axaml` du projet `MyApp.Shared`.

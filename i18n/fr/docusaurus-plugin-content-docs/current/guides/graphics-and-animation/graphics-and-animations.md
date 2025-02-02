@@ -1,26 +1,26 @@
 ---
 id: graphics-and-animations
-title: How To Draw Graphics
+title: Comment dessiner des graphiques
 ---
 
 import ShapeAndGeometrySampleScreenshot from '/img/guides/graphics-and-animations/shapes-and-geometry.png';
 
-# How To Draw Graphics
+# Comment dessiner des graphiques
 
-Content in preparation.
+Contenu en préparation.
 
-## Graphics
+## Graphiques
 
-Avalonia introduces an extensive, scalable, and flexible set of graphics features that have the following benefits:
+Avalonia introduit un ensemble de fonctionnalités graphiques étendu, évolutif et flexible qui présente les avantages suivants :
 
-* Resolution-independent and device-independent graphics. The basic unit of measurement in the Avalonia graphics system is the device-independent pixel, which is 1/96th of an inch, regardless of actual screen resolution, and provides the foundation for resolution-independent and device-independent rendering. Each device-independent pixel automatically scales to match the dots-per-inch (dpi) setting of the system it renders on.
-* Improved precision. The Avalonia coordinate system is measured with double-precision floating-point numbers rather than single-precision. Transformations and opacity values are also expressed as double-precision.
-* Advanced graphics and animation support. Avalonia simplifies graphics programming by managing animation scenes for you; there is no need to worry about scene processing, rendering loops, and bilinear interpolation. Additionally, Avalonia provides hit-testing support and full alpha-compositing support.
-* Skia. By default Avalonia uses the [Skia rendering engine](https://skia.org/), the same rendering engine that powers Google Chrome and Chrome OS, Android, Mozilla Firefox and Firefox OS, and many other products.
+* Graphiques indépendants de la résolution et de l'appareil. L'unité de mesure de base dans le système graphique Avalonia est le pixel indépendant de l'appareil, qui équivaut à 1/96 de pouce, quelle que soit la résolution d'écran réelle, et constitue la base pour un rendu indépendant de la résolution et de l'appareil. Chaque pixel indépendant de l'appareil s'adapte automatiquement pour correspondre au paramètre de points par pouce (dpi) du système sur lequel il est rendu.
+* Précision améliorée. Le système de coordonnées Avalonia est mesuré avec des nombres à virgule flottante en double précision plutôt qu'en simple précision. Les transformations et les valeurs d'opacité sont également exprimées en double précision.
+* Support avancé des graphiques et de l'animation. Avalonia simplifie la programmation graphique en gérant les scènes d'animation pour vous ; il n'est pas nécessaire de se soucier du traitement des scènes, des boucles de rendu et de l'interpolation bilinéaire. De plus, Avalonia fournit un support de test de collision et un support complet de composition alpha.
+* Skia. Par défaut, Avalonia utilise le [moteur de rendu Skia](https://skia.org/), le même moteur de rendu qui alimente Google Chrome et Chrome OS, Android, Mozilla Firefox et Firefox OS, ainsi que de nombreux autres produits.
 
-## 2D Shapes and Geometries
+## Formes et géométries 2D
 
-Avalonia provides a library of common vector-drawn 2D shapes such as `Ellipse`, `Line`, `Path`, `Polygon` and `Rectangle`.
+Avalonia fournit une bibliothèque de formes 2D courantes dessinées en vecteurs telles que `Ellipse`, `Line`, `Path`, `Polygon` et `Rectangle`.
 
 ```xml
 <Canvas Background="Yellow" Width="300" Height="400">
@@ -56,6 +56,6 @@ Avalonia provides a library of common vector-drawn 2D shapes such as `Ellipse`, 
 
 <img src={ShapeAndGeometrySampleScreenshot} alt=''/>
 
-## Add Animations
+## Ajouter des Animations
 
-Avalonia UI has animation support lets you make controls grow, shake, spin, and fade, to create interesting page transitions, and more. Avalonia uses a CSS-like animation system which supports [property transitions](transitions.md) and [keyframe animations](keyframe-animations.md).
+Avalonia UI prend en charge les animations, vous permettant de faire grandir, secouer, tourner et estomper des contrôles, pour créer des transitions de page intéressantes, et plus encore. Avalonia utilise un système d'animation similaire à CSS qui prend en charge les [transitions de propriété](transitions.md) et les [animations par images clés](keyframe-animations.md).

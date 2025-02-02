@@ -1,6 +1,6 @@
 ---
 id: keyframe-animations
-title: How To Use Keyframe Animations
+title: Comment Utiliser les Animations par Images Clés (Keyframe Animations)
 ---
 
 import AnimationKeyframeDiagram from '/img/basics/user-interface/animation-keyframe.png';
@@ -9,41 +9,41 @@ import KeyframeCompositeAnimationScreenshot from '/img/guides/graphics-and-anima
 import LinearEasingScreenshot from '/img/guides/graphics-and-animations/linear-easing.gif';
 import BounceEaseInScreenshot from '/img/guides/graphics-and-animations/bounce-ease-in.gif';
 
-# How To Use Keyframe Animations
+# Comment Utiliser les Animations par Images Clés (Keyframe Animations)
 
-You can use a keyframe animation to change one or more control properties following a timeline. The keyframes are defined in _Avalonia UI_ styles with **cue** points along the **duration** of the animation, and set the intermediate values of the properties at a point in time.
+Vous pouvez utiliser une animation par images clés pour changer une ou plusieurs propriétés de contrôle suivant une chronologie. Les images clés sont définies dans les styles de _Avalonia UI_ avec des points de **repère** le long de la **durée** de l'animation, et définissent les valeurs intermédiaires des propriétés à un moment donné.
 
 <img src={AnimationKeyframeDiagram} alt=""/>
 
-The property values between keyframes are set following the profile of an **easing function**. The default easing function is a straight-line interpolation.
+Les valeurs de propriété entre les images clés sont définies suivant le profil d'une **fonction d'assouplissement**. La fonction d'assouplissement par défaut est une interpolation linéaire.
 
-The animation is triggered to start, and then can run any number of times, in either direction. There are also options to delay the start of the animation, and to repeat it.
-
-:::info
-If you are familiar with keyframe animations keyframe work in CSS, you will recognise the similarity with how they are done in in _Avalonia UI_.
-:::
-
-## Example
-
-You define a keyframe animation using styles.
+L'animation est déclenchée pour commencer, puis peut s'exécuter un nombre quelconque de fois, dans les deux sens. Il existe également des options pour retarder le début de l'animation et pour la répéter.
 
 :::info
-To revise how _Avalonia UI_ uses styles, see the concept [here](../../basics/user-interface/styling).
+Si vous êtes familier avec les animations par images clés en CSS, vous reconnaîtrez la similarité avec la façon dont elles sont réalisées dans _Avalonia UI_.
 :::
 
-Follow this procedure to define a simple color fade animation using XAML:
+## Exemple
 
--  Create a styles collection at your chosen level.
--  Add a style to the collection with a selector that can target the control you want to animate.
--  Add a `Setter` element to define the property that you wan the animation to change. In this example `<Setter Property="Fill" Value="Red"/>`
--  Add a `Style.Animations` element to contain your animation.
--  Add an `Animation` element and set its `Duration` attribute. This is in the format `"Hours:Minutes:Seconds"`.
--  Now define the keyframes for the animation. This example uses cues at 0% and 100%.
--  Add `Setter` elements to each keyframe for value of the fill opacity. This example animates between opacity values of 0.0 and 1.0.
+Vous définissez une animation par images clés en utilisant des styles.
 
-The finished code will look like this: 
+:::info
+Pour revoir comment _Avalonia UI_ utilise les styles, consultez le concept [ici](../../basics/user-interface/styling).
+:::
 
-```
+Suivez cette procédure pour définir une simple animation de fondu de couleur en utilisant XAML :
+
+-  Créez une collection de styles à votre niveau choisi.
+-  Ajoutez un style à la collection avec un sélecteur qui peut cibler le contrôle que vous souhaitez animer.
+-  Ajoutez un élément `Setter` pour définir la propriété que vous voulez que l'animation change. Dans cet exemple `<Setter Property="Fill" Value="Red"/>`
+-  Ajoutez un élément `Style.Animations` pour contenir votre animation.
+-  Ajoutez un élément `Animation` et définissez son attribut `Duration`. Cela est au format `"Heures:Minutes:Secondes"`.
+-  Maintenant, définissez les images clés pour l'animation. Cet exemple utilise des repères à 0 % et 100 %.
+-  Ajoutez des éléments `Setter` à chaque image clé pour la valeur de l'opacité de remplissage. Cet exemple anime entre les valeurs d'opacité de 0,0 et 1,0.
+
+Le code fini ressemblera à ceci :
+
+```xml
 <Window xmlns="https://github.com/avaloniaui">
     <Window.Styles>
         <Style Selector="Rectangle.red">
@@ -65,15 +65,15 @@ The finished code will look like this:
 </Window>
 ```
 
-The resulting animation looks like this:
+L'animation résultante ressemble à ceci :
 
 <img src={KeyframeFadeScreenshot} alt=""/>
 
-The animation runs as soon as the rectangle control is loaded and can be selected by the style. In fact it runs in the preview pane as well!
+L'animation se déclenche dès que le contrôle rectangle est chargé et peut être sélectionnée par le style. En fait, elle fonctionne également dans le panneau de prévisualisation !
 
-## Animate Two Properties
+## Animer Deux Propriétés
 
-This example shows you how to animate two properties on the same timeline.
+Cet exemple vous montre comment animer deux propriétés sur la même chronologie.
 
 ```xml
 <Window.Styles>
@@ -95,15 +95,15 @@ This example shows you how to animate two properties on the same timeline.
   </Window.Styles>
 ```
 
-The red rectangle is faded-in and rotated at the same time.
+Le rectangle rouge est estompé et tourné en même temps.
 
 <img src={KeyframeCompositeAnimationScreenshot} alt=""/>
 
-## Configuring animation
+## Configurer l'animation
 
-### Delay
+### Délai
 
-You can add a delay to the start of an animation by setting the delay attribute of the animation element. For example:
+Vous pouvez ajouter un délai au début d'une animation en définissant l'attribut de délai de l'élément d'animation. Par exemple :
 
 ```xml
 <Animation Duration="0:0:1"
@@ -112,9 +112,9 @@ You can add a delay to the start of an animation by setting the delay attribute 
 </Animation>
 ```
 
-### Repeat
+### Répéter
 
-You can make an animation repeat for a set number of times, or indefinitely. To repeat for a finite number of iterations set the `IterationCount` attribute on the animation element like this:
+Vous pouvez faire en sorte qu'une animation se répète un nombre défini de fois, ou indéfiniment. Pour répéter un nombre fini d'itérations, définissez l'attribut `IterationCount` sur l'élément d'animation comme ceci :
 
 ```xml
 <Animation IterationCount="5">
@@ -122,7 +122,7 @@ You can make an animation repeat for a set number of times, or indefinitely. To 
 </Animation>
 ```
 
-To repeat an animation indefinitely, use the special  `"INFINITE"` value. For example:
+Pour répéter une animation indéfiniment, utilisez la valeur spéciale `"INFINITE"`. Par exemple :
 
 ```xml
 <Animation IterationCount="INFINITE">
@@ -130,9 +130,9 @@ To repeat an animation indefinitely, use the special  `"INFINITE"` value. For ex
 </Animation>
 ```
 
-### Playback Direction
+### Direction de Lecture
 
-By default an animation plays forward. That is it follows the profile of the easing function from left to right. You can alter this behavior by setting the `PlaybackDirection` attribute on the animation element. For example:
+Par défaut, une animation se joue en avant. C'est-à-dire qu'elle suit le profil de la fonction d'assouplissement de gauche à droite. Vous pouvez modifier ce comportement en définissant l'attribut `PlaybackDirection` sur l'élément d'animation. Par exemple :
 
 ```xml
 <Animation IterationCount="9" PlaybackDirection="AlternateReverse">
@@ -140,13 +140,13 @@ By default an animation plays forward. That is it follows the profile of the eas
 </Animation>
 ```
 
-The following table describes the options:
+Le tableau suivant décrit les options :
 
-<table><thead><tr><th width="245">Value</th><th>Description</th></tr></thead><tbody><tr><td><code>Normal</code></td><td>(Default) The animation is played forwards.</td></tr><tr><td><code>Reverse</code></td><td>The animation is played in reverse direction.</td></tr><tr><td><code>Alternate</code></td><td>The animation is played forwards first, then backwards.</td></tr><tr><td><code>AlternateReverse</code></td><td>The animation is played backwards first, then forwards.</td></tr></tbody></table>
+<table><thead><tr><th width="245">Valeur</th><th>Description</th></tr></thead><tbody><tr><td><code>Normal</code></td><td>(Par défaut) L'animation est jouée en avant.</td></tr><tr><td><code>Reverse</code></td><td>L'animation est jouée en direction inverse.</td></tr><tr><td><code>Alternate</code></td><td>L'animation est jouée d'abord en avant, puis en arrière.</td></tr><tr><td><code>AlternateReverse</code></td><td>L'animation est jouée d'abord en arrière, puis en avant.</td></tr></tbody></table>
 
-### Fill Mode
+### Mode de Remplissage
 
-The fill mode attribute of an animation defines how the properties being set will persist after it runs, or during any gaps between runs. For example:
+L'attribut de mode de remplissage d'une animation définit comment les propriétés définies persisteront après son exécution, ou pendant les intervalles entre les exécutions. Par exemple :
 
 ```xml
 <Animation IterationCount="9" FillMode="Backward">
@@ -154,13 +154,13 @@ The fill mode attribute of an animation defines how the properties being set wil
 </Animation>
 ```
 
-The following table describes the options:
+Le tableau suivant décrit les options :
 
-<table><thead><tr><th width="240">Value</th><th>Description</th></tr></thead><tbody><tr><td><code>None</code></td><td>Value will not persist after animation nor the first value will be applied when the animation is delayed.</td></tr><tr><td><code>Forward</code></td><td>The last interpolated value will be persisted to the target property.</td></tr><tr><td><code>Backward</code></td><td>The first interpolated value will be displayed on animation delay.</td></tr><tr><td><code>Both</code></td><td>Both <code>Forward</code> and <code>Backward</code> behaviors will be applied.</td></tr></tbody></table>
+<table><thead><tr><th width="240">Valeur</th><th>Description</th></tr></thead><tbody><tr><td><code>None</code></td><td>La valeur ne persistera pas après l'animation et la première valeur ne sera pas appliquée lorsque l'animation est retardée.</td></tr><tr><td><code>Forward</code></td><td>La dernière valeur interpolée sera persistée dans la propriété cible.</td></tr><tr><td><code>Backward</code></td><td>La première valeur interpolée sera affichée lors du retard d'animation.</td></tr><tr><td><code>Both</code></td><td>Les comportements <code>Forward</code> et <code>Backward</code> seront appliqués.</td></tr></tbody></table>
 
-### Easing Function
+### Fonction d'Assouplissement
 
-An easing function defines how a property is varied over time during an animation.
+Une fonction d'assouplissement définit comment une propriété varie dans le temps pendant une animation.
 
 <div>
 
@@ -170,7 +170,7 @@ An easing function defines how a property is varied over time during an animatio
 
 </div>
 
-The default easing function is linear (above left), but you use another pattern by setting the name of the desired function in the easing attribute. For example to use the 'bounce ease in' function (above right):
+La fonction d'assouplissement par défaut est linéaire (ci-dessus à gauche), mais vous pouvez utiliser un autre modèle en définissant le nom de la fonction souhaitée dans l'attribut d'assouplissement. Par exemple, pour utiliser la fonction 'bounce ease in' (ci-dessus à droite) :
 
 ```xml
 <Animation Duration="0:0:1"
@@ -181,10 +181,10 @@ The default easing function is linear (above left), but you use another pattern 
 ```
 
 :::info
-For a full list of the _Avalonia UI_ easing functions, see the reference [here](../../reference/animation-settings.md).
+Pour une liste complète des fonctions d'assouplissement _Avalonia UI_, consultez la référence [ici](../../reference/animation-settings.md).
 :::
 
-You can also add your own custom easing function class like this:
+Vous pouvez également ajouter votre propre classe de fonction d'assouplissement personnalisée comme ceci :
 
 ```xml
 <Animation Duration="0:0:1"
@@ -196,11 +196,11 @@ You can also add your own custom easing function class like this:
 </Animation>
 ```
 
-## Running animation from the code behind
+## Exécution de l'animation depuis le code derrière
 
-In some situations, developers need more flexibility with animation lifetime, comparing to the XAML style selectors. Easiest would be to define animation in the `Resources` dictionary.
+Dans certaines situations, les développeurs ont besoin de plus de flexibilité avec la durée de vie de l'animation, par rapport aux sélecteurs de style XAML. Le plus simple serait de définir l'animation dans le dictionnaire `Resources`.
 
-While defining `Animation` this way, it's important to specify both `x:Key` and `x:SetterTargetType`. First one will be used to access animation by the key, and second helps compiler to create strongly typed setters.
+Lors de la définition de l'`Animation` de cette manière, il est important de spécifier à la fois `x:Key` et `x:SetterTargetType`. Le premier sera utilisé pour accéder à l'animation par la clé, et le second aide le compilateur à créer des setters fortement typés.
 
 ```xml
 <Window xmlns="https://github.com/avaloniaui">
@@ -221,16 +221,16 @@ While defining `Animation` this way, it's important to specify both `x:Key` and 
 </Window>
 ```
 
-Now, this animation can be accessed and executed in a custom code behind handler.
+Maintenant, cette animation peut être accessible et exécutée dans un gestionnaire de code derrière personnalisé.
 
 ```csharp
 var animation = (Animation)this.Resources["ResourceAnimation"];
-// Running XAML animation on the Rect control. 
+// Exécution de l'animation XAML sur le contrôle Rect.
 await animation.RunAsync(Rect);
 ```
 
-`RunAsync` returns a task which is completed with the animation. If animation is infinite/repeating, task will never end, unless cancelled externally by passing `CancellationToken` to the RunAsync method.
+`RunAsync` renvoie une tâche qui est complétée avec l'animation. Si l'animation est infinie/répétitive, la tâche ne se terminera jamais, sauf si elle est annulée de manière externe en passant un `CancellationToken` à la méthode RunAsync.
 
 :::info
-While it's easier to define animations in XAML, it's also possible to do completely in C# code. It's possible to create an instance of `Animation` type, and populate key frames collection.
+Bien qu'il soit plus facile de définir des animations en XAML, il est également possible de le faire complètement en code C#. Il est possible de créer une instance de type `Animation` et de remplir la collection de cadres clés.
 :::

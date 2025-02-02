@@ -3,67 +3,52 @@ id: architecture
 title: Architecture
 ---
 
-A crucial aspect of building cross-platform applications with Avalonia is creating an architecture that enables maximum code sharing across different platforms. By adhering to the fundamental principles of Object-Oriented Programming, you can establish a well-structured application:
+Un aspect crucial de la création d'applications multiplateformes avec Avalonia est de créer une architecture qui permet un maximum de partage de code entre différentes plateformes. En adhérant aux principes fondamentaux de la programmation orientée objet, vous pouvez établir une application bien structurée :
 
-1. **Encapsulation** – This involves ensuring that classes and architectural layers only expose a minimal API that performs their necessary functions while concealing the internal implementation details. In practical terms, this means that objects operate as 'black boxes', and the code utilizing them doesn't need to comprehend their internal workings. Architecturally, it implies implementing patterns like the Façade that promote a simplified API orchestrating more complex interactions on behalf of the code in higher abstract layers. Hence, the UI code should focus solely on displaying screens and accepting user input, never directly interacting with databases or other lower-level operations.
-2. **Separation of Responsibilities** – Every component, whether at the architectural or class level, should have a clear and defined purpose. Each component should perform its specified tasks and expose that functionality via an API accessible to other classes needing to use it.
-3. **Polymorphism** – Programming to an interface (or an abstract class) supporting multiple implementations allows core code to be written and shared across platforms while still interacting with platform-specific features offered by Avalonia.
+1. **Encapsulation** – Cela implique de s'assurer que les classes et les couches architecturales n'exposent qu'une API minimale qui exécute leurs fonctions nécessaires tout en dissimulant les détails d'implémentation internes. En termes pratiques, cela signifie que les objets fonctionnent comme des « boîtes noires », et le code qui les utilise n'a pas besoin de comprendre leur fonctionnement interne. Architecturale, cela implique de mettre en œuvre des modèles comme la Façade qui promeut une API simplifiée orchestrant des interactions plus complexes au nom du code dans des couches abstraites supérieures. Ainsi, le code UI devrait se concentrer uniquement sur l'affichage des écrans et l'acceptation des entrées utilisateur, sans jamais interagir directement avec des bases de données ou d'autres opérations de bas niveau.
+2. **Séparation des Responsabilités** – Chaque composant, qu'il soit au niveau architectural ou de classe, devrait avoir un but clair et défini. Chaque composant devrait exécuter ses tâches spécifiées et exposer cette fonctionnalité via une API accessible aux autres classes qui en ont besoin.
+3. **Polymorphisme** – Programmer à une interface (ou une classe abstraite) supportant plusieurs implémentations permet d'écrire et de partager un code central à travers les plateformes tout en interagissant avec les fonctionnalités spécifiques à la plateforme offertes par Avalonia.
 
-The result of these principles is an application modelled after real-world or abstract entities with distinct logical layers. 
+Le résultat de ces principes est une application modélisée sur des entités réelles ou abstraites avec des couches logiques distinctes.
 
-Separating code into layers makes the application easier to understand, test, and maintain. It's advisable to keep the code in each layer physically separate (either in different directories or even separate projects for larger applications) as well as logically separate (using namespaces). With Avalonia, you can share not just the business logic, but the UI code too across platforms, reducing the need for multiple UI projects and further enhancing code reuse.
+Séparer le code en couches rend l'application plus facile à comprendre, tester et maintenir. Il est conseillé de garder le code de chaque couche physiquement séparé (soit dans des répertoires différents ou même des projets séparés pour des applications plus grandes) ainsi que logiquement séparé (en utilisant des espaces de noms). Avec Avalonia, vous pouvez partager non seulement la logique métier, mais aussi le code UI à travers les plateformes, réduisant ainsi le besoin de plusieurs projets UI et améliorant encore la réutilisation du code.
 
-## Typical Application Layers
+## Couches d'application typiques
 
-In this document and the relevant case studies, we reference the following five application layers:
+Dans ce document et les études de cas pertinentes, nous faisons référence aux cinq couches d'application suivantes :
 
-1. **Data Layer** – This is where non-volatile data persistence occurs, likely through a database like SQLite or LiteDB, but could be implemented with XML files or other suitable mechanisms.
-2. **Data Access Layer** – This layer is a wrapper around the Data Layer providing Create, Read, Update, Delete (CRUD) operations on the data without revealing implementation details to the caller. For instance, the DAL might contain SQL queries to interact with the data, but the code referencing it doesn't need to be aware of this.
-3. **Business Layer** – Sometimes referred to as the Business Logic Layer or BLL, this layer houses business entity definitions (the Model) and business logic. It is a prime candidate for the Business Facade pattern.
-4. **Service Access Layer** – This layer is used to access services in the cloud, ranging from complex web services (REST, JSON) to simple retrieval of data and images from remote servers. It encapsulates networking behaviour and provides a streamlined API for consumption by the Application and UI layers.
-5. **Application Layer** – This layer contains code that is generally platform-specific or code that is specific to the application (not typically reusable). In the Avalonia framework, this layer is where you decide which platform-specific features to leverage if any. The distinction between this layer and the UI layer becomes clearer with Avalonia since the UI code can be shared across platforms.
-6. **User Interface (UI) Layer** – This user-facing layer contains views and the view-models that manage them. Avalonia makes it possible for this layer shared across every supported platform, unlike traditional architectures where the UI layer would be platform-specific.
+1. **Couche de données** – C'est ici que la persistance des données non volatiles se produit, probablement via une base de données comme SQLite ou LiteDB, mais cela pourrait être mis en œuvre avec des fichiers XML ou d'autres mécanismes appropriés.
+2. **Couche d'accès aux données** – Cette couche est un wrapper autour de la couche de données fournissant des opérations de Création, Lecture, Mise à jour, Suppression (CRUD) sur les données sans révéler les détails d'implémentation à l'appelant. Par exemple, la DAL pourrait contenir des requêtes SQL pour interagir avec les données, mais le code qui s'y réfère n'a pas besoin d'en être conscient.
+3. **Couche Métier** – Parfois appelée Couche de Logique Métier ou BLL, cette couche abrite les définitions des entités métier (le Modèle) et la logique métier. C'est un candidat privilégié pour le modèle de façade métier.
+4. **Couche d'Accès aux Services** – Cette couche est utilisée pour accéder aux services dans le cloud, allant des services web complexes (REST, JSON) à la simple récupération de données et d'images depuis des serveurs distants. Elle encapsule le comportement réseau et fournit une API simplifiée pour la consommation par les couches Application et UI.
+5. **Couche Application** – Cette couche contient du code qui est généralement spécifique à la plateforme ou du code qui est spécifique à l'application (pas typiquement réutilisable). Dans le cadre d'Avalonia, c'est dans cette couche que vous décidez quelles fonctionnalités spécifiques à la plateforme exploiter, le cas échéant. La distinction entre cette couche et la couche UI devient plus claire avec Avalonia, car le code UI peut être partagé entre les plateformes.
+6. **Couche Interface Utilisateur (UI)** – Cette couche orientée utilisateur contient des vues et les modèles de vue qui les gèrent. Avalonia permet à cette couche d'être partagée sur toutes les plateformes prises en charge, contrairement aux architectures traditionnelles où la couche UI serait spécifique à la plateforme.
 
-An application might not contain all layers – for instance, the Service Access Layer would not be present in an application that doesn't access network resources. A simpler application might merge the Data Layer and Data Access Layer because the operations are extremely basic. With Avalonia, you have the flexibility to shape your application architecture to suit your specific needs, enjoying a high degree of code reusability across platforms.
+Une application peut ne pas contenir toutes les couches – par exemple, la Couche d'Accès aux Services ne serait pas présente dans une application qui n'accède pas aux ressources réseau. Une application plus simple pourrait fusionner la Couche de Données et la Couche d'Accès aux Données car les opérations sont extrêmement basiques.
+Avec Avalonia, vous avez la flexibilité de façonner l'architecture de votre application pour répondre à vos besoins spécifiques, tout en bénéficiant d'un haut degré de réutilisabilité du code sur différentes plateformes.
 
-## Common Architectural Patterns
+## Modèles Architecturaux Communs
 
-Patterns are a well-established approach to capture recurring solutions to common problems. There are several key patterns that are valuable to comprehend when building maintainable and understandable applications with Avalonia.
+Les modèles sont une approche bien établie pour capturer des solutions récurrentes à des problèmes communs. Il existe plusieurs modèles clés qui sont précieux à comprendre lors de la construction d'applications maintenables et compréhensibles avec Avalonia.
 
-### Model, View, ViewModel (MVVM) 
-A popular and often misunderstood pattern, MVVM is primarily employed when constructing User Interfaces and promotes a separation between the actual definition of a UI Screen (View), the logic behind it (ViewModel), and the data that populates it (Model). The ViewModel acts as an intermediary between the View and the Model. The Model, although crucial, is a distinct and optional piece, and thus, the essence of understanding this pattern resides in the relationship between the View and ViewModel.
+### Modèle, Vue, ViewModel (MVVM)
+Un modèle populaire et souvent mal compris, le MVVM est principalement utilisé lors de la construction d'interfaces utilisateur et favorise une séparation entre la définition réelle d'un écran UI (Vue), la logique qui le sous-tend (ViewModel) et les données qui le peuplent (Modèle). Le ViewModel agit comme un intermédiaire entre la Vue et le Modèle. Le Modèle, bien que crucial, est une pièce distincte et optionnelle, et ainsi, l'essence de la compréhension de ce modèle réside dans la relation entre la Vue et le ViewModel.
 
 :::info
-[Learn more about MVVM](../../concepts/the-mvvm-pattern/).
+[En savoir plus sur le MVVM](../../concepts/the-mvvm-pattern/).
 :::
 
-### Business Façade
-Also known as the Manager Pattern, this provides a simplified point of entry for intricate operations. For instance, in a Task Tracking application, you might have a TaskManager class with methods such as GetAllTasks(), GetTask(taskID), SaveTask (task), etc. The TaskManager class provides a Façade to the inner mechanisms of saving/retrieving tasks objects.
+### Façade Métier
+Également connu sous le nom de modèle Manager, cela fournit un point d'entrée simplifié pour des opérations complexes. Par exemple, dans une application de suivi des tâches, vous pourriez avoir une classe TaskManager avec des méthodes telles que GetAllTasks(), GetTask(taskID), SaveTask(task), etc. La classe TaskManager fournit une façade aux mécanismes internes de sauvegarde/récupération des objets de tâches.
 
-### Singleton 
-The Singleton pattern ensures that only a single instance of a particular object can ever exist. For example, when using SQLite in applications, you typically want only one instance of the database. The Singleton pattern is an efficient method to enforce this.
+### Singleton
+Le modèle Singleton garantit qu'une seule instance d'un objet particulier peut exister. Par exemple, lors de l'utilisation de SQLite dans des applications, vous souhaitez généralement qu'il n'y ait qu'une seule instance de la base de données. Le modèle Singleton est une méthode efficace pour imposer cela.
 
-### Provider
-A pattern originally coined by Microsoft to promote code re-use across Silverlight, WPF and WinForms applications. Shared code can be written against an interface or abstract class, and platform-specific concrete implementations are written and passed in when the code is utilised. In Avalonia, since we can share both UI and application logic, this pattern can help handle platform-specific exceptions or leverage platform-specific features.
+### Fournisseur
+Un modèle à l'origine créé par Microsoft pour promouvoir la réutilisation du code dans les applications Silverlight, WPF et WinForms. Le code partagé peut être écrit contre une interface ou une classe abstraite, et des implémentations concrètes spécifiques à la plateforme sont écrites et passées lorsque le code est utilisé. Dans Avalonia, puisque nous pouvons partager à la fois l'interface utilisateur et la logique de l'application, ce modèle peut aider à gérer les exceptions spécifiques à la plateforme ou à tirer parti des fonctionnalités spécifiques à la plateforme.
 
 ### Async
-Not to be confused with the `Async` keyword, the Async pattern is used when long-running tasks need to be executed without holding up the UI or current processing. In its simplest form, the Async pattern describes that long-running tasks should be kicked off in another thread (or a similar thread abstraction such as a Task) while the current thread continues to process and listens for a response from the background process, updating the UI when data and/or state is returned. This is essential in maintaining a responsive UI in Avalonia applications.
+À ne pas confondre avec le mot-clé `Async`, le modèle Async est utilisé lorsque des tâches de longue durée doivent être exécutées sans bloquer l'interface utilisateur ou le traitement en cours. Dans sa forme la plus simple, le modèle Async décrit que les tâches de longue durée doivent être lancées dans un autre thread (ou une abstraction de thread similaire comme une tâche) pendant que le thread actuel continue de traiter et d'écouter une réponse du processus en arrière-plan, mettant à jour l'interface utilisateur lorsque des données et/ou un état sont renvoyés. Cela est essentiel pour maintenir une interface utilisateur réactive dans les applications Avalonia.
 
 ---
-Each of the aforementioned patterns will be explored in-depth as their practical application is demonstrated in our case studies. For a more comprehensive understanding of the [Facade](https://en.wikipedia.org/wiki/Facade_pattern), [Singleton](https://en.wikipedia.org/wiki/Singleton_pattern), and [Provider](https://en.wikipedia.org/wiki/Provider_model) patterns, as well as [Design Patterns](https://en.wikipedia.org/wiki/Design_Patterns) in general, you may want to delve into resources available on platforms like Wikipedia.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Chaque modèle mentionné ci-dessus sera exploré en profondeur alors que leur application pratique est démontrée dans nos études de cas. Pour une compréhension plus complète des modèles [Facade](https://fr.wikipedia.org/wiki/Facade_pattern), [Singleton](https://fr.wikipedia.org/wiki/Singleton_pattern) et [Provider](https://fr.wikipedia.org/wiki/Provider_model), ainsi que des [Design Patterns](https://fr.wikipedia.org/wiki/Design_Patterns) en général, vous voudrez peut-être approfondir les ressources disponibles sur des plateformes comme Wikipedia.

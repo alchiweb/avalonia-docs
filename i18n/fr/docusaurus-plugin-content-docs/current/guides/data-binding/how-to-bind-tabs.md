@@ -1,16 +1,15 @@
 ---
 id: how-to-bind-tabs
-title: How To Bind Tabs
+title: Comment lier des onglets
 ---
 
+## Exemple de support de liaison
 
-## Binding Support Example
+Vous pouvez créer dynamiquement des éléments d'onglet avec **liaison de données**. Pour ce faire, liez la propriété `ItemsSource` d'un contrôle d'onglet à un tableau d'objets représentant l'en-tête et le contenu de l'onglet.
 
-You can dynamically create tab items with **data binding**. To do this, bind the `ItemsSource` property of a tab control to an array of objects representing the tab header and content.
+Vous pouvez ensuite utiliser un **modèle de données** pour afficher les objets.
 
-You can then use a **data template** to display the objects.
-
-This example uses an array of objects created from this `TabItemViewModel` class:
+Cet exemple utilise un tableau d'objets créé à partir de cette classe `TabItemViewModel` :
 
 ```csharp
 namespace MyApp.ViewModel;
@@ -27,7 +26,7 @@ public class TabItemViewModel
 }
 ```
 
-Create an array of two `TabItemViewModel` instances and bind it to the DataContext.
+Créez un tableau de deux instances de `TabItemViewModel` et liez-le au DataContext.
 
 ```csharp
 DataContext = new TabItemViewModel[] { 
@@ -36,9 +35,9 @@ DataContext = new TabItemViewModel[] {
 };
 ```
 
-The `TabStrip` header content is defined by ItemTemplate property, while `TabItem`'s content is defined by ContentTemplate property.
+Le contenu de l'en-tête `TabStrip` est défini par la propriété ItemTemplate, tandis que le contenu de `TabItem` est défini par la propriété ContentTemplate.
 
-Finally create a `TabControl` and bind its `ItemsSource` property to the DataContext.
+Enfin, créez un `TabControl` et liez sa propriété `ItemsSource` au DataContext.
 
 ```xml
 <TabControl ItemsSource="{Binding}">
@@ -48,11 +47,9 @@ Finally create a `TabControl` and bind its `ItemsSource` property to the DataCon
       </DataTemplate>
     </TabControl.ItemTemplate>
     <TabControl.ContentTemplate>
-        <!-- ContentTemplate's DataTemplate must specify the view model in DataType.
-        The alias 'vm' references the specification of the view model's namespace in 
-        an attribute of the XAML's root element, which will look like
+        <!-- Le DataTemplate de ContentTemplate doit spécifier le modèle de vue dans DataType. L'alias 'vm' fait référence à la spécification de l'espace de noms du modèle de vue dans un attribut de l'élément racine XAML, qui ressemblera à :
             xmlns:vm="using:MyApp.ViewModel"
-        or
+        ou à :
             xmlns:vm="clr-namespace:MyApp.ViewModel;assembly=MyApp.ViewModel" -->
       <DataTemplate DataType="vm:TabItemViewModel">
         <DockPanel LastChildFill="True">

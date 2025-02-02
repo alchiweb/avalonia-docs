@@ -1,40 +1,40 @@
 ---
 id: defining-properties
-title: Defining Properties
+title: Définir des Propriétés
 ---
 
 import DefiningPropertyPreviewScreenshot from '/img/guides/custom-controls/defining-property-preview.png';
 
-# Styled Property
+# Propriété Stylisée
 
-If you are creating a custom control, you will usually want it to have properties that can be set by the _Avalonia UI_ styling system.
+Si vous créez un contrôle personnalisé, vous voudrez généralement qu'il ait des propriétés pouvant être définies par le système de style _Avalonia UI_.
 
 :::info
-For more information about how to use styles in _Avalonia UI_, see the guide [here](../../basics/user-interface/styling).
+Pour plus d'informations sur l'utilisation des styles dans _Avalonia UI_, consultez le guide [ici](../../basics/user-interface/styling).
 :::
 
-On this page, you will see how to implement a property so that it can be changed by the _Avalonia UI_ styling system. This is a two step process:
+Sur cette page, vous verrez comment implémenter une propriété afin qu'elle puisse être modifiée par le système de style _Avalonia UI_. C'est un processus en deux étapes :
 
-* Register a styled property.
-* Provide the getter/setter for the property.
+* Enregistrer une propriété stylisée.
+* Fournir le getter/setter pour la propriété.
 
-### Register a Styled Property
+### Enregistrer une Propriété Stylisée
 
-You register a styled property by defining a static read-only field and using the `AvaloniaProperty.Register` method.
+Vous enregistrez une propriété stylisée en définissant un champ statique en lecture seule et en utilisant la méthode `AvaloniaProperty.Register`.
 
-There is a convention for the name of a property. It must follow the pattern:
+Il existe une convention pour le nom d'une propriété. Il doit suivre le modèle :
 
 ```
 [AttributeName]Property
 ```
 
-This means that _Avalonia UI_ will look for an attribute in the XAML, like this:
+Cela signifie que _Avalonia UI_ recherchera un attribut dans le XAML, comme ceci :
 
 ```
 <MyCustomControl AttributeName="value" ... >
 ```
 
-For example, with a styled property in place, you can control the background color of the custom control from the window styles collection:
+Par exemple, avec une propriété stylisée en place, vous pouvez contrôler la couleur de fond du contrôle personnalisé à partir de la collection de styles de la fenêtre :
 
 ```xml title='MainWindow.axaml'
 <Window xmlns="https://github.com/avaloniaui"
@@ -89,13 +89,13 @@ namespace AvaloniaCCExample.CustomControls
 ```
 
 :::info
-Note that the getter/setter of the property uses the special Avalonia UI `GetValue` and `SetValue` methods.
+Notez que le getter/setter de la propriété utilise les méthodes spéciales `GetValue` et `SetValue` d'Avalonia UI.
 :::
 
-The styled property will work both at run-time and in the preview panel.
+La propriété stylisée fonctionnera à la fois à l'exécution et dans le panneau de prévisualisation.
 
 <img src={DefiningPropertyPreviewScreenshot} alt=''/>
 
 :::info
-For more advanced information about how to create a custom control, see [here](../custom-controls/how-to-create-advanced-custom-controls.md).
+Pour des informations plus avancées sur la création d'un contrôle personnalisé, voir [ici](../custom-controls/how-to-create-advanced-custom-controls.md).
 :::

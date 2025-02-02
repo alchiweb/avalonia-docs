@@ -1,25 +1,21 @@
 ﻿---
 id: how-to-bind-multiple-properties
-title: How to Bind Multiple Properties
+title: Comment lier plusieurs propriétés
 ---
 
 import MultiBindingRgbScreenshot from '/img/guides/data-binding/multibinding-rgb.gif';
 
 ## MultiBinding
 
-In scenarios where a target property must be assigned a result calculated from several other bound properties, a 
-`MultiBinding` may be the appropriate solution. `MultiBinding` aggregates multiple `Binding` objects and produces a result 
-through the use of an `IMultiValueConverter`. The `Convert` method is called each time any of the bound properties notify 
-of change. Similar to `Binding`, `MultiBinding` can be used to bind properties on ViewModels, `Control`s, or other sources.
+Dans les scénarios où une propriété cible doit être assignée à un résultat calculé à partir de plusieurs autres propriétés liées, un `MultiBinding` peut être la solution appropriée. `MultiBinding` agrège plusieurs objets `Binding` et produit un résultat à l'aide d'un `IMultiValueConverter`. La méthode `Convert` est appelée chaque fois que l'une des propriétés liées notifie un changement. Comme pour `Binding`, `MultiBinding` peut être utilisé pour lier des propriétés sur des ViewModels, des `Control`s ou d'autres sources.
 
 :::warning
-`MultiBinding` only supports `BindingMode.OneTime` and `BindingMode.OneWay`.
+`MultiBinding` ne prend en charge que `BindingMode.OneTime` et `BindingMode.OneWay`.
 :::
 
 ## IMultiValueConverter
 
-Similar to `IValueConverter` in that it defines conversions to a target property. There is no `ConvertBack` 
-method as aggregate operations are irreversible.
+Semblable à `IValueConverter` en ce sens qu'il définit des conversions vers une propriété cible. Il n'y a pas de méthode `ConvertBack` car les opérations agrégées sont irréversibles.
 
 ```csharp
 public interface IMultiValueConverter
@@ -28,12 +24,9 @@ public interface IMultiValueConverter
 }
 ```
 
-## MultiBinding Example
+## Exemple de MultiBinding
 
-Consider the following scenario where you have inputs for red, green, and blue color channels. The aim is to bind 
-all 3 inputs and provide an `IBrush` for another control to draw with. Below, the color channel values are constrained 
-to the proper range ([0, 255]) by the `NumericUpDown`. Creating `<Binding>` objects is necessary as the `Binding` 
-`MarkupExtension` cannot be used because there aren't properties to target.
+Considérez le scénario suivant où vous avez des entrées pour les canaux de couleur rouge, vert et bleu. L'objectif est de lier les 3 entrées et de fournir un `IBrush` pour qu'un autre contrôle puisse dessiner. Ci-dessous, les valeurs des canaux de couleur sont contraintes à la plage appropriée ([0, 255]) par le `NumericUpDown`. La création d'objets `<Binding>` est nécessaire car l'`Extension de Marquage` `Binding` ne peut pas être utilisée car il n'y a pas de propriétés à cibler.
 
 ```xml
 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="8">
@@ -53,26 +46,24 @@ to the proper range ([0, 255]) by the `NumericUpDown`. Creating `<Binding>` obje
 </StackPanel>
 ```
 
-Next, we create the `IMultiValueConverter`. Type checking of parameters is important. In this scenario, `NumericUpDown.Value` 
-is a `decimal?` so both `decimal` and `null` must be checked. The value may also be `UnsetValueType` when the bindings are 
-being initialized. Further numeric conversion could be done to make the converter broadly compatible with numeric types.
+Ensuite, nous créons l'`IMultiValueConverter`. La vérification des types des paramètres est importante. Dans ce scénario, `NumericUpDown.Value` est un `decimal?` donc à la fois `decimal` et `null` doivent être vérifiés. La valeur peut également être `UnsetValueType` lorsque les liaisons sont en cours d'initialisation. Une conversion numérique supplémentaire pourrait être effectuée pour rendre le convertisseur largement compatible avec les types numériques.
 
-```csharp title='Converter Implementation'
+```csharp title='Implémentation du Convertisseur'
 public sealed class RgbToBrushMultiConverter : IMultiValueConverter
 {
     public object? Convert(IList<object?> values, Type targetType, object? parameter, CultureInfo culture)
     {
-        // Ensure all bindings are provided and attached to correct target type
+        // Assurez-vous que toutes les liaisons sont fournies et attachées au bon type cible
         if (values?.Count != 3 || !targetType.IsAssignableFrom(typeof(ImmutableSolidColorBrush)))
             throw new NotSupportedException();
 
-        // Ensure all bindings are correct type
+        // Assurez-vous que toutes les liaisons sont du bon type
         if (!values.All(x => x is decimal or UnsetValueType or null))
             throw new NotSupportedException();
 
-        // Pull values, DoNothing if any are unset.
-        // Convert is called several times during initialization of bindings,
-        // so some properties will be initially unset.
+        // Récupérez les valeurs, ne rien faire si l'une d'elles est non définie.
+        // Convert est appelé plusieurs fois lors de l'initialisation des liaisons,
+        // donc certaines propriétés seront initialement non définies.
         if (values[0] is not decimal r ||
             values[1] is not decimal g ||
             values[2] is not decimal b)
@@ -88,6 +79,6 @@ public sealed class RgbToBrushMultiConverter : IMultiValueConverter
 <img src={MultiBindingRgbScreenshot} alt=''/>
 
 :::tip
-* Consider creating a `MarkupExtension` to simplify the XAML syntax when a `MultiBinding` is frequently reused.
-* Consider using `FuncMultiValueConverter` to reduce the amount of code needed for simpler converters.
+* Envisagez de créer une `MarkupExtension` pour simplifier la syntaxe XAML lorsque `MultiBinding` est fréquemment réutilisé.
+* Envisagez d'utiliser `FuncMultiValueConverter` pour réduire la quantité de code nécessaire pour des convertisseurs plus simples.
 :::

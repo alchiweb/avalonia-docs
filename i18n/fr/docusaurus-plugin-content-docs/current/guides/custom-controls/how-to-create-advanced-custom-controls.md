@@ -1,28 +1,28 @@
 ---
 id: how-to-create-advanced-custom-controls
-title: How To Create Advanced Custom Controls
+title: Comment créer des contrôles personnalisés avancés
 ---
 
-# How To Create Advanced Custom Controls
+# Comment créer des contrôles personnalisés avancés
 
-Stuff clipped from the custom control guide.
+Extraits du guide des contrôles personnalisés.
 
-Here's how the `Border` control defines its `Background` property:
+Voici comment le contrôle `Border` définit sa propriété `Background` :
 
-The `AvaloniaProperty.Register` method also accepts a number of other parameters:
+La méthode `AvaloniaProperty.Register` accepte également un certain nombre d'autres paramètres :
 
-* `defaultValue`: This gives the property a default value. Be sure to only pass value types and immutable types here as passing a reference type will cause the same object to be used on all instances on which the property is registered.
-* `inherits`: Specified that the property's default value should come from the parent control.
-* `defaultBindingMode`: The default binding mode for the property. Can be set to `OneWay`, `TwoWay`, `OneTime` or `OneWayToSource`.
-* `validate`: A validation/coercion function of type `Func<TOwner, TValue, TValue>`. The function accepts the instance of the class on which the property is being set and the value and returns the coerced value or throws an exception for an invalid value.
+* `defaultValue` : Cela donne à la propriété une valeur par défaut. Assurez-vous de ne passer que des types de valeur et des types immuables ici, car le passage d'un type de référence entraînera l'utilisation du même objet sur toutes les instances sur lesquelles la propriété est enregistrée.
+* `inherits` : Spécifie que la valeur par défaut de la propriété doit provenir du contrôle parent.
+* `defaultBindingMode` : Le mode de liaison par défaut pour la propriété. Peut être défini sur `OneWay`, `TwoWay`, `OneTime` ou `OneWayToSource`.
+* `validate` : Une fonction de validation/coercition de type `Func<TOwner, TValue, TValue>`. La fonction accepte l'instance de la classe sur laquelle la propriété est définie et la valeur, et retourne la valeur coercée ou lance une exception pour une valeur invalide.
 
-> A styled property is analogous to a `DependencyProperty` in other XAML frameworks.
+> Une propriété stylée est analogue à un `DependencyProperty` dans d'autres frameworks XAML.
 
-> The naming convention of the property and its backing AvaloniaProperty field is important. The name of the field is always the name of the property, with the suffix Property appended.
+> La convention de nommage de la propriété et de son champ AvaloniaProperty associé est importante. Le nom du champ est toujours le nom de la propriété, avec le suffixe Property ajouté.
 
-### Using a `StyledProperty` on Another Class
+### Utiliser une `StyledProperty` sur une autre classe
 
-Sometimes the property you want to add to your control already exists on another control, `Background` being a good example. To register a property defined on another control, you call `StyledProperty.AddOwner`:
+Parfois, la propriété que vous souhaitez ajouter à votre contrôle existe déjà sur un autre contrôle, `Background` étant un bon exemple. Pour enregistrer une propriété définie sur un autre contrôle, vous appelez `StyledProperty.AddOwner` :
 
 ```csharp
 public static readonly StyledProperty<IBrush> BackgroundProperty =
@@ -35,11 +35,11 @@ public Brush Background
 }
 ```
 
-> Note: Unlike WPF/UWP, a property must be registered on a class otherwise it cannot be set on an object of that class. This may change in future, however.
+> Remarque : Contrairement à WPF/UWP, une propriété doit être enregistrée sur une classe sinon elle ne peut pas être définie sur un objet de cette classe. Cela peut changer à l'avenir, cependant.
 
-### Readonly Properties
+### Propriétés en lecture seule
 
-To create a readonly property you use the `AvaloniaProperty.RegisterDirect` method. Here is how `Visual` registers the readonly `Bounds` property:
+Pour créer une propriété en lecture seule, vous utilisez la méthode `AvaloniaProperty.RegisterDirect`. Voici comment `Visual` enregistre la propriété en lecture seule `Bounds` :
 
 ```csharp
 public static readonly DirectProperty<Visual, Rect> BoundsProperty =
@@ -56,13 +56,13 @@ public Rect Bounds
 }
 ```
 
-As can be seen, readonly properties are stored as a field on the object. When registering the property, a getter is passed which is used to access the property value through `GetValue` and then `SetAndRaise` is used to notify listeners to changes to the property.
+Comme on peut le voir, les propriétés en lecture seule sont stockées sous forme de champ sur l'objet. Lors de l'enregistrement de la propriété, un getter est passé, qui est utilisé pour accéder à la valeur de la propriété via `GetValue`, puis `SetAndRaise` est utilisé pour notifier les écouteurs des changements apportés à la propriété.
 
-### Attached Properties
+### Propriétés attachées
 
-[Attached properties](../../concepts/attached-property) are defined almost identically to styled properties except that they are registered using the `RegisterAttached` method and their accessors are defined as static methods.
+[Les propriétés attachées](../../concepts/attached-property) sont définies presque de manière identique aux propriétés stylées, sauf qu'elles sont enregistrées en utilisant la méthode `RegisterAttached` et que leurs accesseurs sont définis comme des méthodes statiques.
 
-Here's how `Grid` defines its `Grid.Column` attached property:
+Voici comment `Grid` définit sa propriété attachée `Grid.Column` :
 
 ```csharp
 public static readonly AttachedProperty<int> ColumnProperty =
@@ -79,13 +79,13 @@ public static void SetColumn(Control element, int value)
 }
 ```
 
-### Direct AvaloniaProperties
+### Propriétés directed d'Avalonia
 
-As its name suggests, `RegisterDirect` isn't just used for registering readonly properties. You can also pass a _setter_ to `RegisterDirect` to expose a standard C# property as a Avalonia property.
+Comme son nom l'indique, `RegisterDirect` n'est pas seulement utilisé pour enregistrer des propriétés en lecture seule. Vous pouvez également passer un _setter_ à `RegisterDirect` pour exposer une propriété C# standard en tant que propriété Avalonia.
 
-A `StyledProperty` which is registered using `AvaloniaProperty.Register` maintains a prioritized list of values and bindings that allow styles to work. However, this is overkill for many properties, such as `ItemsControl.Items` - this will never be styled and the overhead involved with styled properties is unnecessary.
+Une `StyledProperty` qui est enregistrée en utilisant `AvaloniaProperty.Register` maintient une liste priorisée de valeurs et de liaisons qui permettent aux styles de fonctionner. Cependant, cela est excessif pour de nombreuses propriétés, telles que `ItemsControl.Items` - cela ne sera jamais stylé et le surcoût impliqué avec les propriétés stylées est inutile.
 
-Here is how `ItemsControl.Items` is registered:
+Voici comment `ItemsControl.Items` est enregistré :
 
 ```csharp
 public static readonly DirectProperty<ItemsControl, IEnumerable> ItemsProperty =
@@ -103,25 +103,25 @@ public IEnumerable Items
 }
 ```
 
-Direct properties are a lightweight version of styled properties that support the following:
+Les propriétés directes sont une version allégée des propriétés stylées qui prennent en charge les éléments suivants :
 
 * AvaloniaObject.GetValue
-* AvaloniaObject.SetValue for non-readonly properties
+* AvaloniaObject.SetValue pour les propriétés non en lecture seule
 * PropertyChanged
-* Binding (only with LocalValue priority)
+* Liaison (uniquement avec la priorité LocalValue)
 * GetObservable
 * AddOwner
-* Metadata
+* Métadonnées
 
-They don't support the following:
+Elles ne prennent pas en charge les éléments suivants :
 
-* Validation/Coercion (although this could be done in the property setter)
-* Overriding default values.
-* Inherited values
+* Validation/Coercition (bien que cela puisse être fait dans le setter de la propriété)
+* Remplacement des valeurs par défaut.
+* Valeurs héritées
 
-### Using a DirectProperty on Another Class
+### Utilisation d'une DirectProperty sur une autre classe
 
-In the same way that you can call `AddOwner` on a styled property, you can also add an owner to a direct property. Because direct properties reference fields on the control, you must also add a field for the property:
+De la même manière que vous pouvez appeler `AddOwner` sur une propriété stylée, vous pouvez également ajouter un propriétaire à une propriété directe. Parce que les propriétés directes font référence aux champs sur le contrôle, vous devez également ajouter un champ pour la propriété :
 
 ```csharp
 public static readonly DirectProperty<MyControl, IEnumerable> ItemsProperty =
@@ -138,33 +138,33 @@ public IEnumerable Items
 }
 ```
 
-### When to use a Direct vs a Styled Property
+### Quand utiliser une propriété directe ou une propriété stylée ?
 
-In general you should declare your properties as styled properties. However, direct properties have advantages and disadvantages:
+En général, vous devriez déclarer vos propriétés comme des propriétés stylées. Cependant, les propriétés directes ont des avantages et des inconvénients :
 
-Pros:
+Avantages :
 
-* No additional object is allocated per-instance for the property
-* Property getter is a standard C# property getter
-* Property setter is a standard C# property setter that raises an event.
-* You can add [data validation](../../guides/development-guides/data-validation.md) support
+* Aucun objet supplémentaire n'est alloué par instance pour la propriété
+* Le getter de la propriété est un getter de propriété standard en C#
+* Le setter de la propriété est un setter de propriété standard en C# qui déclenche un événement.
+* Vous pouvez ajouter un support de [validation des données](../../guides/development-guides/data-validation.md)
 
-Cons:
+Inconvénients :
 
-* Cannot inherit value from parent control
-* Cannot take advantage of Avalonia's styling system
-* Property value is a field and as such is allocated whether the property is set on the object or not
+* Ne peut pas hériter de la valeur du contrôle parent
+* Ne peut pas tirer parti du système de stylisation d'Avalonia
+* La valeur de la propriété est un champ et, en tant que tel, est allouée que la propriété soit définie sur l'objet ou non
 
-So use direct properties when you have the following requirements:
+Utilisez donc des propriétés directes lorsque vous avez les exigences suivantes :
 
-* Property will not need to be styled
-* Property will usually or always have a value
+* La propriété n'aura pas besoin d'être stylée
+* La propriété aura généralement ou toujours une valeur
 
-### DataValidation support
+### Support de la validation des données
 
-If you want to allow a property to validate the data and show validation error messages, the property must be implemented as a `DirectProperty` and validation support must be enabled (`enableDataValidation: true`).
+Si vous souhaitez permettre à une propriété de valider les données et d'afficher des messages d'erreur de validation, la propriété doit être implémentée comme une `DirectProperty` et le support de validation doit être activé (`enableDataValidation: true`).
 
-**Example of a property with DataValidation enabled**
+**Exemple d'une propriété avec validation des données activée**
 
 ```cs
 public static readonly DirectProperty<MyControl, int> ValueProperty =
@@ -175,9 +175,9 @@ public static readonly DirectProperty<MyControl, int> ValueProperty =
         enableDataValidation: true);
 ```
 
-If you want to [re-use a direct property of another class](how-to-create-advanced-custom-controls.md#using-a-directproperty-on-another-class) you can also enable data validation. In this case use `AddOwnerWithDataValidation`.
+Si vous souhaitez [réutiliser une propriété directe d'une autre classe](how-to-create-advanced-custom-controls.md#using-a-directproperty-on-another-class), vous pouvez également activer la validation des données. Dans ce cas, utilisez `AddOwnerWithDataValidation`.
 
-**Example: TextBox.TextProperty property re-uses TextBlock.TextProperty but adds validation support**
+**Exemple : la propriété TextBox.TextProperty property ré-utilise la propriété TextBlock.TextProperty en y ajouter le support de la validation**
 
 ```cs
 public static readonly DirectProperty<TextBox, string?> TextProperty =

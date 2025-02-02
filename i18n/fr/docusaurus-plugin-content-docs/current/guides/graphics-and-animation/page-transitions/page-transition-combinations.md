@@ -1,15 +1,15 @@
 ---
 id: page-transition-combinations
-title: Page Transition Combinations
+title: Combinaisons de Transitions de Page
 ---
 
-# Page Transition Combinations
+# Combinaisons de Transitions de Page
 
-You can combine two or more built-in page transitions to create a new effect.
+Vous pouvez combiner deux transitions de page intégrées ou plus pour créer un nouvel effet.
 
-Add a `CompositePageTransition` element to combine the effects of two or more different built-in transitions.
+Ajoutez un élément `CompositePageTransition` pour combiner les effets de deux transitions intégrées différentes ou plus.
 
-For example, the code here sample creates a transition that slides the views diagonally (the result of combining a horizontal and vertical slide), and also fades the old views out and the new in.
+Par exemple, le code ici crée une transition qui glisse les vues en diagonale (le résultat de la combinaison d'un glissement horizontal et vertical), et qui estompe également les anciennes vues et fait apparaître les nouvelles.
 
 ```xml title='XAML'
 <CompositePageTransition>
@@ -26,10 +26,10 @@ compositeTransition.PageTransitions.Add(new PageSlide(TimeSpan.FromMilliseconds(
 compositeTransition.PageTransitions.Add(new CrossFade(TimeSpan.FromMilliseconds(500)));
 ```
 
-#### Source code
+#### Code source
 
 [CompositePageTransition.cs](https://github.com/AvaloniaUI/Avalonia/blob/master/src/Avalonia.Visuals/Animation/CompositePageTransition.cs)
 
-#### Reference
+#### Référence
 
 [CompositePageTransition](http://reference.avaloniaui.net/api/Avalonia.Animation/CompositePageTransition/)

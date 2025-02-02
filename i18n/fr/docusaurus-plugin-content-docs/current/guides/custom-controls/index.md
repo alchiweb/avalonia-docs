@@ -1,31 +1,31 @@
 ---
 id: index
-title: How To Create a Custom Control
+title: Comment créer un contrôle personnalisé
 ---
 
-# How To Create a Custom Control
+# Comment créer un contrôle personnalisé
 
-This guide will show you how to create a simple custom control with _Avalonia UI_.
+Ce guide vous montrera comment créer un contrôle personnalisé simple avec _Avalonia UI_.
 
-Before you start to create your own control, you must decide which type of custom control you want to implement, the choices are:
+Avant de commencer à créer votre propre contrôle, vous devez décider quel type de contrôle personnalisé vous souhaitez implémenter, les choix sont :
 
-* Custom Control
-* Templated Custom Control
+* Contrôle personnalisé
+* Contrôle personnalisé avec modèle
 
-### Custom Control
+### Contrôle personnalisé
 
-A custom control draws itself using the _Avalonia UI_ graphics system, using basic methods for shapes, lines, fills, text, and many others. You can define your own properties, events and pseudo classes.
+Un contrôle personnalisé se dessine lui-même en utilisant le système graphique _Avalonia UI_, en utilisant des méthodes de base pour les formes, les lignes, les remplissages, le texte, et bien d'autres. Vous pouvez définir vos propres propriétés, événements et pseudo-classes.
 
-Some of the _Avalonia UI_ built-in controls are like this. For example, the text block control (`TextBlock` class) and the image control (`Image` class).
+Certains des contrôles intégrés d'_Avalonia UI_ sont comme ça. Par exemple, le contrôle de bloc de texte (classe `TextBlock`) et le contrôle d'image (classe `Image`).
 
-### Templated Custom Controls
+### Contrôles Personnalisés Templatés
 
-A templated custom control creates a 'look-less' control that can be styled by themes or style dictionaries included in your project. The control has code for properties and events, and processing, but no properties or instructions about how to draw. A templated control defers to a theme or styles to select properties like brush colors, line thickness, corner radius etc. The drawing instructions are in the theme. 
+Un contrôle personnalisé templaté crée un contrôle 'sans apparence' qui peut être stylisé par des thèmes ou des dictionnaires de styles inclus dans votre projet. Le contrôle a du code pour les propriétés et les événements, ainsi que pour le traitement, mais pas de propriétés ou d'instructions sur la façon de dessiner. Un contrôle templaté se réfère à un thème ou à des styles pour sélectionner des propriétés comme les couleurs de pinceau, l'épaisseur des lignes, le rayon des coins, etc. Les instructions de dessin se trouvent dans le thème.
 
-The majority of the _Avalonia UI_ built-in controls are templated.
+La majorité des contrôles intégrés d'_Avalonia UI_ sont templatés.
 
 :::info
-For guidance on how to create templated controls, see [here](../../basics/user-interface/controls/creating-controls).
+Pour des conseils sur la façon de créer des contrôles templatés, voir [ici](../../basics/user-interface/controls/creating-controls).
 :::
 
-The following pages show you how to create a simple custom control (inherited from `Control`).
+Les pages suivantes vous montrent comment créer un simple contrôle personnalisé (hérité de `Control`).

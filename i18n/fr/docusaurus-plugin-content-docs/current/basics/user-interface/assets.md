@@ -3,8 +3,8 @@ id: assets
 title: Actifs et Images
 ---
 
-importer AssetFileDiagram depuis '/img/basics/user-interface/asset-file.png';
-importer AssetLibraryDiagram depuis '/img/basics/user-interface/asset-library.png';
+import AssetFileDiagram from '/img/basics/user-interface/asset-file.png';
+import AssetLibraryDiagram from '/img/basics/user-interface/asset-library.png';
 
 # Actifs
 

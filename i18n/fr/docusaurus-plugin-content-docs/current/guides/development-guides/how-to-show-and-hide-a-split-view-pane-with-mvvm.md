@@ -1,16 +1,16 @@
 ---
 id: how-to-show-and-hide-a-split-view-pane-with-mvvm
-title: How To Show and Hide a Split View Pane with MVVM
+title: Comment afficher et masquer un panneau de vue fractionnée avec MVVM
 ---
 
 import SplitViewExpanderScreenshot from '/img/reference/controls/splitview/splitview-expander.gif';
 
-Content in preparation.
+Contenu en préparation.
 
-You can use the MVVM pattern with the split view control to implement a 'tool pane' style UI.
+Vous pouvez utiliser le modèle MVVM avec le contrôle de vue fractionnée pour implémenter une interface utilisateur de style 'panneau d'outils'.
 
 :::info
-This technique uses a complex **binding path** to locate the parent view model for the 
+Cette technique utilise un **chemin de liaison** complexe pour localiser le modèle de vue parent pour le
 :::
 
 TO DO

@@ -1,33 +1,33 @@
 ---
 id: how-to-bind-to-a-task-result
-title: How to Bind to a Task Result
+title: Comment se lier au résultat d'une tâche
 ---
 
 
-# How to Bind to a Task Result
+# Comment se lier au résultat d'une tâche
 
-## Example 1: Binding to a task
+## Exemple 1 : Liaison à une tâche
 
-If you need to do some heavy work to load the content of a property you can bind to the result of an `async Task<TResult>`
+Si vous devez effectuer un travail lourd pour charger le contenu d'une propriété, vous pouvez vous lier au résultat d'un `async Task<TResult>`.
 
-Consider you have the following view model which generates some text in a long running process:
+Considérez que vous avez le modèle de vue suivant qui génère un texte dans un processus de longue durée :
 
 ```csharp
 public Task<string> MyAsyncText => GetTextAsync();
 
 private async Task<string> GetTextAsync()
 {
-  await Task.Delay(1000); // The delay is just for demonstration purpose
-  return "Hello from async operation";
+  await Task.Delay(1000); // Le délai est juste à des fins de démonstration
+  return "Hello de l'opération asynchrone";
 }
 ```
 
-You can bind to the result in the following way:
+Vous pouvez vous lier au résultat de la manière suivante :
 
 ```xml
-<TextBlock Text="{Binding MyAsyncText^, FallbackValue='Wait a second'}" />
+<TextBlock Text="{Binding MyAsyncText^, FallbackValue='Attendez une seconde'}" />
 ```
 
 :::info
-Note: You can use `FallbackValue` to display some loading indicator.
+Remarque : Vous pouvez utiliser `FallbackValue` pour afficher un indicateur de chargement.
 :::

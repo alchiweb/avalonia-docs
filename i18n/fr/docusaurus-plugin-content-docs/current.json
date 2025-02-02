@@ -190,5 +190,9 @@
   "sidebar.documentationSidebar.category.Styles": {
     "message": "Styles",
     "description": "L'étiquette de la catégorie Styles dans la documentation de la barre latérale"
+  },
+  "sidebar.documentationSidebar.category.Page Transitions": {
+    "message": "Transitions de page",
+    "description": "L'étiquette de la catégorie Transitions de page dans la documentation de la barre latérale"
   }
 }

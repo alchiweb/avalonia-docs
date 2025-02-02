@@ -1,13 +1,13 @@
 ---
 id: index
-title: Data Binding
+title: Liaison de Données (Data Binding)
 ---
 
 
-# Data Binding
+# Liaison de Données (Data Binding)
 
-These guides show you how to use various aspects of **data binding**.
+Ces guides vous montrent comment utiliser divers aspects de **data binding**.
 
 :::info
-For the concepts behind **data binding**, see [here](../../basics/data/data-binding).
+Pour les concepts derrière **data binding**, voir [ici](../../basics/data/data-binding).
 :::

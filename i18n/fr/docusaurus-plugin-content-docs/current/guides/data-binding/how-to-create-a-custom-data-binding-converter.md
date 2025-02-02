@@ -1,22 +1,22 @@
 ---
 id: how-to-create-a-custom-data-binding-converter
-title: How to Create a Custom Data Binding Converter
+title: Comment créer un convertisseur de liaison de données personnalisé
 ---
 
 
-# How to Create a Custom Data Binding Converter
+# Comment créer un convertisseur de liaison de données personnalisé
 
-When one of the built-in data binding converters does not meet your conversion requirements, you can write a custom converter based on the `IValueConverter` interface. This guide will show you how.
+Lorsque l'un des convertisseurs de liaison de données intégrés ne répond pas à vos exigences de conversion, vous pouvez écrire un convertisseur personnalisé basé sur l'interface `IValueConverter`. Ce guide vous montrera comment faire.
 
 :::info
-To review the _Microsoft_ documentation for the `IValueConverter` interface, see [here](https://docs.microsoft.com/en-gb/dotnet/api/system.windows.data.ivalueconverter?view=netframework-4.7.1).
+Pour consulter la documentation _Microsoft_ sur l'interface `IValueConverter`, voir [ici](https://docs.microsoft.com/en-gb/dotnet/api/system.windows.data.ivalueconverter?view=netframework-4.7.1).
 :::
 
 :::info
-As the `IValueConverter` interface was not available in .NET standard 2.0, Avalonia UI  contains a copy in the `Avalonia.Data.Converters` namespace. You can see the API documentation about this interface, [here](https://reference.avaloniaui.net/api/Avalonia.Data.Converters/IValueConverter/).
+Comme l'interface `IValueConverter` n'était pas disponible dans .NET standard 2.0, Avalonia UI contient une copie dans l'espace de noms `Avalonia.Data.Converters`. Vous pouvez voir la documentation API concernant cette interface, [ici](https://reference.avaloniaui.net/api/Avalonia.Data.Converters/IValueConverter/).
 :::
 
-You must reference a custom converter in some resources before it can be used. This can be at any level in your application. In this example, the custom converter `myConverter` is referenced in the window resources:
+Vous devez référencer un convertisseur personnalisé dans certaines ressources avant qu'il puisse être utilisé. Cela peut se faire à n'importe quel niveau de votre application. Dans cet exemple, le convertisseur personnalisé `myConverter` est référencé dans les ressources de la fenêtre :
 
 ```xml
 <Window xmlns="https://github.com/avaloniaui"
@@ -31,9 +31,9 @@ You must reference a custom converter in some resources before it can be used. T
 </Window>
 ```
 
-## Example
+## Exemple
 
-This example data binding converter can convert text to specific case from a parameter:
+Ce convertisseur de liaison de données peut convertir du texte en une casse spécifique à partir d'un paramètre :
 
 ```xml
 <TextBlock Text="{Binding TheContent, 
@@ -41,7 +41,7 @@ This example data binding converter can convert text to specific case from a par
     ConverterParameter=lower}" />
 ```
 
-The above XAML assumes that the `textCaseConverter` has been referenced in a resource.
+Le XAML ci-dessus suppose que le `textCaseConverter` a été référencé dans une ressource.
 
 ```csharp
 public class TextCaseConverter : IValueConverter
@@ -61,16 +61,16 @@ public class TextCaseConverter : IValueConverter
                     return sourceText.ToUpper();
                 case "lower":
                     return sourceText.ToLower();
-                case "title": // Every First Letter Uppercase
+                case "title": // Chaque première lettre en majuscule.
                     var txtinfo = new System.Globalization.CultureInfo("en-US",false)
                                     .TextInfo;
                     return txtinfo.ToTitleCase(sourceText);
                 default:
-                    // invalid option, return the exception below
+                    // option invalide, retourner l'exception ci-dessous.
                     break;
             }
         }
-        // converter used for the wrong type
+        // convertisseur utilisé pour le mauvais type
         return new BindingNotification(new InvalidCastException(), 
                                                 BindingErrorType.Error);
     }
@@ -83,11 +83,11 @@ public class TextCaseConverter : IValueConverter
 }
 ```
 
-## Target Property Type
+## Type de propriété cible
 
-You may want to write a a custom converter that can switch the output type depending on what the target property requires. You can achieve this becuase the `Convert` method receives a `targetType` argument that you can test with the `IsAssignableTo` function.
+Vous souhaiterez peut-être écrire un convertisseur personnalisé qui peut changer le type de sortie en fonction de ce que la propriété cible exige. Vous pouvez y parvenir car la méthode `Convert` reçoit un argument `targetType` que vous pouvez tester avec la fonction `IsAssignableTo`.
 
-In this example, the `animalConverter` can find an image, or a text name for a bound `Animal` class object:  
+Dans cet exemple, le `animalConverter` peut trouver une image ou un nom textuel pour un objet de classe `Animal` lié : 
 
 ```xml title='XAML'
 <Image Width="42" 
@@ -120,7 +120,7 @@ public class AnimalConverter : IValueConverter
                       break;
                     // etc. etc.
                 }
-                // see https://docs.avaloniaui.net/docs/guides/data-binding/how-to-create-a-custom-data-binding-converter
+                // voir https://docs.avaloniaui.net/docs/guides/data-binding/how-to-create-a-custom-data-binding-converter
                 return BitmapAssetValueConverter.Instance
                     .Convert(img, typeof(Bitmap), parameter, culture);
             }
@@ -130,7 +130,7 @@ public class AnimalConverter : IValueConverter
                     $"{animal.Name} \"{animal.NickName}\"" : animal.Name;
             }
         }
-        // converter used for the wrong type
+        // convertisseur utilisé pour le mauvais type
         return new BindingNotification(new InvalidCastException(), 
                                                     BindingErrorType.Error);
         
@@ -144,30 +144,30 @@ public class AnimalConverter : IValueConverter
 }
 ```
 
-## FuncValueConverter and FuncMultiConverter
+## FuncValueConverter et FuncMultiConverter
 
-You can also implement a `FuncValueConverter` if you don't need to convert back and also not the the `ConverterParameter`. The FuncValueConverter has two generic parameters:
+Vous pouvez également implémenter un `FuncValueConverter` si vous n'avez pas besoin de convertir en retour et également pas le `ConverterParameter`. Le FuncValueConverter a deux paramètres génériques :
 
-* **TIn**: This parameter defines the expected input type. This can also be an array in case you want to use this converter in a MultiBinding.
+* **TIn** : Ce paramètre définit le type d'entrée attendu. Cela peut également être un tableau si vous souhaitez utiliser ce convertisseur dans un MultiBinding.
 
-* **TOut**: This parameter defines the expected output type.
+* **TOut** : Ce paramètre définit le type de sortie attendu.
 
-### Example:
+### Exemple :
 
 ```cs
 public static class MyConverters 
 {
     /// <summary>
-    /// Gets a Converter that takes a number as input and converts it into a text representation
+    /// Obtient un convertisseur qui prend un nombre en entrée et le convertit en une représentation textuelle
     /// </summary>
     public static FuncValueConverter<decimal?, string> MyConverter { get; } = 
         new FuncValueConverter<decimal?, string> (num => $"Your number is: '{num}'");
     
     /// <summary>
-    /// Gets a Converter that takes several numbers as input and converts it into a text representation
+    /// Obtient un convertisseur qui prend plusieurs nombres en entrée et les convertit en une représentation textuelle
     /// </summary>
     public static FuncMultiValueConverter<decimal?, string> MyMultiConverter { get; } = 
-        new FuncMultiValueConverter<decimal?, string> (num => $"Your numbers are: '{string.Join(", ", num)}'");
+        new FuncMultiValueConverter<decimal?, string> (num => $"Vos nombres sont : '{string.Join(", ", num)}'");
 }
 ```
 
@@ -189,8 +189,8 @@ public static class MyConverters
 </StackPanel>
 ```
 
-## More Information
+## Plus d'informations
 
 :::info
-For further guidance about how to bind images, see [here](how-to-bind-image-files.md).
+Pour des conseils supplémentaires sur la façon de lier des images, voir [ici](how-to-bind-image-files.md).
 :::

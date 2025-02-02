@@ -1,16 +1,16 @@
 ---
 id: how-to-add-menu-icons
-title: How To Add Menu Icons
+title: Comment Ajouter des Icônes de Menu
 ---
 
 
-# How To Add Menu Icons
+# Comment Ajouter des Icônes de Menu
 
-In Avalonia, you can enhance the appearance and user experience of your application by adding icons to menu items. Icons can provide a visual clue for the action performed by the menu item, making it easier for users to navigate through your application. This guide will walk you through how to add icons to menu items in Avalonia.
+Dans Avalonia, vous pouvez améliorer l'apparence et l'expérience utilisateur de votre application en ajoutant des icônes aux éléments de menu. Les icônes peuvent fournir un indice visuel pour l'action effectuée par l'élément de menu, facilitant ainsi la navigation des utilisateurs dans votre application. Ce guide vous expliquera comment ajouter des icônes aux éléments de menu dans Avalonia.
 
-## Adding Icons to Menu Items
+## Ajouter des Icônes aux Éléments de Menu
 
-The `MenuItem.Icon` property is used to set an icon for a menu item. You can use various kinds of image sources for the icon, including resource URIs, file paths, or web URLs. Here's an example of how to add an icon to a menu item:
+La propriété `MenuItem.Icon` est utilisée pour définir une icône pour un élément de menu. Vous pouvez utiliser divers types de sources d'image pour l'icône, y compris des URI de ressources, des chemins de fichiers ou des URL web. Voici un exemple de la façon d'ajouter une icône à un élément de menu :
 
 ```xml
 <Menu>
@@ -24,5 +24,4 @@ The `MenuItem.Icon` property is used to set an icon for a menu item. You can use
 </Menu>
 ```
 
-In this example, the `MenuItem.Icon` property is set to an `Image` control that displays an image from the application resources. The `Source` property of the `Image` control is set to a resource URI that represents the image source. The `Width` and `Height` properties are set to control the size of the image.
-
+Dans cet exemple, la propriété `MenuItem.Icon` est définie sur un contrôle `Image` qui affiche une image provenant des ressources de l'application. La propriété `Source` du contrôle `Image` est définie sur un URI de ressource qui représente la source de l'image. Les propriétés `Width` et `Height` sont définies pour contrôler la taille de l'image.

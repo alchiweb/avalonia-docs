@@ -1,30 +1,30 @@
 ---
 id: types-of-control
-title: Types of Control
+title: Types de Contrôle
 ---
 
-If you want to create your own controls, there are three main categories of control in Avalonia. The first thing to do is choose the category of control that best suits your use-case.
+Si vous souhaitez créer vos propres contrôles, il existe trois principales catégories de contrôles dans Avalonia. La première chose à faire est de choisir la catégorie de contrôle qui convient le mieux à votre cas d'utilisation.
 
-### User Controls
+### Contrôles Utilisateurs
 
-UserControls are the simplest way to author controls. This type of control is best for "views" or "pages" that are specific to an application. UserControls are authored in the same way as you would author a Window: by creating a new UserControl from a template and adding controls to it.
+Les UserControls sont le moyen le plus simple de créer des contrôles. Ce type de contrôle est le mieux adapté aux "vues" ou "pages" spécifiques à une application. Les UserControls sont créés de la même manière que vous créeriez une fenêtre : en créant un nouveau UserControl à partir d'un modèle et en y ajoutant des contrôles.
 
-### Templated Controls
+### Contrôles Templatés
 
-TemplatedControls are best used for generic controls that can be shared among various applications. They are lookless controls, meaning that they can be restyled for different themes and applications. The majority of standard controls defined by Avalonia fit into this category.
+Les contrôles basés sur des modèles sont mieux utilisés pour des contrôles génériques qui peuvent être partagés entre diverses applications. Ce sont des contrôles sans apparence, ce qui signifie qu'ils peuvent être re-stylés pour différents thèmes et applications. La majorité des contrôles standard définis par Avalonia rentrent dans cette catégorie.
 
 :::info
-In WPF/UWP you would inherit from the Control class to create a new templated control, but in Avalonia you should inherit from TemplatedControl. 
+Dans WPF/UWP, vous hériteriez de la classe Control pour créer un nouveau contrôle basé sur un modèle, mais dans Avalonia, vous devriez hériter de TemplatedControl. 
 :::
 
 :::info
-If you want to provide a Style for your TemplatedControl in a separate file, remember to include this file in your Application via StyleInclude. 
+Si vous souhaitez fournir un style pour votre TemplatedControl dans un fichier séparé, n'oubliez pas d'inclure ce fichier dans votre application via StyleInclude. 
 :::
 
-### Basic Controls
+### Contrôles de base
 
-Basic Controls are the foundation of user interfaces - they draw themselves using geometry by overriding the Visual.Render method. Controls such as TextBlock and Image fall into this category.
+Les contrôles de base sont le fondement des interfaces utilisateur - ils se dessinent eux-mêmes en utilisant la géométrie en remplaçant la méthode Visual.Render. Des contrôles tels que TextBlock et Image entrent dans cette catégorie.
 
 :::info
-In WPF/UWP you would inherit from the FrameworkElement class to create a new basic control, but in Avalonia you should inherit from Control. 
+Dans WPF/UWP, vous hériteriez de la classe FrameworkElement pour créer un nouveau contrôle de base, mais dans Avalonia, vous devriez hériter de Control. 
 :::

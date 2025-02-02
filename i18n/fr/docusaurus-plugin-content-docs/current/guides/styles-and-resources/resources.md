@@ -1,20 +1,20 @@
 ---
 id: resources
-title: How To Use Resources
+title: Comment utiliser les ressources
 ---
 
 
-# 👉 How To Use Resources
+# 👉 Comment utiliser les ressources
 
-You will often need to standardise graphical fundamentals such as (but not limited to) brushes and colors in your applications. You can define these as resources at various levels in your _Avalonia UI_ application, as well as in files that can be included as required.
+Vous aurez souvent besoin de standardiser des éléments graphiques fondamentaux tels que (mais sans s'y limiter) les pinceaux et les couleurs dans vos applications. Vous pouvez les définir comme des ressources à divers niveaux dans votre application _Avalonia UI_, ainsi que dans des fichiers qui peuvent être inclus si nécessaire.
 
-Resources are always defined inside a resource dictionary. This means that each resource has a key attribute.
+Les ressources sont toujours définies à l'intérieur d'un dictionnaire de ressources. Cela signifie que chaque ressource a un attribut clé.
 
-The level of a resource dictionary defines the scope of the resources in it: resources are available in the file where they are defined, and below. So you can tailor the scope of resources by choosing where to locate a resource dictionary.
+Le niveau d'un dictionnaire de ressources définit la portée des ressources qu'il contient : les ressources sont disponibles dans le fichier où elles sont définies, et ci-dessous. Vous pouvez donc adapter la portée des ressources en choisissant où localiser un dictionnaire de ressources.
 
-## Declaring Resources
+## Déclaration des ressources
 
-For example, you may want brush colors to be standardized across the whole application. In this case you can declare a resource dictionary in the application XAML **App.axaml** file, like this
+Par exemple, vous pouvez souhaiter que les couleurs des pinceaux soient standardisées dans toute l'application. Dans ce cas, vous pouvez déclarer un dictionnaire de ressources dans le fichier XAML de l'application **App.axaml**, comme ceci :
 
 ```xml title="App.axaml"
 <Application xmlns="https://github.com/avaloniaui"
@@ -28,7 +28,7 @@ For example, you may want brush colors to be standardized across the whole appli
 </Application>
 ```
 
-Alternatively, you may want a set of resources to apply only to a specific window or user control. In this case you will define a resource dictionary in the window or user control file. For example:
+Alternativement, vous pouvez vouloir qu'un ensemble de ressources s'applique uniquement à une fenêtre ou un contrôle utilisateur spécifique. Dans ce cas, vous définirez un dictionnaire de ressources dans le fichier de la fenêtre ou du contrôle utilisateur. Par exemple :
 
 ```xml title="MyUserControl.axaml"
 <UserControl xmlns="https://github.com/avaloniaui"
@@ -42,7 +42,7 @@ Alternatively, you may want a set of resources to apply only to a specific windo
 </UserControl>
 ```
 
-In fact you can define resources at control level if required:
+En fait, vous pouvez définir des ressources au niveau du contrôle si nécessaire :
 
 ```xml title="MainWindow.axaml"
 <Window xmlns="https://github.com/avaloniaui"
@@ -58,7 +58,7 @@ In fact you can define resources at control level if required:
 </Window>
 ```
 
-You can also declare resources to be specific to a style. 
+Vous pouvez également déclarer des ressources spécifiques à un style.
 
 ```xml title="MyStyle.axaml"
 <Style Selector="TextBlock.warning">
@@ -70,10 +70,10 @@ You can also declare resources to be specific to a style.
 ```
 
 :::note
-Keep in mind, this resource is not visible outside of the this specific style block, meaning it won't make every TextBlock with a "warning" class aware of this resource outside of the Style block.
+Gardez à l'esprit que cette ressource n'est pas visible en dehors de ce bloc de style spécifique, ce qui signifie qu'elle ne rendra pas chaque TextBlock avec une classe "warning" consciente de cette ressource en dehors du bloc de style.
 :::
 
-It is also possible to define resources for specific theme variants: Dark, Light or custom. From the example below, `BackgroundBrush` and `ForegroundBrush` will have different values depending on the current theme variant set by the system or application. For more information about theme variants please read [Theme Variants](how-to-use-theme-variants) page.
+Il est également possible de définir des ressources pour des variantes de thème spécifiques : Sombre, Clair ou personnalisé. D'après l'exemple ci-dessous, `BackgroundBrush` et `ForegroundBrush` auront des valeurs différentes en fonction de la variante de thème actuelle définie par le système ou l'application. Pour plus d'informations sur les variantes de thème, veuillez lire la page [Variantes de thème](how-to-use-theme-variants).
 
 ```xml
 <ResourceDictionary>
@@ -90,68 +90,68 @@ It is also possible to define resources for specific theme variants: Dark, Light
 </ResourceDictionary>
 ```
 
-## Resource Dictionary Files
+## Fichiers de dictionnaire de ressources
 
-You can improve the organisation of your _Avalonia UI_ application project by defining resource dictionaries in their own files. This makes resource definitions easy to locate and maintain.
+Vous pouvez améliorer l'organisation de votre projet d'application _Avalonia UI_ en définissant des dictionnaires de ressources dans leurs propres fichiers. Cela rend les définitions de ressources faciles à localiser et à maintenir.
 
-Resources located in a resource dictionary file are accessible to the entire application.
+Les ressources situées dans un fichier de dictionnaire de ressources sont accessibles à l'ensemble de l'application.
 
-To add a resource dictionary file, follow this procedure:
+Pour ajouter un fichier de dictionnaire de ressources, suivez cette procédure :
 
--  Right-click your project at the location where you want the new file created.
--  Click **Add**, then **New Item**.
--  Click **Avalonia** in the list on the left:
+-  Cliquez avec le bouton droit sur votre projet à l'emplacement où vous souhaitez créer le nouveau fichier.
+-  Cliquez sur **Ajouter**, puis sur **Nouvel élément**.
+-  Cliquez sur **Avalonia** dans la liste à gauche :
 
 <img src="/img/gitbook-import/assets/image (8) (1) (2).png" alt=""/>
 
--  Click **Resource Dictionary (Avalonia)**.
--  Type the file name you want to use.
--  Click **Add**.
+-  Cliquez sur **Dictionnaire de ressources (Avalonia)**.
+-  Tapez le nom de fichier que vous souhaitez utiliser.
+-  Cliquez sur **Ajouter**.
 
 :::note
-After the resource file is created you have to correctly include it into your application. See [Include and Merge Resources](#include-and-merge-resources) section.
+Après la création du fichier de ressources, vous devez l'inclure correctement dans votre application. Voir la section [Inclure et fusionner des ressources](#include-and-merge-resources).
 :::
 
-You can now add the resources you want to define in the position indicated. It looks like this:
+Vous pouvez maintenant ajouter les ressources que vous souhaitez définir à l'emplacement indiqué. Cela ressemble à ceci :
 
 ```xml
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <!-- Add Resources Here -->
+    <!-- Ajoutez les ressources ici -->
 </ResourceDictionary>
 ```
 
-## Using Resources
+## Utilisation des ressources
 
-You can use a resource from a resources dictionary that is in scope using the `{DynamicResource}` mark-up extension.
+Vous pouvez utiliser une ressource d'un dictionnaire de ressources qui est dans le champ d'application en utilisant l'extension de balisage `{DynamicResource}`.
 
-For example, to use a resource directly on the background attribute of a border element, use the following XAML :
+Par exemple, pour utiliser une ressource directement sur l'attribut de fond d'un élément de bordure, utilisez le XAML suivant :
 
 ```xml
 <Border Background="{DynamicResource Warning}">
-  Look out!
+  Attention !
 </Border>
 ```
 
-### Static Resource
+### Ressource statique
 
-Alternatively you can choose to use the `StaticResource` mark-up extension. For example:
+Alternativement, vous pouvez choisir d'utiliser l'extension de balisage `StaticResource`. Par exemple :
 
 ```xml
 <Border Background="{StaticResource Warning}">
-  Look out!
+  Attention !
 </Border>
 ```
 
-A static resource is different in that it will not respond to changes in the resource made in code (at runtime). Once loaded a static cannot be altered.
+Une ressource statique est différente en ce sens qu'elle ne répondra pas aux modifications apportées à la ressource dans le code (à l'exécution). Une fois chargée, une ressource statique ne peut pas être modifiée.
 
-The benefit of using a static resource is that it has less work to do so it will be slightly faster to load, and it uses slightly less memory.
+L'avantage d'utiliser une ressource statique est qu'elle nécessite moins de travail à effectuer, donc elle sera légèrement plus rapide à charger et utilise légèrement moins de mémoire.
 
-## Resource Priority
+## Priorité des ressources
 
-_Avalonia UI_ resolves what resource to use by searching upwards in the **logical control tree** from the level of a `DynamicResource` or `StaticResource` mark-up, looking for the resource key.
+_Avalonia UI_ résout quelle ressource utiliser en recherchant vers le haut dans l'**arbre de contrôle logique** à partir du niveau d'un balisage `DynamicResource` ou `StaticResource`, à la recherche de la clé de ressource.
 
-This means that resources with the same key have priority based on their proximity to the resource mark-up being resolved. Resource definitions further up the logical control tree are therefore effectively 'overridden' by those that are closer. For example, consider this XAML:
+Cela signifie que les ressources ayant la même clé ont la priorité en fonction de leur proximité par rapport au balisage de ressource en cours de résolution. Les définitions de ressources plus haut dans l'arbre de contrôle logique sont donc effectivement 'écrasées' par celles qui sont plus proches. Par exemple, considérons ce XAML :
 
 ```xml
 <UserControl ... >
@@ -165,21 +165,21 @@ This means that resources with the same key have priority based on their proximi
     </StackPanel.Resources>
 
     <Border Background="{DynamicResource Warning}">
-      Look out!
+      Attention !
     </Border>
   </StackPanel>
 </UserControl>
 ```
 
-Here the border control is using the resource with the key 'Warning'. This is defined twice - once at the level of the enclosing stack panel, and again at user control level. _Avalonia UI_ will determine that the border background should be be orange because its parent stack panel is first in a search upwards in the logical control tree from the border itself.
+Ici, le contrôle de bordure utilise la ressource avec la clé 'Warning'. Cela est défini deux fois - une fois au niveau du panneau empilé englobant, et à nouveau au niveau du contrôle utilisateur. _Avalonia UI_ déterminera que l'arrière-plan de la bordure doit être orange car son panneau empilé parent est le premier dans une recherche vers le haut dans l'arbre de contrôle logique à partir de la bordure elle-même.
 
-## Include and Merge Resources
+## Inclure et Fusionner des Ressources
 
-Resources can be included from a resource dictionary file, and merged with the resources defined in another file (even if there are not any).
+Les ressources peuvent être incluses à partir d'un fichier de dictionnaire de ressources et fusionnées avec les ressources définies dans un autre fichier (même s'il n'y en a pas).
 
 <img src="/img/gitbook-import/assets/image (1) (4).png" alt=""/>
 
-In case, if you would like to merge resource dictionary on the whole application level, you have to declare a resource dictionary in the in the **Application.Resources** section of application XAML **App.axaml** file, like this
+Dans le cas où vous souhaitez fusionner un dictionnaire de ressources au niveau de l'application entière, vous devez déclarer un dictionnaire de ressources dans la section **Application.Resources** du fichier XAML de l'application **App.axaml**, comme ceci :
 
 ```xml
 <Application.Resources>
@@ -191,13 +191,13 @@ In case, if you would like to merge resource dictionary on the whole application
 </Application.Resources>
 ```
 
-You can also merge resource dictionary to declare merged resources to be specific to a style.
+Vous pouvez également fusionner un dictionnaire de ressources pour déclarer des ressources fusionnées spécifiques à un style.
 
 <img src="/img/gitbook-import/assets/image (1) (3).png" alt=""/>
 
-This means that you can implement styles in one file, and use resources defined in another. This keeps your styling consistent, and your application solution well organised and easy to maintain.
+Cela signifie que vous pouvez implémenter des styles dans un fichier et utiliser des ressources définies dans un autre. Cela maintient la cohérence de votre style et rend la solution de votre application bien organisée et facile à maintenir.
 
-To include the resources dictionary from a file in a styles file, add the following XAML:
+Pour inclure le dictionnaire de ressources d'un fichier dans un fichier de styles, ajoutez le XAML suivant :
 
 ```xml
 <Styles.Resources>
@@ -209,7 +209,7 @@ To include the resources dictionary from a file in a styles file, add the follow
   </Styles.Resources>
 ```
 
-In the above examples, the resources file `AppResources.axaml` is located in the `/Assets` project folder. You can then define the styles using the resources, for example:
+Dans les exemples ci-dessus, le fichier de ressources `AppResources.axaml` est situé dans le dossier de projet `/Assets`. Vous pouvez ensuite définir les styles en utilisant les ressources, par exemple :
 
 ```xml
 <Style Selector="Button.btn-info">
@@ -217,23 +217,23 @@ In the above examples, the resources file `AppResources.axaml` is located in the
 </Style>
 ```
 
-Where the resource `InfoColor` is defined as a `SolidColorBrush` in the imported file.
+Où la ressource `InfoColor` est définie comme un `SolidColorBrush` dans le fichier importé.
 
 :::info
-Note that the resource has been referenced using `StaticResource` because it must not change - the requirement here is to keep the styling consistent.
+Notez que la ressource a été référencée en utilisant `StaticResource` car elle ne doit pas changer - l'exigence ici est de maintenir la cohérence du style.
 :::
 
-## Merged Resources Priority 
+## Priorité des ressources fusionnées
 
-As you saw previously, resources are resolved by searching up the logical control tree from the point of mark-up until a resource with the requested key is found.
+Comme vous l'avez vu précédemment, les ressources sont résolues en recherchant dans l'arbre logique de contrôle à partir du point de balisage jusqu'à ce qu'une ressource avec la clé demandée soit trouvée.
 
-However the presence of styles and merged dictionaries defined at the various levels of an application, introduces extra priority rules as follows:
+Cependant, la présence de styles et de dictionnaires fusionnés définis à divers niveaux d'une application introduit des règles de priorité supplémentaires comme suit :
 
-* Control resources -> Merged dictionaries
-* Style resources -> Merged dictionaries
-* App resources -> Merged dictionaries
+* Ressources de contrôle -> Dictionnaires fusionnés
+* Ressources de style -> Dictionnaires fusionnés
+* Ressources d'application -> Dictionnaires fusionnés
 
-For example, in the theoretical application below, the search for a resource used on the border control (at the bottom) will follow the order indicated in square `[]` brackets:
+Par exemple, dans l'application théorique ci-dessous, la recherche d'une ressource utilisée sur le contrôle de bordure (en bas) suivra l'ordre indiqué dans les crochets `[]` :
 
 ```
 Application
@@ -262,33 +262,33 @@ Window
      |- Border
 ```
 
-Starting at the border, the first resources searched are any defined in the parent (stack panel) control. After that any merged dictionaries at the same level are considered - in the sequence that they appear in the XAML.
+À partir de la frontière, les premières ressources recherchées sont celles définies dans le contrôle parent (panneau empilé). Après cela, tous les dictionnaires fusionnés au même niveau sont considérés - dans l'ordre dans lequel ils apparaissent dans le XAML.
 
-The search then moves on to search any styles defined in the parent (stack panel) control, followed by any merged dictionaries at that level.
+La recherche passe ensuite à la recherche de styles définis dans le contrôle parent (panneau empilé), suivie de tous les dictionnaires fusionnés à ce niveau.
 
-The search moves upwards in the logical control tree, behaving at each level in a similar manner. It finally reaches application-level resources and styles.
+La recherche remonte dans l'arbre logique des contrôles, se comportant à chaque niveau de manière similaire. Elle atteint finalement les ressources et styles au niveau de l'application.
 
-## Consuming Resources from code
+## Consommation des ressources depuis le code
 
-Avalonia provides different options to access Resources from code. 
+Avalonia propose différentes options pour accéder aux ressources depuis le code.
 
 :::note
 
-`ResourceNode` in the below samples can be any node that supports `Resource`, like `Appliction.Current`, `Window`, `UserControl`, ... 
+`ResourceNode` dans les exemples ci-dessous peut être n'importe quel nœud qui prend en charge `Resource`, comme `Application.Current`, `Window`, `UserControl`, ...
 
 :::
 
-- **ResourceNode.Resources["TheKey"]**: <br/>
-  This will directly access the underlaying `Dictionary`. Be aware: Merged Dictionaries and parents will not be scanned. 
-- **ResourceNode.TryGetResource**: <br/>
-  This function will try to get a specific resource and return `true` if successful, otherwise `false`. Merged dictionaries will be scanned, but it will not follow the logical tree. 
-- **ResourceNode.TryFindResource**:  <br/>
-  This extension method will try to get a specific resource and return `true` if successful, otherwise `false`. Merged dictionaries and the logical tree will be scanned as well.
+- **ResourceNode.Resources["TheKey"]** : <br/>
+  Cela accédera directement au `Dictionary` sous-jacent. Attention : les dictionnaires fusionnés et les parents ne seront pas scannés. 
+- **ResourceNode.TryGetResource** : <br/>
+  Cette fonction essaiera d'obtenir une ressource spécifique et renverra `true` si elle réussit, sinon `false`. Les dictionnaires fusionnés seront scannés, mais il ne suivra pas l'arbre logique. 
+- **ResourceNode.TryFindResource** : <br/>
+  Cette méthode d'extension essaiera d'obtenir une ressource spécifique et renverra `true` si elle réussit, sinon `false`. Les dictionnaires fusionnés et l'arbre logique seront également scannés.
 - **ResourceNode.GetResourceObservable**: <br/>
-  This will return an [`IObservable`](https://learn.microsoft.com/en-us/dotnet/api/System.IObservable-1) which can be used to observe changes on the resource. For example you could bind to it.
+  Cela renverra un [`IObservable`](https://learn.microsoft.com/en-us/dotnet/api/System.IObservable-1) qui peut être utilisé pour observer les changements sur la ressource. Par exemple, vous pourriez vous y lier.
 
 ```cs
-// In this sample we have defined the resource in App.axaml and we want to look up the value in the MainWindow constructor.
+// Dans cet exemple, nous avons défini la ressource dans App.axaml et nous voulons récupérer la valeur dans le constructeur de MainWindow.
 //
 //    </Application.Resources>
 //         <x:String x:Key="TheKey">HelloWorld</x:String>
@@ -304,10 +304,10 @@ public MainWindow()
     // found2 = true | result2 = "Hello World" 
     var found2 = this.TryFindResource("TheKey", this.ActualThemeVariant, out var result2);
 
-    // Dound the resource to a TextBlock from code behind
+    // Liez la ressource à un TextBlock depuis le code-behind
     myTextBlock.Bind(TextBlock.TextProperty, Resources.GetResourceObservable("TheKey"));
 
-    // this will update myTextBlock.Text via the bound observable
+    // cela mettra à jour myTextBlock.Text via l'observable lié
     this.Resources["TheKey"] = "Hello from code behind"; 
 }
 ```
