@@ -16,8 +16,8 @@ En utilisant des variantes de thème, les développeurs peuvent créer des inter
 Les thèmes intégrés d'Avalonia, `SimpleTheme` et `FluentTheme`, prennent en charge sans effort les variantes `Sombre` et `Clair` sans code supplémentaire. Cela permet aux applications de s'adapter dynamiquement en fonction des préférences du système tout en utilisant des contrôles intégrés. Pour une personnalisation avancée, cette documentation explique la définition de ressources dépendantes de variantes personnalisées et leur référence.
 
 ## Changer la variante de thème actuelle
-
-Par défaut, Avalonia hérite de la variante de thème définie par les préférences de l'utilisateur à l'échelle du système. L'application a le contrôle sur les variantes de thème à travers deux propriétés importantes : [ActualThemeVariant](#actualthemevariant-property) et [RequestedThemeVariant](#requestedthemevariant-property). Ces propriétés permettent de gérer et de changer les variantes de thème à différents niveaux au sein de votre application.
+https://avalonia.choixdevie.fr/fr/docs/guides/styles-and-resources/how-to-use-theme-variants#propri%C3%A9t%C3%A9-actualthemevariant
+Par défaut, Avalonia hérite de la variante de thème définie par les préférences de l'utilisateur à l'échelle du système. L'application a le contrôle sur les variantes de thème à travers deux propriétés importantes : [ActualThemeVariant](#propriété-actualthemevariant) et [RequestedThemeVariant](#propriété-requestedthemevariant). Ces propriétés permettent de gérer et de changer les variantes de thème à différents niveaux au sein de votre application.
 
 ### Propriété `ActualThemeVariant`
 

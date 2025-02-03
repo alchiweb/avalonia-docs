@@ -4,7 +4,7 @@ description: CONCEPTS - Input
 
 # Clavier et Raccourcis
 
-Divers contrôles qui implémentent `ICommandSource` ont une propriété `HotKey` que vous pouvez définir ou lier. Appuyer sur le raccourci exécutera la commande [liée](../../basics/user-interface/adding-interactivity#commands) au Contrôle.
+Divers contrôles qui implémentent `ICommandSource` ont une propriété `HotKey` que vous pouvez définir ou lier. Appuyer sur le raccourci exécutera la commande [liée](../../basics/user-interface/adding-interactivity#utilisation-des-commandes) au Contrôle.
 
 ```xml
 <Menu>

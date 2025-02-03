@@ -9,12 +9,12 @@ Avalonia fournit ce qui suit :
 
 | Extension de Marquage                                                                                  | Assigne à la Propriété                                                |
 |--------------------------------------------------------------------------------------------------|--------------------------------------------------------------------|
-| [StaticResource](/docs/guides/styles-and-resources/resources#static-resource)                    | Une ressource clé existante qui ne se met pas à jour lors des changements          |
-| [DynamicResource](/docs/guides/styles-and-resources/resources#using-resources)                   | Chargement différé d'une ressource clé qui se mettra à jour lors des changements   |
+| [StaticResource](/docs/guides/styles-and-resources/resources#ressource-statique)                    | Une ressource clé existante qui ne se met pas à jour lors des changements          |
+| [DynamicResource](/docs/guides/styles-and-resources/resources#utilisation-des-ressources)                   | Chargement différé d'une ressource clé qui se mettra à jour lors des changements   |
 | Binding                                                                                          | Basé sur la préférence de liaison par défaut : Compilé ou Réflexion    |
 | [CompiledBinding](/docs/basics/data/data-binding/compiled-bindings#compiledbinding-markup)       | Basé sur une liaison compilée                                        |
-| [ReflectionBinding](/docs/basics/data/data-binding/compiled-bindings#reflectionbinding-markup)   | Basé sur une liaison par réflexion                                      |
-| [TemplateBinding](/docs/guides/custom-controls/how-to-create-templated-controls#data-binding)    | Basé sur un lien simplifié utilisé uniquement dans un `ControlTemplate` |
+| [ReflectionBinding](/docs/basics/data/data-binding/compiled-bindings#balisage-reflectionbinding)   | Basé sur une liaison par réflexion                                      |
+| [TemplateBinding](/docs/guides/custom-controls/how-to-create-templated-controls#liaison-de-données)    | Basé sur un lien simplifié utilisé uniquement dans un `ControlTemplate` |
 | [OnPlatform](/docs/guides/platforms/platform-specific-code/xaml#onplatform-markup-extension)     | Conditionnellement lorsque sur la plateforme spécifiée                       |
 | [OnFormFactor](/docs/guides/platforms/platform-specific-code/xaml#onformfactor-markup-extension) | Conditionnellement lorsque sur le facteur spécifié                         |
 

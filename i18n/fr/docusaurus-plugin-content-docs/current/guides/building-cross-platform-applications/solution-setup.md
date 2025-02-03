@@ -12,7 +12,7 @@ La première étape pour créer une nouvelle application multiplateforme est de 
 Le modèle `Application multiplateforme Avalonia` crée une structure de solution qui inclut les projets suivants pour permettre un partage et une réutilisation sans faille du code sur plusieurs plateformes :
 
 :::info
-[Assurez-vous d'avoir installé les modèles Avalonia.](../../get-started/install#install-avalonia-ui-templates)
+[Assurez-vous d'avoir installé les modèles Avalonia.](../../get-started/install#installer-les-modèles-avalonia-ui)
 :::
 
 ### Projet Principal
